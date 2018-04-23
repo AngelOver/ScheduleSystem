@@ -11,16 +11,25 @@
     <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="${ctxPath}/static/css/animate.css" rel="stylesheet">
     <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    
+   
     <script>if (window.top !== window.self) {
         window.top.location = window.location;
     }</script>
     <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
     <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    
+  <!-- 特效 -->
+<!--       <link href="${ctxPath}/static/css/login/style.css?v=4.1.0" rel="stylesheet">
+     <script src="${ctxPath}/static/js/login/jquery.particleground.min.js?v=2.1.4"></script>
+     <script src="${ctxPath}/static/js/login/demo.js?v=2.1.4"></script> -->
+    
+    
 </head>
 
 <body class="gray-bg">
 
-<div class="middle-box text-center loginscreen  animated fadeInDown">
+<div class="middle-box text-center loginscreen  animated fadeInDown"  style="z-index:100">
     <div style="padding: 100px 0px;">
         <div>
             <h1 class="logo-name">GS</h1>
@@ -52,11 +61,22 @@
                     </label>
                 </div>
             </div>
+            <div class="form-group" style="float: right;">
+                <div class="checkbox" style="text-align: left">
+                    <label>
+                    	  忘记密码
+                    </label>
+                </div>
+            </div>
+            
             <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+            <label> 没有帐号，立即注册</label>
             </p>
         </form>
     </div>
 </div>
+<!-- <div id="particles" style="z-index:1">
+</div> -->
 
 <script>
     $(function () {

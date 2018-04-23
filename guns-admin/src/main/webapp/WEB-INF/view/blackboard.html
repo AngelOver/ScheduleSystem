@@ -1,6 +1,123 @@
 @layout("/common/_container.html"){
 <div class="container-fluid" style="padding: 0 !important;">
+
+<style>
+
+.four-agileits {
+    background: #ff4a43;
+    text-align: center;
+    padding: 2em 0;
+}
+.four-agileinfo {
+    background: #22beef;
+    padding: 2em 0;
+    text-align: center;
+}
+.four-w3ls {
+    background: #a2d200;
+    padding: 2em 0;
+    text-align: center;
+}
+.four-wthree {
+    background: #8e44ad;
+    padding: 2em 0;
+    text-align: center;
+}
+.four-grid:nth-child(1) {
+    padding-left: 0;
+}
+.four-grid:nth-child(4) {
+    padding-right: 0;
+}
+.four-grids {
+    margin: 2em 0;
+}
+.four-grid i.glyphicon {
+    color: #fff;
+    font-size: 32px;
+}
+.four-grid h3 {
+    font-size: 20px;
+    color: #fff;
+    margin: 14px 0;
+}
+.four-grids h4 {
+    font-size: 30px;
+    color: #fff;
+    margin: 0;
+}
+
+
+
+.four-grids {
+    margin: 1em 0;
+}
+.four-grids h4 {
+    font-size: 30px;
+    color: #fff;
+    margin: 0;
+}	
+</style>
 	<div class="row">
+	
+	<div class="col-sm-12 four-grids">
+					<div class="col-md-3 four-grid">
+						<div class="four-agileits">
+							<div class="icon">
+								<i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+							</div>
+							<div class="four-text">
+								<h3>共有多少人在用</h3>
+								<h4> 461 </h4>
+								
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-md-3 four-grid">
+						<div class="four-agileinfo">
+							<div class="icon">
+								<i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
+							</div>
+							<div class="four-text">
+								<h3>共有多少任务被创建</h3>
+								<h4>1626</h4>
+
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-md-3 four-grid">
+						<div class="four-w3ls">
+							<div class="icon">
+								<i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i>
+							</div>
+							<div class="four-text">
+								<h3>您规划的任务</h3>
+								<h4>17</h4>
+								
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-md-3 four-grid">
+						<div class="four-wthree">
+							<div class="icon">
+								<i class="glyphicon glyphicon-briefcase" aria-hidden="true"></i>
+							</div>
+							<div class="four-text">
+								<h3>您的收集箱</h3>
+								<h4>1</h4>
+								
+							</div>
+							
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+	
+	
+	
 		<div class="col-sm-12">
 			@for(notice in noticeList){
 				<div class="alert alert-success alert-dismissable">
