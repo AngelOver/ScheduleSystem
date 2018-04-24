@@ -25,9 +25,9 @@
                                             <option value="2">女</option>
                                         </#select>
 
-                                        <#input id="roleid" name="角色" underline="true" value="${roleName}" disabled="disabled"/>
+                                        <#input id="roleid" name="角色"  value="${roleName}" disabled="disabled"/>
 
-                                        <#input id="email" name="邮箱" type="email" value="${user.email}"/>
+                                      	
                                     </div>
 
                                     <div class="col-sm-6">
@@ -38,12 +38,13 @@
                                                     value="${user.birthday}"
                                                     clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
 
-                                            <#input id="citySel" name="部门" underline="true" readonly="readonly" value="${deptName}"
+<!--                                             <#input id="citySel" name="部门" underline="true" readonly="readonly" value="${deptName}"
                                                     hidden="deptid" hiddenValue="${user.deptid}"
                                                     clickFun="UserInfoDlg.showInfoDeptSelectTree(); return false;"
                                                     style="background-color: #ffffff !important;"
-                                                    selectFlag="true" selectId="menuContent" selectTreeId="treeDemo" selectStyle="width:250px !important;"/>
-
+                                                    selectFlag="true" selectId="menuContent" selectTreeId="treeDemo" selectStyle="width:250px !important;"/> -->
+											<#input id="email" name="邮箱" underline="true" type="email" value="${user.email}"/>
+                                         
                                             <#input id="phone" name="电话" value="${user.phone}"/>
                                         </div>
                                     </div>
