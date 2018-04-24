@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键id" underline="true"/>
+                            <#input id="websiteName" name="网站名称" underline="true"/>
+                            <#input id="websiteCode" name="网站英文简称" underline="true"/>
+                            <#input id="websiteUrl" name="网站地址" underline="true"/>
+                            <#input id="logo" name="LOGO" underline="true"/>
+                            <#input id="toptitle" name="顶端标题" underline="true"/>
+                            <#input id="keyword" name="关键字"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="describe" name="描述" underline="true"/>
+                            <#input id="username" name="主办方" underline="true"/>
+                            <#input id="tel" name="联系电话" underline="true"/>
+                            <#input id="hotline" name="服务热线" underline="true"/>
+                            <#input id="address" name="地址" underline="true"/>
+                            <#input id="email" name="邮箱" underline="true"/>
+                            <#input id="about" name="关于系统" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="SetupInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="SetupInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/setup/setup_info.js"></script>
+@}

@@ -97,6 +97,6 @@ ${context.bizEnBigName}.search = function () {
 $(function () {
     var defaultColunms = ${context.bizEnBigName}.initColumn();
     var table = new BSTable(${context.bizEnBigName}.id, "/${context.bizEnName}/list", defaultColunms);
-    table.setPaginationType("client");
+    table.setPaginationType("server");
     ${context.bizEnBigName}.table = table.init();
 });

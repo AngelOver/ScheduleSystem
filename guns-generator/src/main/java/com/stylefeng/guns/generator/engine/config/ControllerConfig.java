@@ -23,8 +23,11 @@ public class ControllerConfig {
         imports.add("org.springframework.stereotype.Controller");
         imports.add("org.springframework.web.bind.annotation.RequestMapping");
         imports.add("org.springframework.web.bind.annotation.ResponseBody");
+        imports.add("com.stylefeng.guns.core.common.constant.factory.PageFactory");
+        imports.add("com.stylefeng.guns.core.page.PageInfoBT");
         imports.add("org.springframework.ui.Model");
         imports.add("org.springframework.web.bind.annotation.PathVariable");
+        imports.add("com.baomidou.mybatisplus.plugins.Page");
         imports.add("org.springframework.beans.factory.annotation.Autowired");
         imports.add(contextConfig.getProPackage() + ".core.log.LogObjectHolder");
         imports.add("org.springframework.web.bind.annotation.RequestParam");

@@ -52,7 +52,10 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return ${context.bizEnName}Service.selectList(null);
+   		Page<${context.entityName}> page = new PageFactory<${context.entityName}>().defaultPage();
+   		page = this.${context.bizEnName}Service.selectPage(page);
+   		PageInfoBT<${context.entityName}> pageInfoBT= this.packForBT(page);
+        return pageInfoBT;
     }
 
     /**

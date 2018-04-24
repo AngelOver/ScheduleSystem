@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.SetupMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Setup">
+        <id column="id" property="id" />
+        <result column="website_name" property="websiteName" />
+        <result column="website_code" property="websiteCode" />
+        <result column="website_url" property="websiteUrl" />
+        <result column="logo" property="logo" />
+        <result column="toptitle" property="toptitle" />
+        <result column="keyword" property="keyword" />
+        <result column="describe" property="describe" />
+        <result column="username" property="username" />
+        <result column="tel" property="tel" />
+        <result column="hotline" property="hotline" />
+        <result column="address" property="address" />
+        <result column="email" property="email" />
+        <result column="about" property="about" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, website_name AS websiteName, website_code AS websiteCode, website_url AS websiteUrl, logo, toptitle, keyword, describe, username, tel, hotline, address, email, about
+    </sql>
+
+</mapper>

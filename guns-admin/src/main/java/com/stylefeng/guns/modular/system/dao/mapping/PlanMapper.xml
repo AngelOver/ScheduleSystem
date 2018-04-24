@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.PlanMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Plan">
+        <id column="id" property="id" />
+        <result column="userid" property="userid" />
+        <result column="title" property="title" />
+        <result column="remark" property="remark" />
+        <result column="address" property="address" />
+        <result column="starttime" property="starttime" />
+        <result column="endtime" property="endtime" />
+        <result column="remindtime" property="remindtime" />
+        <result column="remindtype" property="remindtype" />
+        <result column="importantstatus" property="importantstatus" />
+        <result column="is_wholeday" property="isWholeday" />
+        <result column="is_repeat" property="isRepeat" />
+        <result column="repeatcount" property="repeatcount" />
+        <result column="is_progress" property="isProgress" />
+        <result column="nowprogress" property="nowprogress" />
+        <result column="createtime" property="createtime" />
+        <result column="updatetime" property="updatetime" />
+        <result column="version" property="version" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, userid, title, remark, address, starttime, endtime, remindtime, remindtype, importantstatus, is_wholeday AS isWholeday, is_repeat AS isRepeat, repeatcount, is_progress AS isProgress, nowprogress, createtime, updatetime, version
+    </sql>
+
+</mapper>
