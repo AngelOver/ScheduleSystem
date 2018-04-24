@@ -45,9 +45,13 @@ public class SetupController extends BaseController {
     /**
      * 跳转到添加组织机构
      */
-    @RequestMapping("/setup_add")
-    public String setupAdd() {
-        return PREFIX + "setup_add.html";
+    @RequestMapping("/setup_about")
+    public String setupAbout( Model model) {
+    	//待修改 TODO
+    	Setup setup = setupService.selectById(1);
+        model.addAttribute("item",setup);
+       //日志 无
+        return PREFIX + "setup_about.html";
     }
 
     /**
