@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                          
+                            <#input id="account" name="账号" value="${item.account}" underline="true"/>
+                            <#input id="password" name="密码" value="${item.password}" underline="true"/>
+                            <#input id="salt" name="md5密码盐" value="${item.salt}" underline="true"/>
+                            <#input id="name" name="名字" value="${item.name}" underline="true"/>
+                            <#input id="birthday" name="生日" value="${item.birthday}" underline="true"/>
+                            <#input id="sex" name="性别" value="${item.sex}" />
+                </div>
+
+                <div class="col-sm-6">
+                 		 <#input id="avatar" name="头像" value="${item.avatar}" underline="true"/>
+                            <#input id="email" name="电子邮件" value="${item.email}" underline="true"/>
+                            <#input id="phone" name="电话" value="${item.phone}" underline="true"/>
+                            <#input id="status" name="状态" value="${item.status}" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="UserInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="UserInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/schedule/user/user_info.js"></script>
+@}
