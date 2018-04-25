@@ -1,5 +1,15 @@
 @layout("/common/_container.html"){
 <div class="ibox float-e-margins">
+<script type="text/javascript">
+ var item = '${item}';
+ var create = '${item.createtime}';
+ console.log(item);
+ console.log(create);
+ 
+ 
+
+
+</script>
     <div class="ibox-content">
         <div class="form-horizontal">
 
@@ -7,22 +17,25 @@
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                            <#input id="id" name="主键id" value="${item.id}" underline="true"/>
+                          <!--   <#input id="id" name="主键id" value="${item.id}" underline="true"/>
                             <#input id="pid" name="父级id(备忘录归档)" value="${item.pid}" underline="true"/>
                             <#input id="type" name="便签类型(0 便签 1 文件夹)" value="${item.type}" underline="true"/>
-                            <#input id="userid" name="用户id" value="${item.userid}" underline="true"/>
-                            <#input id="title" name="标题(标题自动生成 前10个字)" value="${item.title}" underline="true"/>
+                            <#input id="userid" name="用户id" value="${item.userid}" underline="true"/> -->
+                         
                             <#input id="text" name="便签" value="${item.text}" underline="true"/>
-                            <#input id="isShow" name="是否展示(0：否  1：是）" value="${item.isShow}" />
+                             <#input id="title" name="标题" value="${item.title}" />
                 </div>
 
+  
+
                 <div class="col-sm-6">
-                            <#input id="isTop" name="是否置顶(0：否  1：是）" value="${item.isTop}" underline="true"/>
-                            <#input id="isWait" name="是否待办(0：否  1：是）" value="${item.isWait}" underline="true"/>
-                            <#input id="waitStatus" name="代办状态(0：待办  1：完成)" value="${item.waitStatus}" underline="true"/>
-                            <#input id="createtime" name="创建时间" value="${item.createtime}" underline="true"/>
-                            <#input id="updatetime" name="更新时间" value="${item.updatetime}" underline="true"/>
-                            <#input id="version" name="保留字段" value="${item.version}" />
+                 		 <#input id="isShow" name="是否展示" value="${item.isShow}" />
+                            <#input id="isTop" name="是否置顶" value="${item.isTop}" underline="true"/>
+                            <#input id="isWait" name="是否待办" value="${item.isWait}" underline="true"/>
+                            <#input id="waitStatus" name="代办状态" value="${item.waitStatus}"  underline="true"/>
+         <!--                    <#input id="createtime" name="创建时间" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="${item.createtime}"  underline="true"/> -->
+<!--                             <#input id="updatetime" name="更新时间" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="${item.updatetime}" underline="true"/>
+                            <#input id="version" name="保留字段" value="${item.version}" /> -->
                 </div>
             </div>
 
@@ -36,5 +49,8 @@
 
     </div>
 </div>
+
+
+
 <script src="${ctxPath}/static/modular/schedule/note/note_info.js"></script>
 @}

@@ -14,24 +14,24 @@ var Plan = {
 Plan.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            {title: '主键id', field: 'id', visible: true, align: 'center', valign: 'middle'},
-            {title: '用户id', field: 'userid', visible: true, align: 'center', valign: 'middle'},
+/*            {title: '主键id', field: 'id', visible: true, align: 'center', valign: 'middle'},
+            {title: '用户id', field: 'userid', visible: true, align: 'center', valign: 'middle'},*/
             {title: '标题', field: 'title', visible: true, align: 'center', valign: 'middle'},
             {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'},
             {title: '地址', field: 'address', visible: true, align: 'center', valign: 'middle'},
             {title: '开始时间', field: 'starttime', visible: true, align: 'center', valign: 'middle'},
             {title: '结束时间', field: 'endtime', visible: true, align: 'center', valign: 'middle'},
             {title: '提醒时间', field: 'remindtime', visible: true, align: 'center', valign: 'middle'},
-            {title: '提醒类型(0：准时  1：准时 2 自定义）', field: 'remindtype', visible: true, align: 'center', valign: 'middle'},
-            {title: '重要程度(A：重要 ，紧急   B：重要 ，不紧急  ）', field: 'importantstatus', visible: true, align: 'center', valign: 'middle'},
-            {title: '是否全天(0：否  1：是）', field: 'isWholeday', visible: true, align: 'center', valign: 'middle'},
-            {title: '是否重复(0：否  1：是）', field: 'isRepeat', visible: true, align: 'center', valign: 'middle'},
+            {title: '提醒类型', field: 'remindtype', visible: true, align: 'center', valign: 'middle'},
+            {title: '重要程度', field: 'importantstatus', visible: true, align: 'center', valign: 'middle'},
+            {title: '是否全天', field: 'isWholeday', visible: true, align: 'center', valign: 'middle'},
+/*            {title: '是否重复(0：否  1：是）', field: 'isRepeat', visible: true, align: 'center', valign: 'middle'},
             {title: '重复次数', field: 'repeatcount', visible: true, align: 'center', valign: 'middle'},
             {title: '是否展示进度(0：否  1：是）', field: 'isProgress', visible: true, align: 'center', valign: 'middle'},
-            {title: '当前进度(当前重复次数)', field: 'nowprogress', visible: true, align: 'center', valign: 'middle'},
+            {title: '当前进度(当前重复次数)', field: 'nowprogress', visible: true, align: 'center', valign: 'middle'},*/
             {title: '创建时间', field: 'createtime', visible: true, align: 'center', valign: 'middle'},
             {title: '更新时间', field: 'updatetime', visible: true, align: 'center', valign: 'middle'},
-            {title: '保留字段', field: 'version', visible: true, align: 'center', valign: 'middle'}
+/*            {title: '保留字段', field: 'version', visible: true, align: 'center', valign: 'middle'}*/
     ];
 };
 

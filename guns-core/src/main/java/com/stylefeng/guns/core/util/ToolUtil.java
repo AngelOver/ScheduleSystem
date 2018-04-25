@@ -27,7 +27,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 /**
- * 高频方法集合类
+ * 高频方法集合类  //beetl 模板引擎 自定义html便签 ${}中工具类 tool
  */
 public class ToolUtil {
 
@@ -57,6 +57,20 @@ public class ToolUtil {
     public static String dateType(Object o) {
         if (o instanceof Date) {
             return DateUtil.getDay((Date) o);
+        } else {
+            return o.toString();
+        }
+    }
+    
+    /**
+     * 判断一个对象是否是时间类型,返回datetime类型
+     *
+     * @author stylefeng
+     * @Date 2017/4/18 12:55
+     */
+    public static String dateTimeType(Object o) {
+        if (o instanceof Date) {
+            return DateUtil.getTime((Date) o);
         } else {
             return o.toString();
         }

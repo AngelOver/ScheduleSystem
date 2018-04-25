@@ -1,5 +1,5 @@
 /**
- * 便签计划管理管理初始化
+ * 便签管理初始化
  */
 var Note = {
     id: "NoteTable",	//表格id
@@ -14,19 +14,19 @@ var Note = {
 Note.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            {title: '主键id', field: 'id', visible: true, align: 'center', valign: 'middle'},
-            {title: '父级id(备忘录归档)', field: 'pid', visible: true, align: 'center', valign: 'middle'},
-            {title: '便签类型(0 便签 1 文件夹)', field: 'type', visible: true, align: 'center', valign: 'middle'},
-            {title: '用户id', field: 'userid', visible: true, align: 'center', valign: 'middle'},
-            {title: '标题(标题自动生成 前10个字)', field: 'title', visible: true, align: 'center', valign: 'middle'},
+/*            {title: '主键id', field: 'id', visible: true, align: 'center', valign: 'middle'},*/
+/*            {title: '父级id(备忘录归档)', field: 'pid', visible: true, align: 'center', valign: 'middle'},*/
+ /*           {title: '便签类型(0 便签 1 文件夹)', field: 'type', visible: true, align: 'center', valign: 'middle'},*/
+/*            {title: '用户id', field: 'userid', visible: true, align: 'center', valign: 'middle'},*/
+            {title: '标题', field: 'title', visible: true, align: 'center', valign: 'middle'},
             {title: '便签', field: 'text', visible: true, align: 'center', valign: 'middle'},
-            {title: '是否展示(0：否  1：是）', field: 'isShow', visible: true, align: 'center', valign: 'middle'},
-            {title: '是否置顶(0：否  1：是）', field: 'isTop', visible: true, align: 'center', valign: 'middle'},
-            {title: '是否待办(0：否  1：是）', field: 'isWait', visible: true, align: 'center', valign: 'middle'},
-            {title: '代办状态(0：待办  1：完成)', field: 'waitStatus', visible: true, align: 'center', valign: 'middle'},
-            {title: '创建时间', field: 'createtime', visible: true, align: 'center', valign: 'middle'},
+            {title: '展示', field: 'isShow', visible: true, align: 'center', valign: 'middle'},
+            {title: '置顶', field: 'isTop', visible: true, align: 'center', valign: 'middle'},
+      /*      {title: '是否待办(0：否  1：是）', field: 'isWait', visible: true, align: 'center', valign: 'middle'},*/
+            {title: '代办', field: 'waitStatus', visible: true, align: 'center', valign: 'middle'},
+            {title: '创建时间', field: 'createtime', visible: true, align: 'center', valign: 'middle' },
             {title: '更新时间', field: 'updatetime', visible: true, align: 'center', valign: 'middle'},
-            {title: '保留字段', field: 'version', visible: true, align: 'center', valign: 'middle'}
+         /*   {title: '保留字段', field: 'version', visible: true, align: 'center', valign: 'middle'}*/
     ];
 };
 
@@ -45,12 +45,12 @@ Note.check = function () {
 };
 
 /**
- * 点击添加便签计划管理
+ * 点击添加便签
  */
 Note.openAddNote = function () {
     var index = layer.open({
         type: 2,
-        title: '添加便签计划管理',
+        title: '添加便签',
         area: ['800px', '420px'], //宽高
         fix: false, //不固定
         maxmin: true,
@@ -60,13 +60,13 @@ Note.openAddNote = function () {
 };
 
 /**
- * 打开查看便签计划管理详情
+ * 打开查看便签详情
  */
 Note.openNoteDetail = function () {
     if (this.check()) {
         var index = layer.open({
             type: 2,
-            title: '便签计划管理详情',
+            title: '便签详情',
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
@@ -77,7 +77,7 @@ Note.openNoteDetail = function () {
 };
 
 /**
- * 删除便签计划管理
+ * 删除便签
  */
 Note.delete = function () {
     if (this.check()) {
@@ -93,7 +93,7 @@ Note.delete = function () {
 };
 
 /**
- * 查询便签计划管理列表
+ * 查询便签列表
  */
 Note.search = function () {
     var queryData = {};

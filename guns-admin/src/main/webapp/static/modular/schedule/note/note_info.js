@@ -1,5 +1,5 @@
 /**
- * 初始化便签计划管理详情对话框
+ * 初始化便签详情对话框
  */
 var NoteInfoDlg = {
     noteInfoData : {}
@@ -39,6 +39,8 @@ NoteInfoDlg.get = function(key) {
 NoteInfoDlg.close = function() {
     parent.layer.close(window.parent.Note.layerIndex);
 }
+
+
 
 /**
  * 收集数据

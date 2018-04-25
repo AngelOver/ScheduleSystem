@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 
 /**
@@ -90,10 +92,12 @@ public class Plan extends Model<Plan> {
     /**
      * 创建时间
      */
+
     private Date createtime;
     /**
      * 更新时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updatetime;
     /**
      * 保留字段

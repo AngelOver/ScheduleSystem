@@ -7,25 +7,27 @@
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                            <#input id="id" name="主键id" underline="true"/>
-                            <#input id="pid" name="父级id(备忘录归档)" underline="true"/>
-                            <#input id="type" name="便签类型(0 便签 1 文件夹)" underline="true"/>
-                            <#input id="userid" name="用户id" underline="true"/>
-                            <#input id="title" name="标题(标题自动生成 前10个字)" underline="true"/>
+                        
                             <#input id="text" name="便签" underline="true"/>
-                            <#input id="isShow" name="是否展示(0：否  1：是）"/>
+                            (标题自动生成 前10个字，可以加个标题状态)
+                            <#input id="title" name="标题" />
+                            
                 </div>
 
                 <div class="col-sm-6">
-                            <#input id="isTop" name="是否置顶(0：否  1：是）" underline="true"/>
-                            <#input id="isWait" name="是否待办(0：否  1：是）" underline="true"/>
-                            <#input id="waitStatus" name="代办状态(0：待办  1：完成)" underline="true"/>
-                            <#input id="createtime" name="创建时间" underline="true"/>
-                            <#input id="updatetime" name="更新时间" underline="true"/>
-                            <#input id="version" name="保留字段" underline="true"/>
-                </div>
+             			   <#input id="isShow" name="是否展示"/>
+                            <#input id="isTop" name="是否置顶" underline="true"/>
+                            <#input id="isWait" name="是否待办" underline="true"/>
+                            <#input id="waitStatus" name="代办状态" />     (可以设置 无 待办 完成)
+                          
+ <!--                            	 <#input id="createtime" name="创建时间" underline="true" 
+								clickFun="laydate({istime: true,format: 'YYYY-MM-DD hh:mm:ss'})"/>
+								  <#input id="updatetime" name="更新时间" underline="true" 
+								clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/> -->
+						<!--  <#input id="createtime" name="创建时间" underline="true"/> -->
+                        <!--     <#input id="updatetime" name="更新时间" underline="true"/> -->
+	                </div>
             </div>
-
             <div class="row btn-group-m-t">
                 <div class="col-sm-10">
                     <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="NoteInfoDlg.addSubmit()"/>

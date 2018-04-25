@@ -4,30 +4,28 @@
         <div class="form-horizontal">
 
             <input type="hidden" id="id" value="${item.id}">
-
             <div class="row">
                 <div class="col-sm-6 b-r">
-                            <#input id="id" name="主键id" value="${item.id}" underline="true"/>
-                            <#input id="userid" name="用户id" value="${item.userid}" underline="true"/>
                             <#input id="title" name="标题" value="${item.title}" underline="true"/>
                             <#input id="remark" name="备注" value="${item.remark}" underline="true"/>
                             <#input id="address" name="地址" value="${item.address}" underline="true"/>
-                            <#input id="starttime" name="开始时间" value="${item.starttime}" underline="true"/>
-                            <#input id="endtime" name="结束时间" value="${item.endtime}" underline="true"/>
-                            <#input id="remindtime" name="提醒时间" value="${item.remindtime}" underline="true"/>
-                            <#input id="remindtype" name="提醒类型(0：准时  1：准时 2 自定义）" value="${item.remindtype}" />
+                            <#input id="starttime" name="开始时间" value="${tool.dateTimeType(item.starttime)}" underline="true"  clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
+                            <#input id="endtime" name="结束时间" value="${tool.dateTimeType(item.starttime)}"  clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" />
+                         <!-- <#input id="remindtime" name="提醒时间" value="${item.remindtime}" underline="true"/> -->
+   
                 </div>
 
                 <div class="col-sm-6">
-                            <#input id="importantstatus" name="重要程度(A：重要 ，紧急   B：重要 ，不紧急  ）" value="${item.importantstatus}" underline="true"/>
-                            <#input id="isWholeday" name="是否全天(0：否  1：是）" value="${item.isWholeday}" underline="true"/>
-                            <#input id="isRepeat" name="是否重复(0：否  1：是）" value="${item.isRepeat}" underline="true"/>
-                            <#input id="repeatcount" name="重复次数" value="${item.repeatcount}" underline="true"/>
-                            <#input id="isProgress" name="是否展示进度(0：否  1：是）" value="${item.isProgress}" underline="true"/>
-                            <#input id="nowprogress" name="当前进度(当前重复次数)" value="${item.nowprogress}" underline="true"/>
-                            <#input id="createtime" name="创建时间" value="${item.createtime}" underline="true"/>
+                              <#input id="remindtype" name="提醒类型" value="${item.remindtype}" underline="true" />
+                            <#input id="importantstatus" name="重要程度" value="${item.importantstatus}" underline="true"/>
+                            <#input id="isWholeday" name="是否全天" value="${item.isWholeday}" underline="true"/>
+                            <#input id="isRepeat" name="是否重复" value="${item.isRepeat}" underline="true"/>
+<!--                             <#input id="repeatcount" name="重复次数" value="${item.repeatcount}" underline="true"/> -->
+<!--                             <#input id="isProgress" name="是否展示进度" value="${item.isProgress}" underline="true"/> -->
+<!--                             <#input id="nowprogress" name="当前进度(当前重复次数)" value="${item.nowprogress}" underline="true"/> -->
+<!--                             <#input id="createtime" name="创建时间" value="${item.createtime}" underline="true"/>
                             <#input id="updatetime" name="更新时间" value="${item.updatetime}" underline="true"/>
-                            <#input id="version" name="保留字段" value="${item.version}" />
+                            <#input id="version" name="保留字段" value="${item.version}" /> -->
                 </div>
             </div>
 
