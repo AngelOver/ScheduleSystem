@@ -14,6 +14,7 @@ import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IMenuService;
 import com.stylefeng.guns.modular.system.service.IUserService;
+
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import static com.stylefeng.guns.core.support.HttpKit.getIp;
 
@@ -128,6 +136,18 @@ public class LoginController extends BaseController {
     public String logOut() {
         LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroKit.getUser().getId(), getIp()));
         ShiroKit.getSubject().logout();
+        //若存在 自动登录，则取消
+        HttpServletRequest httpServletRequest = getHttpServletRequest();
+        HttpServletResponse httpServletResponse = getHttpServletResponse();
+        Cookie[] cookies = httpServletRequest.getCookies();
+        for (Cookie cookie : cookies) {
+        	if(cookie.getName().equals("autoLogin_flag")){
+        		if((cookie.getValue()+"").equals("1")){
+        			cookie.setValue("0");
+        			httpServletResponse.addCookie(cookie);
+        		}
+        	}
+		}
         return REDIRECT + "/login";
     }
 }

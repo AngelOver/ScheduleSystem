@@ -7,21 +7,33 @@
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                         
-                            <#input id="account" name="账号" underline="true"/>
-                            <#input id="password" name="密码" underline="true"/>
-                            <#input id="salt" name="md5密码盐" underline="true"/>
-                            <#input id="name" name="名字" underline="true"/>
-                            
-                            <#input id="sex" name="性别"/>
-                </div>
+					<#input id="account" name="账户" underline="true"/>
 
-                <div class="col-sm-6">
-                	 	  <#input id="avatar" name="头像" underline="true"/>
-                            <#input id="email" name="电子邮件" underline="true"/>
-                            <#input id="birthday" name="生日" underline="true"/>
-                            <#input id="phone" name="电话" underline="true"/>
-                </div>
+					<#select id="sex" name="性别" underline="true">
+						<option value="1">男</option>
+						<option value="2">女</option>
+					</#select>
+
+					<#input id="password" name="密码" underline="true" type="password"/>
+
+		<!-- 			<#input id="roleid" type="hidden" name="角色" underline="true" disabled="disabled"/> -->
+
+					<#input id="email" name="邮箱" type="email"/>
+				</div>
+   			<div class="col-sm-6">
+					<div id="driverInfoContent">
+						<#input id="name" name="姓名" underline="true"/>
+
+						<#input id="birthday" name="出生日期" underline="true" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+
+						<#input id="rePassword" name="确认密码" type="password" underline="true"/>
+
+					<!-- 	<#input id="citySel" name="部门" underline="true" readonly="readonly" type="hidden" /> -->
+
+						<#input id="phone" name="电话"/>
+					</div>
+				</div>
             </div>
 
             <div class="row btn-group-m-t">

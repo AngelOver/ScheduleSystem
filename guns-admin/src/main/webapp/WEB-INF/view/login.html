@@ -17,7 +17,10 @@
         window.top.location = window.location;
     }</script>
     <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctxPath}/static/js/jquery.cookie.js?v=2.1.4"></script>
     <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    
+    
     
   <!-- 特效 -->
 <!--       <link href="${ctxPath}/static/css/login/style.css?v=4.1.0" rel="stylesheet">
@@ -31,18 +34,18 @@
 
 <div class="middle-box text-center loginscreen  animated fadeInDown"  style="z-index:100">
     <div style="padding: 100px 0px;">
-        <div>
-            <h1 class="logo-name">GS</h1>
-        </div>
+  <!--       <div>
+            <h1 class="logo-name">SS</h1>
+        </div> -->
         <h3>欢迎使用 日程管理 系统</h3>
         <br/>
         <h4 style="color: red;">${tips!}</h4>
         <form class="m-t" role="form" action="${ctxPath}/login" method="post">
             <div class="form-group">
-                <input type="text" name="username" class="form-control" placeholder="用户名" required="" value="admin">
+                <input type="text" id="username" name="username" class="form-control" placeholder="用户名" required="" >
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="密码" required="" value="1">
+                <input type="password" id="password"  name="password" class="form-control" placeholder="密码" required="" >
             </div>
             @if(kaptcha.getKaptchaOnOff() == true){
             <div class="form-group" style="float: left;">
@@ -57,27 +60,27 @@
             <div class="form-group" style="float: left;">
                 <div class="checkbox" style="text-align: left">
                     <label>
-                        <input type="checkbox" name="remember" style="margin-top: 2px;">记住我
+                        <input id="rememberMe" type="checkbox" name="remember" style="margin-top: 2px;">记住我
                     </label>
                 </div>
             </div>
-             <div class="form-group" style="float: left;">
+             <div class="form-group" style="float: left;margin-left: 45px">
                 <div class="checkbox" style="text-align: left">
                     <label>
-                        <input type="checkbox" id="relogin" style="margin-top: 2px;">自动登录
+                        <input  type="checkbox" id="autoLogin" style="margin-top: 2px;">自动登录
                     </label>
                 </div>
             </div>
             <div class="form-group" style="float: right;left:20px">
                 <div class="checkbox" style="text-align: left">
-                    <label>
+                    <label onclick="link('resetPwd')">
                     	  忘记密码
                     </label>
                 </div>
             </div>
             
             <button id="loginButton" type="submit" class="btn btn-primary block full-width m-b">登 录</button>
-            <label> 没有帐号，立即注册</label>
+            <label onclick="link('regist')"> 没有帐号，立即注册</label>
             </p>
         </form>
     </div>
@@ -86,15 +89,100 @@
 </div> -->
 
 <script>
+console.log($.cookie('rememberMe_flag'));
+console.log($.cookie('autoLogin_flag'));
+console.log($.cookie('rememberMe_username'));
+console.log($.cookie('rememberMe_password'));
+
     $(function () {
         $("#kaptcha").on('click', function () {
             $("#kaptcha").attr('src', '${ctxPath}/kaptcha?' + Math.floor(Math.random() * 100)).fadeIn();
         });
+        //init 
+        if($.cookie('rememberMe_flag')=='1'){
+        	//自动填充密码 
+        	console.log($.cookie('rememberMe_username'));
+        	console.log($.cookie('rememberMe_username'));
+        	 $('#username').val($.cookie('rememberMe_username'));
+        	 $('#password').val($.cookie('rememberMe_password'));
+        		$("#rememberMe").attr("checked",true);
+        }else{
+        	$.cookie('autoLogin_flag',null,{expires: -1,path: '/'}); 
+        }
+        
+ 		if($.cookie('autoLogin_flag')=='1'){
+ 			$("#autoLogin").attr("checked",true);
+ 			$("#loginButton").click();
+        }
+        //checkbox click
+/*         $("#rememberMe").on('click', function () {
+        	if( $("#rememberMe").is(":checked")){
+        		//记住密码
+        		$.cookie('rememberMe_flag', '1', { expires: 7, path: '/' });
+        		$.cookie('rememberMe_username', $('#username').val(), { expires: 7, path: '/' });
+        		$.cookie('rememberMe_password', $('#password').val(), { expires: 7, path: '/' });
+        		console.log('rememberMe')
+        	}else{
+        		//取消记住密码
+        		$.cookie('rememberMe_flag',null,{expires: -1,path: '/'});  
+        		$.cookie('rememberMe_username',null,{expires: -1,path: '/'});  
+        		$.cookie('rememberMe_password',null,{expires: -1,path: '/'});  
+        		//自动取消自动登录
+        		$("#autoLogin").attr("checked",false);
+        		$.cookie('autoLogin_flag',null,{expires: -1,path: '/'}); 
+        		console.log('rememberMe.remove')
+        	}
+        });
+        
+        $("#autoLogin").on('click', function () {
+        	if( $("#autoLogin").is(":checked")){
+        		//开启自动登录
+        		$.cookie('autoLogin_flag', '1', { expires: 7, path: '/' });
+        		console.log('autoLogin')
+        	}else{
+        		//取消自动登录
+        		$.cookie('autoLogin_flag',null,{expires: -1,path: '/'}); 
+        		console.log('autoLogin.remove')
+        	}
+        });  */
+        
+        //登录时记住密码和状态
+        $("#loginButton").on('click', function () {
+        	
+        	if( $("#rememberMe").is(":checked")){
+        		//记住密码
+        		$.cookie('rememberMe_flag', '1', { expires: 15, path: '/' });
+        		$.cookie('rememberMe_username', $('#username').val(), { expires: 15, path: '/' });
+        		$.cookie('rememberMe_password', $('#password').val(), { expires: 15, path: '/' });
+        	}else{
+        		//取消记住密码
+        		$.cookie('rememberMe_flag',null,{expires: -1,path: '/'});  
+        		$.cookie('rememberMe_username',null,{expires: -1,path: '/'});  
+        		$.cookie('rememberMe_password',null,{expires: -1,path: '/'});  
+        		//自动取消自动登录
+        		$("#autoLogin").attr("checked",false);
+        		$.cookie('autoLogin_flag',null,{expires: -1,path: '/'}); 
+        	}
+        	
+         	if( $("#autoLogin").is(":checked")){
+        		//开启自动登录
+        		$.cookie('autoLogin_flag', '1', { expires: 15, path: '/' });
+        	}else{
+        		//取消自动登录
+        		$.cookie('autoLogin_flag',null,{expires: -1,path: '/'}); 
+        	}
+        	
+        });
+        
         //自动登录	
        //	if( $("#relogin").is(":checked")){
-       	 $("#loginButton").click();
+       	// $("#loginButton").click();
        	//}
     });
+    function link(url){
+    	window.location.href='${ctxPath}/'+url;
+    }
+    
 </script>
 
 </body>

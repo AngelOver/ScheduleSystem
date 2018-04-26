@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>日程管理 - 注册</title>
+
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/animate.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    
+
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${ctxPath}/static/js/plugins/layer/layer.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script src="${ctxPath}/static/js/common/ajax-object.js"></script>
+     <script src="${ctxPath}/static/js/common/Feng.js"></script>
+     <script src="${ctxPath}/static/modular/system/regist/regist.js?v=3.3.6"></script>
+  
+  <!-- 特效 -->
+<!--       <link href="${ctxPath}/static/css/login/style.css?v=4.1.0" rel="stylesheet">
+     <script src="${ctxPath}/static/js/login/jquery.particleground.min.js?v=2.1.4"></script>
+     <script src="${ctxPath}/static/js/login/demo.js?v=2.1.4"></script> -->
+    
+    
+</head>
+
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen  animated fadeInDown"  style="z-index:100">
+    <div style="padding: 100px 0px;">
+      <!--   <div>
+            <h1 class="logo-name">SS</h1>
+        </div> -->
+        <h3>填写以下信息完成注册</h3>
+        <br/>
+        <h4 style="color: red;">${tips!}</h4>
+        <form class="m-t" role="form" action="${ctxPath}/login" method="post" id="userInfoForm" >
+         <input type="hidden" id="username" name="username" >
+   			<div class="form-group">
+                <input type="text" id="account" name="account" class="form-control" placeholder="账号" required="" value="">
+            </div>
+            <div class="form-group">
+                <input type="text" id="name"  name="name" class="form-control" placeholder="姓名" required="" value="">
+            </div>
+           <div class="form-group">
+                <input type="text" id="email"  name="email" class="form-control" placeholder="邮箱" required="" value="">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password"  name="password" class="form-control" placeholder="密码" required="" value="">
+            </div>
+            
+             <div class="form-group">
+                <input type="password" id="rePassword"  name="rePassword" class="form-control" placeholder="确认密码" required="" value="">
+            </div>
+            <button id="loginButton" type="submit" class="btn btn-primary block full-width m-b" style="display:none">自动登录</button>
+            <button id="registButton" type="button" onclick="UserInfoDlg.registSubmit()" class="btn btn-primary block full-width m-b">立即注册</button>
+            
+             <label onclick="link('login')"> 返回登录</label>
+            </p>
+        </form>
+    </div>
+</div>
+<!-- <div id="particles" style="z-index:1">
+</div> -->
+
+<script>
+    $(function () {
+        $("#kaptcha").on('click', function () {
+            $("#kaptcha").attr('src', '${ctxPath}/kaptcha?' + Math.floor(Math.random() * 100)).fadeIn();
+        });
+    });
+    
+    function link(url){
+    	window.location.href='${ctxPath}/'+url;
+    }
+</script>
+
+</body>
+
+</html>

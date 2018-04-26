@@ -160,6 +160,9 @@ public class ShiroConfig {
         Map<String, String> hashMap = new LinkedHashMap<>();
         hashMap.put("/static/**", "anon");
         hashMap.put("/login", "anon");
+        hashMap.put("/regist", "anon");//新增注册
+        hashMap.put("/resetPwd", "anon");//忘记密码
+        hashMap.put("/api/*", "anon");//接口层 
         hashMap.put("/global/sessionError", "anon");
         hashMap.put("/kaptcha", "anon");
         hashMap.put("/**", "user");

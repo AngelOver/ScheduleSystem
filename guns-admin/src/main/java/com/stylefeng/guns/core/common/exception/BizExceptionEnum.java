@@ -43,6 +43,9 @@ public enum BizExceptionEnum implements ServiceExceptionEnum{
 	ACCOUNT_FREEZED(401, "账号被冻结"),
 	OLD_PWD_NOT_RIGHT(402, "原密码不正确"),
 	TWO_PWD_NOT_MATCH(405, "两次输入密码不一致"),
+	EMAIL_NOT_MATCH(406,"邮箱不匹配"),
+	ACCOUNT_NO_EXIST(407,"该帐号不存在"),
+	
 
 	/**
 	 * 错误的请求
