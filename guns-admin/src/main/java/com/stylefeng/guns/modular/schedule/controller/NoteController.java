@@ -73,6 +73,14 @@ public class NoteController extends BaseController {
     public String noteAdd() {
         return PREFIX + "note_add.html";
     }
+    
+    /**
+     * 跳转到菜单添加便签管理
+     */
+    @RequestMapping("/note_info")
+    public String noteInfo() {
+        return PREFIX + "note_info.html";
+    }
 
     /**
      * 跳转到修改便签管理

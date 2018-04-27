@@ -1,34 +1,54 @@
 @layout("/common/_container.html"){
-<div class="ibox float-e-margins">
-    <div class="ibox-content">
-        <div class="form-horizontal">
 
-            <input type="hidden" id="id" value="">
 
-            <div class="row">
-                <div class="col-sm-6 b-r">
-                            <#input id="id" name="主键id" underline="true"/>
-                            <#input id="websiteName" name="网站名称" underline="true"/>
-                            <#input id="websiteCode" name="网站英文简称" underline="true"/>
-                            <#input id="websiteUrl" name="网站地址" underline="true"/>
-                            <#input id="logo" name="LOGO" underline="true"/>
-                            <#input id="toptitle" name="顶端标题" underline="true"/>
-                            <#input id="keyword" name="关键字"/>
-                </div>
+<div class="col-sm-8  col-sm-offset-2">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>关于系统</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="row row-lg">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content" style="border:none !important; ">
+                            <div class="form-horizontal" id="userInfoForm">
 
-                <div class="col-sm-6">
-                            <#input id="describe" name="描述" underline="true"/>
-                            <#input id="username" name="主办方" underline="true"/>
-                            <#input id="tel" name="联系电话" underline="true"/>
-                            <#input id="hotline" name="服务热线" underline="true"/>
-                            <#input id="address" name="地址" underline="true"/>
-                            <#input id="email" name="邮箱" underline="true"/>
-                            <#input id="about" name="关于系统" underline="true"/>
+                                <input type="hidden" id="id" value="">
+                                <input type="hidden" id="sexValue" value="">
+						<input id="deptid" name="deptid" type="hidden"  value="30"/>
+						<input id="roleid" name="roleid" type="hidden"  value="7"/>
+			            <div class="row">
+			                <div class="col-sm-6 b-r">
+			                            <#input id="id" name="主键id" value="${item.id}" underline="true"/>
+			                            <#input id="websiteName" name="网站名称" value="${item.websiteName}" underline="true"/>
+			                            <#input id="websiteCode" name="网站英文简称" value="${item.websiteCode}" underline="true"/>
+			                            <#input id="websiteUrl" name="网站地址" value="${item.websiteUrl}" underline="true"/>
+			                            <#input id="logo" name="LOGO" value="${item.logo}" underline="true"/>
+			                            <#input id="toptitle" name="顶端标题" value="${item.toptitle}" underline="true"/>
+			                            <#input id="keyword" name="关键字" value="${item.keyword}" />
+			                </div>
+			
+			                <div class="col-sm-6">
+			                            <#input id="describe" name="描述" value="${item.describe}" underline="true"/>
+			                            <#input id="username" name="主办方" value="${item.username}" underline="true"/>
+			                            <#input id="tel" name="联系电话" value="${item.tel}" underline="true"/>
+			                            <#input id="hotline" name="服务热线" value="${item.hotline}" underline="true"/>
+			                            <#input id="address" name="地址" value="${item.address}" underline="true"/>
+			                            <#input id="email" name="邮箱" value="${item.email}" underline="true"/>
+			                            <#input id="about" name="关于系统" value="${item.about}" />
+			                </div>
+			            </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
+
+
 <script src="${ctxPath}/static/modular/system/setup/setup_info.js"></script>
 @}

@@ -1,38 +1,60 @@
 @layout("/common/_container.html"){
 <div class="ibox float-e-margins">
-    <div class="ibox-content">
-        <div class="form-horizontal">
+	<div class="ibox-content">
+		<div class="form-horizontal" id="userInfoForm">
+			
+			<input type="hidden" id="id" value="${user.id}">
+			<input type="hidden" id="sexValue" value="${user.sex}">
 
-            <input type="hidden" id="id" value="${item.id}">
+			
+			<div class="row">
+				<div class="col-sm-6 b-r">
+				
+					<#avatar id="avatar" name="头像" underline="true" avatarImg="${user.avatar}"/>
+				
+					<#input id="account" name="账户" underline="true" value="${user.account}" disabled="disabled" />
 
-            <div class="row">
-                <div class="col-sm-6 b-r">
-                          
-                            <#input id="account" name="账号" value="${item.account}" underline="true"/>
-                            <#input id="password" name="密码" value="${item.password}" underline="true"/>
-                            <#input id="salt" name="md5密码盐" value="${item.salt}" underline="true"/>
-                            <#input id="name" name="名字" value="${item.name}" underline="true"/>
-                            <#input id="birthday" name="生日" value="${item.birthday}" underline="true"/>
-                            <#input id="sex" name="性别" value="${item.sex}" />
-                </div>
+					<#select id="sex" name="性别" >
+						<option value="1">男</option>
+						<option value="2">女</option>
+					</#select>
+					<input id="roleid" name="roleid" type="hidden"  value="6"/>
+					<!-- <#input id="roleid" name="角色" underline="true" value="${roleName}" disabled="disabled"/>
+ -->
+				
+				</div>
+				<div class="col-sm-6">
+					<div id="driverInfoContent">
+						<#input id="name" name="姓名" underline="true" value="${user.name}"/>
 
-                <div class="col-sm-6">
-                 		 <#input id="avatar" name="头像" value="${item.avatar}" underline="true"/>
-                            <#input id="email" name="电子邮件" value="${item.email}" underline="true"/>
-                            <#input id="phone" name="电话" value="${item.phone}" underline="true"/>
-                            <#input id="status" name="状态" value="${item.status}" underline="true"/>
-                </div>
-            </div>
+						<#input id="birthday" name="出生日期" underline="true" type="date"
+								value="${user.birthday}"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
+	<input id="deptid" name="deptid" type="hidden"  value="29"/>
+						<!-- <#input id="citySel" name="部门" underline="true" readonly="readonly" hidden="deptid" hiddenValue="${user.deptid}" value="${deptName}"
+								clickFun="UserInfoDlg.showDeptSelectTree(); return false;"
+								style="background-color: #ffffff !important;"/>
+ -->			<#input id="email" name="邮箱" type="email" value="${user.email}" underline="true"/>
+						<#input id="phone" name="电话" value="${user.phone}"/>
+					</div>
+				</div>
+			</div>
 
-            <div class="row btn-group-m-t">
-                <div class="col-sm-10">
-                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="UserInfoDlg.editSubmit()"/>
-                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="UserInfoDlg.close()"/>
-                </div>
-            </div>
-        </div>
+			<!-- 这是部门选择的下拉框 -->
+			<div id="menuContent" class="menuContent"
+				style="display: none; position: absolute; z-index: 200;">
+				<ul id="treeDemo" class="ztree tree-box" style="width: 249px !important;"></ul>
+			</div>
 
-    </div>
+			<div class="row btn-group-m-t">
+				<div class="col-sm-10">
+					<#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="UserInfoDlg.editSubmit()"/>
+					<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="UserInfoDlg.close()"/>
+				</div>
+			</div>
+		</div>
+
+	</div>
 </div>
 <script src="${ctxPath}/static/modular/schedule/user/user_info.js"></script>
 @}
