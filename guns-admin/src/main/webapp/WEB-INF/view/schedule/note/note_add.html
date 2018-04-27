@@ -1,42 +1,53 @@
 @layout("/common/_container.html"){
+<link href="${ctxPath}/static/js/plugins/layui/css/layui.css"
+	rel="stylesheet" />
 <div class="ibox float-e-margins">
-    <div class="ibox-content">
-        <div class="form-horizontal">
+	<div class="ibox-content layui-form	">
+		<div class="form-horizontal">
 
-            <input type="hidden" id="id" value="">
+			<input type="hidden" id="id" value="">
 
-            <div class="row">
-                <div class="col-sm-6 b-r">
-                        
-                            <#input id="text" name="便签" underline="true"/>
-                            (标题自动生成 前10个字，可以加个标题状态)
-                            <#input id="title" name="标题" />
-                            
-                </div>
+			<div class="row">
 
-                <div class="col-sm-6">
-             			   <#input id="isShow" name="是否展示"/>
-                            <#input id="isTop" name="是否置顶" underline="true"/>
-                            <#input id="isWait" name="是否待办" underline="true"/>
-                            <#input id="waitStatus" name="代办状态" />     (可以设置 无 待办 完成)
-                          
- <!--                            	 <#input id="createtime" name="创建时间" underline="true" 
-								clickFun="laydate({istime: true,format: 'YYYY-MM-DD hh:mm:ss'})"/>
-								  <#input id="updatetime" name="更新时间" underline="true" 
-								clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/> -->
-						<!--  <#input id="createtime" name="创建时间" underline="true"/> -->
-                        <!--     <#input id="updatetime" name="更新时间" underline="true"/> -->
-	                </div>
-            </div>
-            <div class="row btn-group-m-t">
-                <div class="col-sm-10">
-                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="NoteInfoDlg.addSubmit()"/>
-                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="NoteInfoDlg.close()"/>
-                </div>
-            </div>
-        </div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">便签</label>
+					<div class="col-sm-9">
+						<div id="text" class="editorHeight"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">添加标题</label>
+					<div class="col-sm-9">
+						<input class="form-control" id="title" name="title" type="text"
+							style="border-top: none; border-left: none; border-right: none;">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label"></label>
+					<div class="col-sm-9">
+					<input type="checkbox" id="isShow" name="isShow" title="展示">
+					<input type="checkbox" id="isTop" name="isTop" title="置顶">
+					<input type="checkbox" lay-filter="isWait" id="isWait"
+						name="isWait" title="待办"> <input type="checkbox"
+						id="waitStatus" name="waitStatus" title="完成" >
+					</div>
+				</div>
 
-    </div>
+			</div>
+			<div class="row btn-group-m-t">
+				<div class="col-sm-10"><#button btnCss="info" name="提交"
+					id="ensure" icon="fa-check" clickFun="NoteInfoDlg.addSubmit()"/>
+					<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser"
+					clickFun="NoteInfoDlg.close()"/></div>
+			</div>
+		</div>
+
+	</div>
 </div>
+<script type="text/javascript"
+	src="${ctxPath}/static/js/plugins/layui/layui.js"></script>
+<script type="text/javascript"
+	src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
 <script src="${ctxPath}/static/modular/schedule/note/note_info.js"></script>
 @}

@@ -20,10 +20,34 @@ Note.initColumn = function () {
 /*            {title: '用户id', field: 'userid', visible: true, align: 'center', valign: 'middle'},*/
             {title: '标题', field: 'title', visible: true, align: 'center', valign: 'middle'},
             {title: '便签', field: 'text', visible: true, align: 'center', valign: 'middle'},
-            {title: '展示', field: 'isShow', visible: true, align: 'center', valign: 'middle'},
-            {title: '置顶', field: 'isTop', visible: true, align: 'center', valign: 'middle'},
-      /*      {title: '是否待办(0：否  1：是）', field: 'isWait', visible: true, align: 'center', valign: 'middle'},*/
-            {title: '代办', field: 'waitStatus', visible: true, align: 'center', valign: 'middle'},
+            {title: '展示', field: 'isShow', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+        		if(value ==0){
+         			 return "<span class='badge badge-info'>否</span>";
+         		}else if (value ==1){
+         			 return "<span class='badge badge-success'>是</span>";
+         		} 
+         }},
+            {title: '置顶', field: 'isTop', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+        		if(value ==0){
+         			 return "<span class='badge badge-info'>否</span>";
+         		}else if (value ==1){
+         			 return "<span class='badge badge-success'>是</span>";
+         		} 
+         }},
+         	{title: '待办', field: 'isWait', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+        		if(value ==0){
+         			 return "<span class='badge badge-info'>否</span>";
+         		}else if (value ==1){
+         			 return "<span class='badge badge-success'>是</span>";
+         		} 
+         }},
+            {title: '代办', field: 'waitStatus', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+        		if(value ==0){
+         			 return "<span class='badge badge-info'>否</span>";
+         		}else if (value ==1){
+         			 return "<span class='badge badge-success'>是</span>";
+         		} 
+         }},
             {title: '创建时间', field: 'createtime', visible: true, align: 'center', valign: 'middle' },
             {title: '更新时间', field: 'updatetime', visible: true, align: 'center', valign: 'middle'},
          /*   {title: '保留字段', field: 'version', visible: true, align: 'center', valign: 'middle'}*/
@@ -51,7 +75,7 @@ Note.openAddNote = function () {
     var index = layer.open({
         type: 2,
         title: '添加便签',
-        area: ['800px', '420px'], //宽高
+        area: ['1000px', '490px'], //宽高
         fix: false, //不固定
         maxmin: true,
         content: Feng.ctxPath + '/note/note_add'
@@ -67,7 +91,7 @@ Note.openNoteDetail = function () {
         var index = layer.open({
             type: 2,
             title: '便签详情',
-            area: ['800px', '420px'], //宽高
+            area: ['1000px', '490px'], //宽高
             fix: false, //不固定
             maxmin: true,
             content: Feng.ctxPath + '/note/note_update/' + Note.seItem.id

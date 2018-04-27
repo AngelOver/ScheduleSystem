@@ -1,8 +1,6 @@
 @layout("/common/_container.html"){
+<link href="${ctxPath}/static/js/plugins/layui/css/layui.css" rel="stylesheet" />
 
-
-<link href="${ctxPath}/static/js/plugins/layui/css/layui.css"
-	rel="stylesheet" />
 <div class="ibox float-e-margins">
 	<div class="col-sm-10  col-sm-offset-1">
 		<div class="ibox float-e-margins">
@@ -24,7 +22,7 @@
 										<div class="form-group">
 											<label class="col-sm-1 control-label">便签</label>
 											<div class="col-sm-11">
-												<div id="editor" class="editorHeight"></div>
+												<div id="text" class="editorHeight"></div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -52,7 +50,7 @@
 									<div class="row btn-group-m-t">
 										<div class="col-sm-10"><#button btnCss="info" name="提交"
 											id="ensure" icon="fa-check"
-											clickFun="UserInfoDlg.addSubmit()"/></div>
+											clickFun="NoteInfoDlg.addSubmit()"/></div>
 									</div>
 								</div>
 							</div>
@@ -64,13 +62,7 @@
 	</div>
 
 
-<script type="text/javascript"
-	src="${ctxPath}/static/js/plugins/layui/layui.js"></script>
-	<script>
-//Demo
-
-</script>
-	<script type="text/javascript"
-		src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
-	<script src="${ctxPath}/static/modular/schedule/note/note_info.js"></script>
+<script type="text/javascript"src="${ctxPath}/static/js/plugins/layui/layui.js"></script>
+<script type="text/javascript"src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script src="${ctxPath}/static/modular/schedule/note/note_info.js"></script>
 	@}

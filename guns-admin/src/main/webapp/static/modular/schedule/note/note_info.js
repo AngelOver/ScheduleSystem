@@ -24,6 +24,17 @@ NoteInfoDlg.set = function(key, val) {
 }
 
 /**
+ * 获取checkbox的值
+ *
+ * @param key 数据的名称
+ * @param val 数据的具体值
+ */
+function getCheckboxValue(id){
+	return $("#"+id).is(":checked")?1:0;
+}
+
+
+/**
  * 设置对话框中的数据
  *
  * @param key 数据的名称
@@ -46,18 +57,17 @@ NoteInfoDlg.close = function() {
  * 收集数据
  */
 NoteInfoDlg.collectData = function() {
-	 this.noticeInfoData['content'] = NoteInfoDlg.editor.txt.html();
+	 this.noteInfoData['text'] = NoteInfoDlg.editor.txt.html();
     this
     .set('id')
     .set('pid')
     .set('type')
     .set('userid')
     .set('title')
-    .set('text')
-    .set('isShow')
-    .set('isTop')
-    .set('isWait')
-    .set('waitStatus')
+    .set('isShow',getCheckboxValue('isShow'))
+    .set('isTop',getCheckboxValue('isTop'))
+    .set('isWait',getCheckboxValue('isWait'))
+    .set('waitStatus',getCheckboxValue('waitStatus'))
     .set('createtime')
     .set('updatetime')
     .set('version');
@@ -147,6 +157,9 @@ layui.use('form', function(){
 		  }
 	  });
 	});
+
+
+
 $(function() {
 	initCheckboxClick();
 /*	console.log("ok")
@@ -161,7 +174,7 @@ $(function() {
 
     //初始化编辑器
     var E = window.wangEditor;
-    var editor = new E('#editor');
+    var editor = new E('#text');
     editor.create();
     editor.txt.html($("#contentVal").val());
     NoteInfoDlg.editor = editor;
