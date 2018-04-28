@@ -41,13 +41,18 @@ Note.initColumn = function () {
          			 return "<span class='badge badge-success'>是</span>";
          		} 
          }},
-            {title: '代办', field: 'waitStatus', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+            {title: '完成', field: 'waitStatus', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+            	if(row.isWait==0){
+            		return "-";
+            	}else{
         		if(value ==0){
          			 return "<span class='badge badge-info'>否</span>";
          		}else if (value ==1){
          			 return "<span class='badge badge-success'>是</span>";
          		} 
+            	}
          }},
+     		{title: '创建人', field: 'username', visible: true, align: 'center', valign: 'middle'},
             {title: '创建时间', field: 'createtime', visible: true, align: 'center', valign: 'middle' },
             {title: '更新时间', field: 'updatetime', visible: true, align: 'center', valign: 'middle'},
          /*   {title: '保留字段', field: 'version', visible: true, align: 'center', valign: 'middle'}*/

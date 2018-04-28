@@ -277,4 +277,11 @@ public class Plan extends Model<Plan> {
         ", version=" + version +
         "}";
     }
+    public void create() {
+    	this.createtime =  new Date();
+	}
+    
+    public void update() {
+    	this.updatetime =  new Date();
+	}
 }

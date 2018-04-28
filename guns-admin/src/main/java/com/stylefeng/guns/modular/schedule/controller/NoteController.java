@@ -2,11 +2,15 @@ package com.stylefeng.guns.modular.schedule.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.stylefeng.guns.core.base.controller.BaseController;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -15,10 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.page.PageInfoBT;
+import com.stylefeng.guns.core.util.ToolUtil;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +37,11 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.stylefeng.guns.modular.system.model.Note;
+import com.stylefeng.guns.modular.system.model.OperationLog;
+import com.stylefeng.guns.modular.system.warpper.LogWarpper;
+import com.stylefeng.guns.modular.system.warpper.NoteWrapper;
+import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
+import com.stylefeng.guns.modular.system.warpper.UserWarpper;
 import com.stylefeng.guns.modular.schedule.service.INoteService;
 
 /**
@@ -100,9 +113,13 @@ public class NoteController extends BaseController {
     @ResponseBody
     public Object list(String condition) {
    		Page<Note> page = new PageFactory<Note>().defaultPage();
-   		page = this.noteService.selectPage(page);
-   		PageInfoBT<Note> pageInfoBT= this.packForBT(page);
-        return pageInfoBT;
+   		EntityWrapper<Note> entityWrapper =new EntityWrapper<Note>();
+    	if(ToolUtil.isNotEmpty(condition)){
+    		entityWrapper.like("text", condition);
+    	}
+   		page = this.noteService.selectPage(page,entityWrapper);
+   		Object list = new NoteWrapper(PageFactory.getObj(page)).warp();
+        return PageFactory.btPage(page,list);
     }
 
     /**
@@ -111,6 +128,7 @@ public class NoteController extends BaseController {
     @RequestMapping(value = "/add")
     @ResponseBody
     public Object add(Note note) {
+    	note.create();//初始化
         noteService.insert(note);
         return SUCCESS_TIP;
     }
@@ -131,6 +149,7 @@ public class NoteController extends BaseController {
     @RequestMapping(value = "/update")
     @ResponseBody
     public Object update(Note note) {
+    	note.update();
         noteService.updateById(note);
         return SUCCESS_TIP;
     }

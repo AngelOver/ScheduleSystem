@@ -11,6 +11,8 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stylefeng.guns.core.shiro.ShiroKit;
+import com.stylefeng.guns.core.util.ToolUtil;
 
 import java.io.Serializable;
 
@@ -215,4 +217,23 @@ public class Note extends Model<Note> {
         ", version=" + version +
         "}";
     }
+    public void create() {
+    	this.createtime =  new Date();
+    	this.userid=ShiroKit.getUser().getId();
+        if (ToolUtil.isEmpty(this.title)) {
+        	this.title="无标题";
+        	this.type=0;//便签
+        }
+	}
+    
+    public void update() {
+    	this.updatetime =  new Date();
+	}
+    //正则替换
+    public static void main(String[] args) {
+		String str = "3<h>2564<h>3<html>ww</html>www";
+		/*str = str.replace("<[^>]*>", "");*/
+		str = str.replaceAll("<[^>]*>", "");
+		System.out.println(str);
+	}
 }

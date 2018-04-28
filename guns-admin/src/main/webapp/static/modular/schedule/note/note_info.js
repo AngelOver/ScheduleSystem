@@ -134,12 +134,16 @@ form.on('checkbox(filter)', function(data){
 	  console.log(data.othis); //得到美化后的DOM对象
 	}); */
 
-
+console.log("js页面元素");
 
 layui.use('form', function(){
 	  var form = layui.form;
 	  //监听提交
+	  console.log("layUI初始化");
+	  
+	  if(waitStatusHidden){
 		$("#waitStatus").next().hide();
+	  }
 	  form.on('checkbox(isWait)', function(data){
 		  if(!data.elem.checked){
 			  $("#waitStatus").next().hide();
@@ -161,6 +165,8 @@ layui.use('form', function(){
 
 
 $(function() {
+	console.log("js函数元素");
+	console.log("函数执行");
 	initCheckboxClick();
 /*	console.log("ok")
 	layui.use('form', function(){
@@ -176,7 +182,7 @@ $(function() {
     var E = window.wangEditor;
     var editor = new E('#text');
     editor.create();
-    editor.txt.html($("#contentVal").val());
+    editor.txt.html($("#textVal").val());
     NoteInfoDlg.editor = editor;
 
 });

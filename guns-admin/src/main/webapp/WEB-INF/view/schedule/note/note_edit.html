@@ -6,40 +6,45 @@
 <script type="text/javascript">
  var item = '${item}';
  var create = '${item.createtime}';
+ var waitStatusHidden = true;
  console.log(item);
  console.log(create);
  
- 
+ console.log("页面元素");
 
 
 </script>
     <div class="ibox-content">
-        <div class="form-horizontal">
+        <div class="form-horizontal layui-form	">
 
             <input type="hidden" id="id" value="${item.id}">
+             <input type="hidden" id="textVal" value='${item.text}'>
 
             <div class="row">
-                <div class="col-sm-6 b-r">
-                          <!--   <#input id="id" name="主键id" value="${item.id}" underline="true"/>
-                            <#input id="pid" name="父级id(备忘录归档)" value="${item.pid}" underline="true"/>
-                            <#input id="type" name="便签类型(0 便签 1 文件夹)" value="${item.type}" underline="true"/>
-                            <#input id="userid" name="用户id" value="${item.userid}" underline="true"/> -->
-                         
-                            <#input id="text" name="便签" value="${item.text}" underline="true"/>
-                             <#input id="title" name="标题" value="${item.title}" />
-                </div>
-
-  
-
-                <div class="col-sm-6">
-                 		 <#input id="isShow" name="是否展示" value="${item.isShow}" />
-                            <#input id="isTop" name="是否置顶" value="${item.isTop}" underline="true"/>
-                            <#input id="isWait" name="是否待办" value="${item.isWait}" underline="true"/>
-                            <#input id="waitStatus" name="代办状态" value="${item.waitStatus}"  underline="true"/>
-         <!--                    <#input id="createtime" name="创建时间" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="${item.createtime}"  underline="true"/> -->
-<!--                             <#input id="updatetime" name="更新时间" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="${item.updatetime}" underline="true"/>
-                            <#input id="version" name="保留字段" value="${item.version}" /> -->
-                </div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">便签</label>
+					<div class="col-sm-9">
+						<div id="text" class="editorHeight"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">添加标题</label>
+					<div class="col-sm-9">
+						<input class="form-control" id="title" name="title" type="text"  value="${item.title}"
+							style="border-top: none; border-left: none; border-right: none;">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label"></label>
+					<div class="col-sm-9">
+					<input type="checkbox" id="isShow" name="isShow" title="展示" >
+					<input type="checkbox" id="isTop" name="isTop" title="置顶">
+					<input type="checkbox" lay-filter="isWait" id="isWait"
+						name="isWait" title="待办"> <input type="checkbox"
+						id="waitStatus" name="waitStatus" title="完成" >
+					</div>
+				</div>
             </div>
 
             <div class="row btn-group-m-t">
@@ -52,7 +57,22 @@
 
     </div>
 </div>
+<script type="text/javascript">
+var isWait = '${item.isWait}';
+var isShow = '${item.isWait}';
+var isTop = '${item.isWait}';
+var waitStatus = '${item.waitStatus}';
+waitStatusHidden=(isWait=='1')?false:true;
 
+ $("#isWait").attr("checked",(isWait=='1')?true:false);
+ $("#isShow").attr("checked",(isShow=='1')?true:false);
+ $("#isTop").attr("checked",(isTop=='1')?true:false);
+ $("#waitStatus").attr("checked",(waitStatus=='1')?true:false);
+ 
+
+console.log("页底元素");
+console.log("js执行");
+</script>
 
 <script type="text/javascript"
 	src="${ctxPath}/static/js/plugins/layui/layui.js"></script>
