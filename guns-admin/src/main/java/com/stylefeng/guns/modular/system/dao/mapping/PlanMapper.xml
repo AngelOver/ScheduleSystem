@@ -9,6 +9,10 @@
         <result column="title" property="title" />
         <result column="remark" property="remark" />
         <result column="address" property="address" />
+        <result column="thedate" property="thedate" />
+        <result column="range" property="range" />
+        <result column="rangelength" property="rangelength" />
+        <result column="rangetype" property="rangetype" />
         <result column="starttime" property="starttime" />
         <result column="endtime" property="endtime" />
         <result column="remindtime" property="remindtime" />
@@ -18,6 +22,7 @@
         <result column="is_repeat" property="isRepeat" />
         <result column="repeatcount" property="repeatcount" />
         <result column="is_progress" property="isProgress" />
+        <result column="wait_status" property="waitStatus" />
         <result column="nowprogress" property="nowprogress" />
         <result column="createtime" property="createtime" />
         <result column="updatetime" property="updatetime" />
@@ -26,7 +31,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, userid, title, remark, address, starttime, endtime, remindtime, remindtype, importantstatus, is_wholeday AS isWholeday, is_repeat AS isRepeat, repeatcount, is_progress AS isProgress, nowprogress, createtime, updatetime, version
+        id, userid, title, remark, address, thedate, range, rangelength,rangetype, starttime, endtime, remindtime, remindtype, importantstatus, is_wholeday AS isWholeday, is_repeat AS isRepeat, repeatcount, is_progress AS isProgress, wait_status AS waitStatus, nowprogress, createtime, updatetime, version
     </sql>
 
 </mapper>

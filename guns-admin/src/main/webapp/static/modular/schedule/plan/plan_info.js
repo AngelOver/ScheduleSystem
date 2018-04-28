@@ -50,6 +50,10 @@ PlanInfoDlg.collectData = function() {
     .set('title')
     .set('remark')
     .set('address')
+    .set('thedate')
+    .set('range')
+    .set('rangelength')
+    .set('rangetype')
     .set('starttime')
     .set('endtime')
     .set('remindtime')
@@ -59,6 +63,7 @@ PlanInfoDlg.collectData = function() {
     .set('isRepeat')
     .set('repeatcount')
     .set('isProgress')
+    .set('waitStatus')
     .set('nowprogress')
     .set('createtime')
     .set('updatetime')
@@ -104,6 +109,9 @@ PlanInfoDlg.editSubmit = function() {
     ajax.set(this.planInfoData);
     ajax.start();
 }
+
+
+
 
 $(function() {
 

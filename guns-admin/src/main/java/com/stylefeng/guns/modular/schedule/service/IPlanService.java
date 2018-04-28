@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.schedule.service;
 
-import com.stylefeng.guns.modular.system.model.Plan;
 import com.baomidou.mybatisplus.service.IService;
+import com.stylefeng.guns.modular.system.model.Plan;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.service.IService;
  * </p>
  *
  * @author stylefeng123
- * @since 2018-04-24
+ * @since 2018-04-28
  */
 public interface IPlanService extends IService<Plan> {
 

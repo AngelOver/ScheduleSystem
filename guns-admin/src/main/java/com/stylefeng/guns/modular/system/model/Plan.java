@@ -8,8 +8,6 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.Serializable;
 
 /**
@@ -18,7 +16,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng123
- * @since 2018-04-24
+ * @since 2018-04-28
  */
 @TableName("plan")
 public class Plan extends Model<Plan> {
@@ -47,11 +45,29 @@ public class Plan extends Model<Plan> {
      */
     private String address;
     /**
-     * 开始时间
+     * 计划时间
+     */
+    private String thedate;
+    /**
+     * 时间范围
+     */
+    private String range;
+    
+    /**
+     * 时间长度
+     */
+    private String rangelength;
+    
+    /**
+     * 时间段(0 自定义 1 10分钟)
+     */
+    private Integer rangetype;
+    /**
+     * 开始时间(存储)
      */
     private Date starttime;
     /**
-     * 结束时间
+     * 结束时间(存储)
      */
     private Date endtime;
     /**
@@ -86,18 +102,21 @@ public class Plan extends Model<Plan> {
     @TableField("is_progress")
     private Integer isProgress;
     /**
+     * 完成情况(0 未完成 1 完成)
+     */
+    @TableField("wait_status")
+    private Integer waitStatus;
+    /**
      * 当前进度(当前重复次数)
      */
     private String nowprogress;
     /**
      * 创建时间
      */
-
     private Date createtime;
     /**
      * 更新时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updatetime;
     /**
      * 保留字段
@@ -145,6 +164,30 @@ public class Plan extends Model<Plan> {
         this.address = address;
     }
 
+    public String getThedate() {
+        return thedate;
+    }
+
+    public void setThedate(String thedate) {
+        this.thedate = thedate;
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public void setRange(String range) {
+        this.range = range;
+    }
+
+    public Integer getRangetype() {
+        return rangetype;
+    }
+
+    public void setRangetype(Integer rangetype) {
+        this.rangetype = rangetype;
+    }
+
     public Date getStarttime() {
         return starttime;
     }
@@ -177,7 +220,15 @@ public class Plan extends Model<Plan> {
         this.remindtype = remindtype;
     }
 
-    public Integer getImportantstatus() {
+    public String getRangelength() {
+		return rangelength;
+	}
+
+	public void setRangelength(String rangelength) {
+		this.rangelength = rangelength;
+	}
+
+	public Integer getImportantstatus() {
         return importantstatus;
     }
 
@@ -217,6 +268,14 @@ public class Plan extends Model<Plan> {
         this.isProgress = isProgress;
     }
 
+    public Integer getWaitStatus() {
+        return waitStatus;
+    }
+
+    public void setWaitStatus(Integer waitStatus) {
+        this.waitStatus = waitStatus;
+    }
+
     public String getNowprogress() {
         return nowprogress;
     }
@@ -253,6 +312,7 @@ public class Plan extends Model<Plan> {
     protected Serializable pkVal() {
         return this.id;
     }
+    
 
     @Override
     public String toString() {
@@ -262,6 +322,9 @@ public class Plan extends Model<Plan> {
         ", title=" + title +
         ", remark=" + remark +
         ", address=" + address +
+        ", thedate=" + thedate +
+        ", range=" + range +
+        ", rangetype=" + rangetype +
         ", starttime=" + starttime +
         ", endtime=" + endtime +
         ", remindtime=" + remindtime +
@@ -271,17 +334,11 @@ public class Plan extends Model<Plan> {
         ", isRepeat=" + isRepeat +
         ", repeatcount=" + repeatcount +
         ", isProgress=" + isProgress +
+        ", waitStatus=" + waitStatus +
         ", nowprogress=" + nowprogress +
         ", createtime=" + createtime +
         ", updatetime=" + updatetime +
         ", version=" + version +
         "}";
     }
-    public void create() {
-    	this.createtime =  new Date();
-	}
-    
-    public void update() {
-    	this.updatetime =  new Date();
-	}
 }

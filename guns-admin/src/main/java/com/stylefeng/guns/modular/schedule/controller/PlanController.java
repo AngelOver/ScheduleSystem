@@ -35,7 +35,7 @@ import com.stylefeng.guns.modular.schedule.service.IPlanService;
  * 计划管理控制器
  *
  * @author fengshuonan
- * @Date 2018-04-24 18:55:41
+ * @Date 2018-04-28 17:41:28
  */
 @Controller
 @RequestMapping("/plan")
@@ -45,7 +45,15 @@ public class PlanController extends BaseController {
 
     @Autowired
     private IPlanService planService;
-    
+
+    /**
+     * 跳转到计划管理首页
+     */
+    @RequestMapping("")
+    public String index() {
+        return PREFIX + "plan.html";
+    }
+
 	@InitBinder
 	protected void init(HttpServletRequest request,
 			ServletRequestDataBinder binder) {
@@ -55,15 +63,15 @@ public class PlanController extends BaseController {
 				dateFormat, false));
 	}
     
-    
+	
     /**
-     * 跳转到计划管理首页
+     * 跳转到写便签界面
      */
-    @RequestMapping("")
-    public String index() {
-        return PREFIX + "plan.html";
+    @RequestMapping("/plan_info")
+    public String plan_info() {
+        return PREFIX + "plan_info.html";
     }
-
+    
     /**
      * 跳转到添加计划管理
      */
