@@ -41,12 +41,20 @@ PlanInfoDlg.close = function() {
 }
 
 /**
+ * 获取checkbox的值
+ *
+ * @param key 数据的名称
+ * @param val 数据的具体值
+ */
+function getCheckboxValue(id){
+	return $("#"+id).is(":checked")?1:0;
+}
+
+/**
  * 收集数据
  */
 PlanInfoDlg.collectData = function() {
     this
-    .set('id')
-    .set('userid')
     .set('title')
     .set('remark')
     .set('address')
@@ -59,10 +67,18 @@ PlanInfoDlg.collectData = function() {
     .set('remindtime')
     .set('remindtype')
     .set('importantstatus')
-    .set('isWholeday')
-    .set('isRepeat')
-    .set('repeatcount')
-    .set('isProgress')
+/*    .set('isWholeday')*/
+/*    .set('isRepeat')*/
+    
+    .set('isWholeday',getCheckboxValue('isWholeday'))
+    .set('repeatCount')
+      .set('repeatSpace')
+        .set('repeatType')
+    .set('progressCount')
+    .set('progressUnit')
+/*    .set('isProgress')*/
+    
+       .set('isProgress',getCheckboxValue('isProgress'))
     .set('waitStatus')
     .set('nowprogress')
     .set('createtime')

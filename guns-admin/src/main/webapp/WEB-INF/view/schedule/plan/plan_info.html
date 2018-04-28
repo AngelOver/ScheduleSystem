@@ -85,38 +85,136 @@
 							style="border-top: none; border-left: none; border-right: none;">
 					</div>
 				</div>
+				<div class="hr-line-dashed"></div>
             	<div class="form-group">
 					<label class="col-sm-2 control-label">计划日期</label>
-					<div class="col-sm-2">
+					<div class="col-sm-4">
 						<input class="form-control" id="thedate" name="thedate" type="text"   >
 						<!--  onclick="laydate.render({ elem: '#thedate'})" -->
 							<!-- <input class="form-control" id="thedate" name="title" type="text"  onclick="laydate({istime: true, format: 'hh:mm:ss'})"> -->
 					</div>
 					
-					<div class="col-sm-3">
+					<div class="col-sm-2 col-sm-offset-2">
 						<input type="checkbox" id="isTop" name="isTop" title="全天">
-						</div>
 					</div>
-					
+					</div>
+					<div class="hr-line-dashed"></div>
 					 <div class="form-group">
 					<label class="col-sm-2 control-label">时间段</label>
-					<div class="col-sm-2">
-						<input class="form-control" id="starttime" name="starttime" type="text"   >
+					<div class="col-sm-4">
+						<input class="form-control" id=range name="starttime" type="text"   >
 					</div>
-					<label class="col-sm-1 control-label">-</label>
+					<label class="col-sm-2 control-label">时间长度</label>
 					<div class="col-sm-2">
-						<input class="form-control" id="endtime" name=""endtime"" type="text"   >
-					</div>
+						      <select class="form-control" id="rangetype" name="rangetype">
+					                <option  value="1">自定义</option>
+					                 <option  value="2">10分钟</option>
+					                  <option  value="3">30分钟</option>
+					                    <option value="4">1小时</option>
+					                      <option   value="5">2小时</option>
+					        </select>
+					</div> 
 					
-					<div class="col-sm-3">
+				<!-- 	<div class="col-sm-3">
 						<input type="checkbox" id="isTop" name="isTop" title="全天">
+						</div>  -->
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+					    <label class="col-sm-2 control-label">重要级别</label>
+					    <div class="col-sm-4">
+					        <select class="form-control" id="importantstatus" name="importantstatus">
+					                <option  value="1">A  紧急，重要</option>
+					                  <option  value="2">B  紧急，不重要</option>
+					                    <option value="3">C  不紧急，重要</option>
+					                      <option   value="4">D  不紧急，不重要</option>
+					        </select>
+					    </div>
+					</div>
+				
+				<div class="hr-line-dashed"></div>
+				    <div class="form-group">
+						<label class="col-sm-2 control-label">重复</label> 
+						<div class="col-sm-2">
+							 <select class="form-control" id="repeatType" name="repeatType">
+							  <option  value="0">无重复</option>
+					                <option  value="1">每天</option>
+					                  <option  value="2">每隔1天</option>
+					                    <option value="3">每隔2天</option>
+					                      <option   value="4">每隔3天</option>
+					                      <option   value="5">每周这天</option>
+					                      <option   value="6">每月这天</option>
+					                      <option   value="7">每年这天</option>
+					                      <option   value="8">每农历这天</option>
+					        </select>
+						</div>
+						<label class="col-sm-1 control-label">天数</label>
+						<div class="col-sm-1">
+							<input class="form-control" id="repeatSpace" name="repeatSpace" type="text"  value="0" >
+						</div>
+						<label class="col-sm-2 control-label">重复次数</label	>
+						<div class="col-sm-1">
+							<input class="form-control" id="repeatCount" name="repeatCount" type="text"  value="0" >
+						</div>
+						<div class="col-sm-1">
+							<input type="checkbox" id="isProgress" name="isProgress" title="生成进度">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">总数量</label> 
+						<div 	class="col-sm-4">
+							<input class="form-control" id="progressCount" name="progressCount" type="text"  value="0" >
+						</div>
+						<label class="col-sm-2 control-label">单位</label>
+						<div class="col-sm-3">
+							<input class="form-control" id="progressUnit" name="progressUnit" type="text"  value="0" >
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+								 <div class="form-group">
+					<label class="col-sm-2 control-label">提醒时间</label>
+					<div class="col-sm-4">
+						<input class="form-control" id="remindtime" name="remindtime" type="text"   >
+					</div>
+					<label class="col-sm-2 control-label">提醒类型</label>
+					<div class="col-sm-3">
+						      <select class="form-control" id="remindtype" name="remindtype">
+					              <option  value="0">不提醒</option>
+					               <option  value="1">自定义</option>
+					                 <option  value="2">提前10分钟</option>
+					                  <option  value="3">提前30分钟</option>
+					                    <option value="4">提前1小时</option>
+					                      <option   value="5">提前2小时</option>
+					        </select>
+					</div> 
+					
+				<!-- 	<div class="col-sm-3">
+						<input type="checkbox" id="isTop" name="isTop" title="全天">
+						</div>  -->
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">添加地址</label>
+						<div class="col-sm-9">
+							<input class="form-control" id="title" name="title" type="text"  
+								style="border-top: none; border-left: none; border-right: none;">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">添加备注</label>
+						<div class="col-sm-9">
+							<input class="form-control" id="title" name="title" type="text"  
+								style="border-top: none; border-left: none; border-right: none;">
 						</div>
 					</div>
 				
+				
             
             
- <!--                 <div class="col-sm-6 b-r">
-                            <#input id="id" name="主键id" underline="true"/>
+<!--                   <div class="col-sm-6  b-r">
+                            <#input id="id" name="添加标题" underline="true"/>
                             <#input id="userid" name="用户id" underline="true"/>
                             <#input id="title" name="标题" underline="true"/>
                             <#input id="remark" name="备注" underline="true"/>
@@ -173,57 +271,13 @@
 
 <script type="text/javascript">
  layui.use(['form','laydate'],function(){
-	console.log("进入回调");
-	var laydate = layui.laydate;
-	console.log(laydate);
+	 var laydate = layui.laydate;
 	laydate.render({ elem: '#thedate',format: 'yyyy年MM月dd日',theme: 'molv'});
+	laydate.render({ elem: '#range',format: 'HH:mm',theme: 'molv',type: 'time' ,range: true});
+	laydate.render({ elem: '#remindtime',type: 'datetime',theme: 'molv'});
 	
-	laydate.render({
-		  elem: '#test14'
-		  ,type: 'time'
-		  ,format: 'H点M分'
-		});
-	laydate.render({ elem: '#starttime',format: 'H点M分',theme: 'molv',type: 'time'});
-	laydate.render({ elem: '#endtime',format: 'H点M分',theme: 'molv',type: 'time'});
-	console.log("加载laydate");
 }); 
-/* laydate.render({ elem: '#thedate',format: 'yyyy年MM月dd日'}); */
-console.log("加载laydate");
-
-
-console.log(layer);
-console.log(laydate);
-console.log(layui);
-console.log(layui.laydate);
-console.log(top[0]);
-/* laydate.render(){
-	 elem:'#thedate',
-	type:'date'
-} */
-/* 	laydate.render({
-	    elem:'#thedate',//制定元素
-	    type:'date',
-	    //range:true,//开启左右面板
-	    min:'2017-09-1',//
-	    max:'2017-10-1',//规定时间期限
-	    trigger:'mouseover',//定义鼠标悬停时弹出控件
-	    show:true,//默认显示
-	    position:'absolute',
-	    //btns:['clear','now'],//工具按钮 默认值['clear', 'now', 'confirm']
-	    theme:'#393D49',//主题颜色
-	    calendar:true,//是否显示公历节日
-	    mark:{
-	        '2017-9-21': '发布'//自定义标注重要日子
-	    },
-	    done:function(value,date){//value, date, endDate点击日期、清空、现在、确定均会触发。回调返回三个参数，分别代表：生成的值、日期时间对象、结束的日期时间对象
-	        console.log(value);
-	        console.log(date);
-	    }
-	}); */
-
 </script>
-
-
 </div>
 <script src="${ctxPath}/static/js/content.js?v=1.0.0"></script>
 </body>

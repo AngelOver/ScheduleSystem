@@ -3,11 +3,16 @@ package com.stylefeng.guns.modular.system.model;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.stylefeng.guns.core.shiro.ShiroKit;
+import com.stylefeng.guns.core.util.ToolUtil;
+
 import java.io.Serializable;
 
 /**
@@ -92,15 +97,46 @@ public class Plan extends Model<Plan> {
      */
     @TableField("is_repeat")
     private Integer isRepeat;
+    
+    
+    /**
+     * 重复类型(0：不重复  1：自定义 2重复一次）
+     */
+    @TableField("repeat_type")
+    private Integer repeatType;
+    /**
+     * 重复间隔
+     */
+    @TableField("repeat_space")
+    private Integer repeatSpace;
+    
+    
     /**
      * 重复次数
      */
-    private Integer repeatcount;
+    @TableField("repeat_count")
+    private Integer repeatCount;
     /**
      * 是否展示进度(0：否  1：是）
      */
     @TableField("is_progress")
     private Integer isProgress;
+    
+    /**
+     * 进度数量(0：否  1：是）
+     */
+    @TableField("progress_count")
+    private Integer progressCount;
+    
+    /**
+     * 进度单位(0：否  1：是）
+     */
+    @TableField("progress_unit")
+    private String progressUnit;
+    
+      
+    
+    
     /**
      * 完成情况(0 未完成 1 完成)
      */
@@ -109,7 +145,7 @@ public class Plan extends Model<Plan> {
     /**
      * 当前进度(当前重复次数)
      */
-    private String nowprogress;
+    private Integer nowprogress;
     /**
      * 创建时间
      */
@@ -252,12 +288,12 @@ public class Plan extends Model<Plan> {
         this.isRepeat = isRepeat;
     }
 
-    public Integer getRepeatcount() {
-        return repeatcount;
+    public Integer getRepeatCount() {
+        return repeatCount;
     }
 
-    public void setRepeatcount(Integer repeatcount) {
-        this.repeatcount = repeatcount;
+    public void setRepeatCount(Integer repeatCount) {
+        this.repeatCount = repeatCount;
     }
 
     public Integer getIsProgress() {
@@ -276,11 +312,11 @@ public class Plan extends Model<Plan> {
         this.waitStatus = waitStatus;
     }
 
-    public String getNowprogress() {
+    public Integer getNowprogress() {
         return nowprogress;
     }
 
-    public void setNowprogress(String nowprogress) {
+    public void setNowprogress(Integer nowprogress) {
         this.nowprogress = nowprogress;
     }
 
@@ -314,7 +350,48 @@ public class Plan extends Model<Plan> {
     }
     
 
-    @Override
+    public Integer getRepeatType() {
+		return repeatType;
+	}
+
+	public void setRepeatType(Integer repeatType) {
+		this.repeatType = repeatType;
+	}
+
+	public Integer getRepeatSpace() {
+		return repeatSpace;
+	}
+
+	public void setRepeatSpace(Integer repeatSpace) {
+		this.repeatSpace = repeatSpace;
+	}
+
+	public Integer getProgressCount() {
+		return progressCount;
+	}
+
+	public void setProgressCount(Integer progressCount) {
+		this.progressCount = progressCount;
+	}
+
+	public String getProgressUnit() {
+		return progressUnit;
+	}
+
+	public void setProgressUnit(String progressUnit) {
+		this.progressUnit = progressUnit;
+	}
+
+    public void create() {
+    	this.createtime =  new Date();
+    	this.userid=ShiroKit.getUser().getId();
+	}
+    
+    public void update() {
+    	this.updatetime =  new Date();
+	}
+	
+	@Override
     public String toString() {
         return "Plan{" +
         "id=" + id +
@@ -332,7 +409,7 @@ public class Plan extends Model<Plan> {
         ", importantstatus=" + importantstatus +
         ", isWholeday=" + isWholeday +
         ", isRepeat=" + isRepeat +
-        ", repeatcount=" + repeatcount +
+        ", repeatcount=" + repeatCount +
         ", isProgress=" + isProgress +
         ", waitStatus=" + waitStatus +
         ", nowprogress=" + nowprogress +

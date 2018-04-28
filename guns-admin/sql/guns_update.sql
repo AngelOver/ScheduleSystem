@@ -60,20 +60,24 @@ CREATE TABLE `plan` (
   `remindtype` int(11) DEFAULT NULL COMMENT '提醒类型(0：准时  1：准时 2 自定义）',
   `importantstatus` int(11) DEFAULT NULL COMMENT '重要程度(A：重要 ，紧急   B：重要 ，不紧急  ）',
   `is_wholeday` int(11) DEFAULT NULL COMMENT '是否全天(0：否  1：是）',
-  `is_repeat` int(11) DEFAULT NULL COMMENT '是否重复(0：否  1：是）',
-  `repeatcount` int(11) DEFAULT NULL COMMENT '重复次数',
+  `repeat_type` int(11) DEFAULT NULL COMMENT '重复类型(0：否  1：是）',
+  `is_repeat` int(11) DEFAULT NULL COMMENT '是否重复',
+  `repeat_space` int(11) DEFAULT NULL COMMENT '重复间隔',
+  `repeat_count` int(11) DEFAULT NULL COMMENT '重复次数',
   `is_progress` int(11) DEFAULT NULL COMMENT '是否展示进度(0：否  1：是）',
+  `progress_count` int(11) DEFAULT NULL COMMENT '进度数量',
+  `progress_unit` varchar(45) DEFAULT NULL COMMENT '进度单位',
   `wait_status` int(11) DEFAULT NULL COMMENT '完成情况(0 未完成 1 完成)',
-  `nowprogress` varchar(45) DEFAULT NULL COMMENT '当前进度(当前重复次数)',
+  `nowprogress` int(11) DEFAULT NULL COMMENT '当前进度(当前重复次数)',
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `updatetime` datetime DEFAULT NULL COMMENT '更新时间',
   `version` int(11) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='计划表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='计划表';
 
 /*Data for the table `plan` */
 
-insert  into `plan`(`id`,`userid`,`title`,`remark`,`address`,`thedate`,`range`,`rangelength`,`rangetype`,`starttime`,`endtime`,`remindtime`,`remindtype`,`importantstatus`,`is_wholeday`,`is_repeat`,`repeatcount`,`is_progress`,`wait_status`,`nowprogress`,`createtime`,`updatetime`,`version`) values (1,NULL,'爬山','记得喊人','武当山',NULL,NULL,NULL,NULL,'2018-04-25 18:06:28','2018-04-25 13:45:47',NULL,1,1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,1,'第一次添加','11','1','1','1','1',1,'2018-10-10 10:10:10','2018-10-10 10:10:10','2018-10-10 10:10:10',1,1,1,1,1,1,1,'1','2018-10-10 10:10:10','2018-10-10 10:10:10',1);
+insert  into `plan`(`id`,`userid`,`title`,`remark`,`address`,`thedate`,`range`,`rangelength`,`rangetype`,`starttime`,`endtime`,`remindtime`,`remindtype`,`importantstatus`,`is_wholeday`,`repeat_type`,`is_repeat`,`repeat_space`,`repeat_count`,`is_progress`,`progress_count`,`progress_unit`,`wait_status`,`nowprogress`,`createtime`,`updatetime`,`version`) values (1,NULL,'爬山','记得喊人','武当山',NULL,NULL,NULL,NULL,'2018-04-25 18:06:28','2018-04-25 13:45:47',NULL,1,1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,1,'第一次添加','11','1','1','1','1',1,'2018-10-10 10:10:10','2018-10-10 10:10:10','2018-10-10 10:10:10',1,1,1,1,NULL,1,NULL,1,NULL,NULL,1,1,'2018-10-10 10:10:10','2018-10-10 10:10:10',1),(3,NULL,'测试添加',NULL,NULL,'2018年04月29日','02:00 - 05:00',NULL,1,NULL,NULL,'2018-04-30 04:04:04',1,3,0,NULL,NULL,NULL,3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `sys_dept` */
 
@@ -266,7 +270,7 @@ CREATE TABLE `sys_setup` (
   `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
   `about` varchar(255) DEFAULT NULL COMMENT '关于系统',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='组织机构';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='组织机构';
 
 /*Data for the table `sys_setup` */
 

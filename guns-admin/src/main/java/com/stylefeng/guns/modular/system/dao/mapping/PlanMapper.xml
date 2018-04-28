@@ -20,8 +20,12 @@
         <result column="importantstatus" property="importantstatus" />
         <result column="is_wholeday" property="isWholeday" />
         <result column="is_repeat" property="isRepeat" />
-        <result column="repeatcount" property="repeatcount" />
+         <result column="repeat_space" property="repeatSpace" />
+        <result column="repeat_type" property="repeatType" />
+        <result column="repeat_count" property="repeatCount" />
         <result column="is_progress" property="isProgress" />
+        <result column="progress_count" property="progressCount" />
+        <result column="progress_unit" property="progressUnit" />
         <result column="wait_status" property="waitStatus" />
         <result column="nowprogress" property="nowprogress" />
         <result column="createtime" property="createtime" />
@@ -31,7 +35,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, userid, title, remark, address, thedate, range, rangelength,rangetype, starttime, endtime, remindtime, remindtype, importantstatus, is_wholeday AS isWholeday, is_repeat AS isRepeat, repeatcount, is_progress AS isProgress, wait_status AS waitStatus, nowprogress, createtime, updatetime, version
+        id, userid, title, remark, address, thedate, range, rangelength,rangetype, starttime, endtime, remindtime, remindtype, importantstatus, is_wholeday AS isWholeday, is_repeat AS isRepeat, repeat_count AS repeatCount, repeat_type AS repeatType, repeat_space AS repeatSpace, is_progress AS isProgress, progress_count AS progressCount,progress_unit AS progressUnit,wait_status AS waitStatus, nowprogress, createtime, updatetime, version
     </sql>
 
 </mapper>
