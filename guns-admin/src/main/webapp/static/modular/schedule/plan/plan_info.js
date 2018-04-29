@@ -55,6 +55,7 @@ function getCheckboxValue(id){
  */
 PlanInfoDlg.collectData = function() {
     this
+    .set('id')
     .set('title')
     .set('remark')
     .set('address')
@@ -127,8 +128,15 @@ PlanInfoDlg.editSubmit = function() {
 }
 
 
+layui.use(['form','laydate'],function(){
+	 var laydate = layui.laydate;
+	laydate.render({ elem: '#thedate',format: 'yyyy年MM月dd日',theme: 'molv'});
+	laydate.render({ elem: '#range',format: 'HH:mm',theme: 'molv',type: 'time' ,range: true});
+	laydate.render({ elem: '#remindtime',format: 'yyyy-MM-dd HH:mm:ss',theme: 'molv' ,type: 'datetime'});
+}); 
 
 
 $(function() {
+
 
 });

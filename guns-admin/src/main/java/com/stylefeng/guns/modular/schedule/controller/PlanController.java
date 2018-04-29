@@ -109,6 +109,7 @@ public class PlanController extends BaseController {
     @RequestMapping(value = "/add")
     @ResponseBody
     public Object add(Plan plan) {
+    	plan.create();
         planService.insert(plan);
         return SUCCESS_TIP;
     }
@@ -129,6 +130,7 @@ public class PlanController extends BaseController {
     @RequestMapping(value = "/update")
     @ResponseBody
     public Object update(Plan plan) {
+    	plan.update();
         planService.updateById(plan);
         return SUCCESS_TIP;
     }

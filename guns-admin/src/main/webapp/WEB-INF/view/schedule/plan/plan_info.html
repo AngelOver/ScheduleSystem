@@ -49,6 +49,34 @@
         Feng.addCtx("${ctxPath}");
         Feng.sessionTimeoutRegistry();
     </script>
+     <style>
+ .flex_center{
+  	 display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ 
+  .flex_start{
+  	 display: flex;
+    justify-content:space-around;
+    align-items: flex-start;
+ }
+ 
+ .flex_div{
+  display: flex;
+ }
+ .flex_a{
+  flex:4;
+ }
+ .flex_b{
+  flex:3;
+ }
+ }
+ .flex_c{
+  flex:2;
+ }
+ 
+ </style>
 </head>
 
 <body class="gray-bg">
@@ -95,7 +123,7 @@
 					</div>
 					
 					<div class="col-sm-2 col-sm-offset-2">
-						<input type="checkbox" id="isTop" name="isTop" title="全天">
+						<input type="checkbox" id="isWholeday" name="isWholeday" title="全天">
 					</div>
 					</div>
 					<div class="hr-line-dashed"></div>
@@ -133,7 +161,7 @@
 					</div>
 				
 				<div class="hr-line-dashed"></div>
-				    <div class="form-group">
+				   <!--  <div class="form-group">
 						<label class="col-sm-2 control-label">重复</label> 
 						<div class="col-sm-2">
 							 <select class="form-control" id="repeatType" name="repeatType">
@@ -159,6 +187,42 @@
 						<div class="col-sm-1">
 							<input type="checkbox" id="isProgress" name="isProgress" title="生成进度">
 						</div>
+					</div> -->
+					 <div class="form-group">
+						<label class="col-sm-2 control-label">重复</label> 
+						<div class="col-sm-2">
+							 <select class="form-control" id="repeatType" name="repeatType">
+							  <option  value="0">无重复</option>
+					                <option  value="1">每天</option>
+					                  <option  value="2">每隔1天</option>
+					                    <option value="3">每隔2天</option>
+					                      <option   value="4">每隔3天</option>
+					                      <option   value="5">每周这天</option>
+					                      <option   value="6">每月这天</option>
+					                      <option   value="7">每年这天</option>
+					                      <option   value="8">每农历这天</option>
+					        </select>
+						</div>
+					
+						<div class="col-sm-2 flex_start">
+							<label class="flex_a control-label">天数</label>
+							<div class="flex_c" >&nbsp;</div>
+							<input class="flex_b form-control" id="repeatSpace" name="repeatSpace" type="text"  value="0" >
+						</div>
+						
+						
+					
+						<label class="col-sm-2 control-label">重复次数</label>
+						<div class="col-sm-3 flex_start">
+						<input class="form-control flex_a" id="repeatCount" style="width:50px" name="repeatCount" type="text"  value="0" >&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="checkbox" class="flex_b" id="isProgress" name="isProgress" title="生成进度">
+						</div>
+						<!-- <div class="col-sm-1">
+							<input class="form-control" id="repeatCount" name="repeatCount" type="text"  value="0" >
+						</div>
+						<div class="col-sm-1">
+							<input type="checkbox" id="isProgress" name="isProgress" title="生成进度">
+						</div> -->
 					</div>
 					<div class="hr-line-dashed"></div>
 					<div class="form-group">
@@ -197,7 +261,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">添加地址</label>
 						<div class="col-sm-9">
-							<input class="form-control" id="title" name="title" type="text"  
+							<input class="form-control" id="address" name="address" type="text"  
 								style="border-top: none; border-left: none; border-right: none;">
 						</div>
 					</div>
@@ -205,7 +269,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">添加备注</label>
 						<div class="col-sm-9">
-							<input class="form-control" id="title" name="title" type="text"  
+							<input class="form-control" id="remark" name="remark" type="text"  
 								style="border-top: none; border-left: none; border-right: none;">
 						</div>
 					</div>
