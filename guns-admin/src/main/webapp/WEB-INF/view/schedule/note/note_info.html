@@ -34,14 +34,24 @@
 												<input  class="form-control" id="title" name="title" type="text" style="border-top: none;border-left: none;border-right: none;">
 											</div>
 										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-1 control-label"></label>
+											<div class="col-sm-11">
+												<input type="checkbox" id="isShow" name="isShow" title="展示">
+											<input type="checkbox" id="isTop" name="isTop" title="置顶" >
+											<input type="checkbox" lay-filter="isWait" id="isWait"  name="isWait" title="待办">
+											<input type="checkbox"  id="waitStatus" name="waitStatus" title="完成" style="display:none">
+											</div>
+										</div>
 									
-										<div class="layui-input-block">
+									<!-- 	<div class="layui-input-block">
 											<input type="checkbox" id="isShow" name="isShow" title="展示">
 											<input type="checkbox" id="isTop" name="isTop" title="置顶" >
 											<input type="checkbox" lay-filter="isWait" id="isWait"  name="isWait" title="待办">
 											<input type="checkbox"  id="waitStatus" name="waitStatus" title="完成" style="display:none">
 											</div> 
-										</div>
+										</div> -->
 
 									<div class="progress progress-striped" id="progressTipArea"
 										style="margin-top: 20px;">
@@ -64,8 +74,14 @@
 		</div>
 	</div>
 
-
 <script type="text/javascript"src="${ctxPath}/static/js/plugins/layui/layui.js"></script>
 <script type="text/javascript"src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
 <script src="${ctxPath}/static/modular/schedule/note/note_info.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	$('#text div').css("overflow","hidden");
+	 });
+</script>
+
 	@}
