@@ -4,18 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>日程管理—时间轴</title>
-
-		<!-- 本地版本的JQuery 文件 -->
-		<script src="js/jquery.js"></script>
-
-		<!-- 本地版本的 Bootstrap 核心 CSS 文件 -->
 		<link rel="stylesheet" href="css/bootstrap.css">
-
-		<!-- 本地版本的 Bootstrap 核心 JavaScript 文件 -->
-		<script src="js/bootstrap.js"></script>
-		<script src="js/plugins/layui/layui.all.js"></script>
-
-		<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
 		<link rel="stylesheet" href="css/bootstrap-theme.css">
 		<link rel="stylesheet" href="js/plugins/layui/css/layui.css">
 	</head>
@@ -41,7 +30,7 @@
 					
 					
 					<div class=" red flex-center" style="flex:1;margin-left: 10px;">
-						<button type="button" class="btn btn-success">进入我的日程</button>
+						<button type="button" onclick="link('admin')" class="btn btn-success">进入我的日程</button>
 					</div>
 
 					<!--		<ul class="nav navbar-nav navbar-right">
@@ -129,7 +118,7 @@
   <li class="layui-timeline-item">
     <i class="layui-icon layui-timeline-axis"></i>
     <div class="layui-timeline-content layui-text">
-      <h3 class="layui-timeline-title">4月25日</h3>
+      <h3 class="layui-timeline-title">4月24日</h3>
       <p>后台框架的选定
         <br>确定使用guns框架进行开发
         <br>备份guns框架到git 
@@ -140,7 +129,7 @@
     <li class="layui-timeline-item">
     <i class="layui-icon layui-timeline-axis"></i>
     <div class="layui-timeline-content layui-text">
-      <h3 class="layui-timeline-title">4月24日</h3>
+      <h3 class="layui-timeline-title">4月23日</h3>
       <p>开发前的准备
         <br>guns框架的学习
         <br>阿里云服务器CentOS的购买
@@ -236,7 +225,11 @@
 				</div>
 			</div>
 		</div>
-		
+			<script>
+				function link(url){
+			    		window.location.href='http://localhost/'+url;
+			    }
+		</script>
 
 		<style>
 			body{
@@ -614,7 +607,9 @@
 				padding-right: 20px;
 			}
 		</style>
-
+	<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/plugins/layui/layui.all.js"></script>
 	</body>
 
 </html>

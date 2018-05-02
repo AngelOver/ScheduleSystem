@@ -4,18 +4,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>日程管理-主页</title>
-
-		<!-- 本地版本的JQuery 文件 -->
-		<script src="js/jquery.js"></script>
-
-		<!-- 本地版本的 Bootstrap 核心 CSS 文件 -->
 		<link rel="stylesheet" href="css/bootstrap.css">
-
-		<!-- 本地版本的 Bootstrap 核心 JavaScript 文件 -->
-		<script src="js/bootstrap.js"></script>
-
-		<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
 		<link rel="stylesheet" href="css/bootstrap-theme.css">
+	
 	</head>
 
 	<body class="">
@@ -38,7 +29,7 @@
 					</div>	
 									
 					<div class=" red flex-center" style="flex:1;margin-left: 10px;">
-						<button type="button" class="btn btn-success">进入我的日程</button>
+						<button type="button" onclick="link('admin')" class="btn btn-success">进入我的日程</button>
 					</div>
 
 					<!--		<ul class="nav navbar-nav navbar-right">
@@ -60,7 +51,7 @@
 						<img alt="" src="img/head2.jpg" />
 						<div class="carousel-caption">
 							<h3>
-								<button type="button" class="btn btn-success btn-lg">开始使用</button>
+								<button type="button" onclick="link('admin')" class="btn btn-success btn-lg">开始使用</button>
 							</h3>
 							<h3>
 								欢迎来到日程管理系统
@@ -173,6 +164,11 @@
 			</div>
 		</div>
 		
+		<script>
+				function link(url){
+			    		window.location.href='http://localhost/'+url;
+			    }
+		</script>
 
 		<style>
 			body{
@@ -549,7 +545,8 @@
 				padding-right: 20px;
 			}
 		</style>
-
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
 	</body>
 
 </html>

@@ -5,17 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Bootstrap模板页面</title>
 
-		<!-- 本地版本的JQuery 文件 -->
-		<script src="js/jquery.js"></script>
-
-		<!-- 本地版本的 Bootstrap 核心 CSS 文件 -->
 		<link rel="stylesheet" href="css/bootstrap.css">
-
-		<!-- 本地版本的 Bootstrap 核心 JavaScript 文件 -->
-		<script src="js/bootstrap.js"></script>
-		<script src="js/plugins/layui/layui.all.js"></script>
-
-		<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
 		<link rel="stylesheet" href="css/bootstrap-theme.css">
 		<link rel="stylesheet" href="js/plugins/layui/css/layui.css">
 	</head>
@@ -40,7 +30,7 @@
 					</div>	
 					
 					<div class=" red flex-center" style="flex:1;margin-left: 10px;">
-						<button type="button" class="btn btn-success">进入我的日程</button>
+						<button type="button" onclick="link('admin')" class="btn btn-success">进入我的日程</button>
 					</div>
 
 					<!--		<ul class="nav navbar-nav navbar-right">
@@ -96,7 +86,7 @@
 					阿里云服务器 CentOS系统 
 				</dd>
 					<dt style="margin-top: 30px;">
-					个人练习方式
+					个人联系方式
 				</dt>
 				<dd>
 					电话176****1045 邮箱 2424123787@qq.com
@@ -158,7 +148,12 @@
 				</div>
 			</div>
 		</div>
+
 		<script>
+				function link(url){
+			    	window.location.href='http://localhost/'+url;
+			    }
+			
 layui.use(['element', 'layer'], function(){
   var element = layui.element;
   var layer = layui.layer;
@@ -546,7 +541,9 @@ layui.use(['element', 'layer'], function(){
 				padding-right: 20px;
 			}
 		</style>
-
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+		<script src="js/plugins/layui/layui.all.js"></script>
 	</body>
 
 </html>
