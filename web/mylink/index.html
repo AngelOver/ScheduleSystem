@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>我的日程</title>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!--	<link href="css/bootstrap.min.css" rel="stylesheet">-->
+		<link href="fullcalendar/fullcalendar.min.css" rel="stylesheet">
+		<link href="fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print">
+		<link href="jquery-ui-1.10.4.custom/css/base/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+		<link href="bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+		<link href="fullcalendar/lib/cupertino/jquery-ui.min.css" rel="stylesheet">
+		<link href="artDialog/css/ui-dialog.css" rel="stylesheet">
+		<link href="wickedpicker/dist/wickedpicker.min.css" rel="stylesheet">
+		<script src="jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
+		<script src="fullcalendar/lib/jquery.min.js"></script>
+		<script src="fullcalendar/lib/jquery-ui.min.js"></script>
+		<script src="fullcalendar/lib/moment.min.js"></script>
+		<script src="fullcalendar/fullcalendar.js"></script>
+		<script src="jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="artDialog/dist/dialog-min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+	<!--	<script src="js/bootstrap.js"></script>-->
+		<script src="wickedpicker/dist/wickedpicker.min.js"></script>
+		<script src="bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+		<script src="bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
+		<link rel="stylesheet" href="js/plugins/layui/css/layui.css">
+		<script src="js/plugins/layui/layui.all.js"></script>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				/*background:#ffddff;*/
+				background-image: url(img/bg2.png);
+				font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+				font-size: 14px;
+			}
+			
+			#calendar {
+				background: white;
+				padding: 10px;
+				border: gray solid 1px;
+				width: 95%;
+			}
+			
+			.blue {
+				/*border: blue solid 1px;*/
+			}
+			
+			.flex {
+				display: flex;
+			}
+			
+			.flex-center {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.flex-column {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+			}
+			
+			.flex-row {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: row;
+			}
+			
+			.flex_x_start {
+				justify-content: flex-start;
+			}
+			
+			.flex_x_center {
+				justify-content: center;
+			}
+			/*.flex_x_center{
+			display: flex;
+		}*/
+			
+			.flex_y_start {
+				align-items: flex-start;
+			}
+			
+			.red {
+				/*border: red solid 1px;*/
+			}
+			
+			.nav_div {
+				height: 30px;
+				background-color: #ddd;
+			}
+			
+			.nav_title {
+				width: 60%;
+				margin-left: 20%;
+			}
+			
+			.nav_add {
+				width: 20%;
+			}
+		</style>
+	</head>
+	<!--<body style="display: flex;justify-content: center;">-->
+
+	<body>
+		<!--<div id="page" class="blue" style="width: 1170px ;height: 1080px;display: flex;flex-direction: row;">
+				<div id="" class="blue" style="width: 70%;">
+					<h3>我的日程</h3>
+					
+				</div>
+				<div id="" class="blue" style="width: 30%;height: 100px;">
+					<div id=""></div>
+				</div>
+				
+			</div>
+-->
+		<div class="layui-container blue">
+			<div class="layui-row " style="margin-top: 100px;">
+				<div id="schedule" class="layui-col-md9 blue flex-column" >
+					<!--					<span style="font-size: 30px;margin-top: 30px;margin-bottom: 10px;  height: 50px;" class="flex-center label label-default">我的日程</span>
+-->
+					<div id="calendar"></div>
+				</div>
+				<div id="note" class="layui-col-md3 red  " style="display: flex;flex-direction:column; height: 780px;">
+
+					<div class="blue layui-col-12" style=" border-radius:3px;padding:10px;background: #FFF;border: black solid 1px; flex:1;">
+						<div class="" style="width: 100%;height: 100%;border: #DDD solid 1px;">
+						
+						<div class="flex-row nav_div" style="">
+							<div class="flex-center nav_title" style="">便签墙</div>
+							<div class="flex-center nav_add" style="">添加</div>
+						</div>
+						<ul style="width: 80%;margin-left: 10%;margin-top: 20px;">
+							<li style="padding: 5px;">1.今天气不错 -- 5-21</li>
+							<li style="padding: 5px;">2.明天去爬山 -- 5-20</li>
+							<li style="padding: 5px;">3.记得吃饭-- 5-17</li>
+						</ul>
+						</div>
+					</div>
+					<div class="blue layui-col-12 flex-column" style="height:120px;padding:10px;margin-top: 20px;background: white;border: black solid 1px;">
+					
+					<div class="flex-column" style="width: 100%;height: 100%;border: #DDD solid 1px;">
+						
+						<div class="flex-center nav_div" style="width: 100%;">
+							<div class="flex-center " style="">导航栏</div>
+						</div>
+						<div class="flex-row " style="flex:1;margin:10px 0 5px 0 ;">
+							<button style="margin-right: 20px;width:100px" class="btn">官网主页</button>
+							<button style="width:100px" class="btn">进入控制台</button>
+						</div>
+						<div class="flex-row " style="flex:1;margin: 5px 0 10px 0 ;">
+							<button style="margin-right: 20px;width:100px" class="btn">帮助中心</button>
+							<button  style="width:100px" class="btn">关于我们</button>
+						</div>
+					</div>
+
+					</div>
+				</div>
+				<!--  <div id="" class="red " style="display: flex;flex-direction:column;width: 200px;height: 300px;">
+  		<div class="red " style="width: 100px;height: 100px;"></div>
+  		<div class="blue"  style="width: 100px;flex:1"></div>
+  </div>-->
+
+			</div>
+		</div>
+
+		<!--//弹出框-->
+		<div id="set" style="display:none" class="taxt">
+			<div id="slider"></div>
+			<div style="text-align: center" class="slidertext">
+				<input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold; text-align: center; font-size: 16px;">
+			</div>
+		</div>
+		<div id="edit" style="display: none">
+			<p id="edittitle"></p>
+			<select id="edittype">
+				<option value="">未进行</option>
+				<option value="">进行中</option>
+				<option value="">已完成</option>
+				<option value="">已超时</option>
+			</select>
+			<p id="edittime"></p>
+		</div>
+		<div id="dialog-form" style="display:none">
+			<form class="form-inline">
+				<p>
+					<label>事务标题：</label>
+					<input type="text" class="form-control">
+				</p>
+				<p>
+					<label>事务内容：</label>
+					<textarea class="textarea" rows="4" placeholder="内容" id="titledetail"></textarea>
+					<span>（必填）</span>
+				</p>
+				<p>
+					<label>事务类型：</label>
+					<select class="select">
+						<option>工作事务</option>
+						<option>个人事务</option>
+					</select>
+				</p>
+				<p>
+					<label>开始时间：</label>
+					<input type="text" class="time datepicker" id="startdate">
+					<input type="text" class="time timepicki" id="starttime">
+				</p>
+				<p style="display:none" id="enddate">
+					<label>结束时间：</label>
+					<input type="text" class="time datepicker" id="stopdate">
+					<input type="text" class="time timepicki" id="endtime">
+				</p>
+				<p class="checkbox check">
+					<label class="checkbox-inline"><input type="checkbox" id="isallday">全天</label>
+					<label class="checkbox-inline"><input type="checkbox" id="end">结束时间</label>
+					<label class="checkbox-inline"><input type="checkbox" id="repeat">重复</label>
+				</p>
+				<p id="repeattype" style="display: none">
+					<label>重复类型：</label>
+					<select class="select" id="repeatselect">
+						<option value="1">按天重复</option>
+						<option value="2">按周重复</option>
+						<option value="3">按月重复</option>
+						<option value="4">按年重复</option>
+						<option value="5">按工作日重复</option>
+					</select>
+				</p>
+				<p id="repeattime" style="display: none">
+					<label>重复时间：</label>
+					<select class="time" id="repeatmonth" style="display:none">
+						<option value="">1月</option>
+						<option value="">2月</option>
+						<option value="">3月</option>
+						<option value="">4月</option>
+						<option value="">5月</option>
+						<option value="">6月</option>
+						<option value="">7月</option>
+						<option value="">8月</option>
+						<option value="">9月</option>
+						<option value="">10月</option>
+						<option value="">11月</option>
+						<option value="">12月</option>
+					</select>
+					<select class="time" id="repeatday" style="display:none">
+						<option value="">1日</option>
+						<option value="">2日</option>
+						<option value="">3日</option>
+						<option value="">4日</option>
+						<option value="">5日</option>
+						<option value="">6日</option>
+						<option value="">7日</option>
+						<option value="">8日</option>
+						<option value="">9日</option>
+						<option value="">10日</option>
+						<option value="">11日</option>
+						<option value="">12日</option>
+						<option value="">13日</option>
+						<option value="">14日</option>
+						<option value="">15日</option>
+						<option value="">16日</option>
+						<option value="">17日</option>
+						<option value="">18日</option>
+						<option value="">19日</option>
+						<option value="">20日</option>
+						<option value="">21日</option>
+						<option value="">22日</option>
+						<option value="">23日</option>
+						<option value="">24日</option>
+						<option value="">25日</option>
+						<option value="">26日</option>
+						<option value="">27日</option>
+						<option value="">28日</option>
+						<option value="">29日</option>
+						<option value="">30日</option>
+						<option value="">31日</option>
+					</select>
+					<select class="time" id="repeatweek" style="display:none">
+						<option value="">星期一</option>
+						<option value="">星期二</option>
+						<option value="">星期三</option>
+						<option value="">星期四</option>
+						<option value="">星期五</option>
+						<option value="">星期六</option>
+						<option value="">星期日</option>
+					</select>
+					<input type="text" class="time timepicki" id="repeatclock">
+				</p>
+				<p>
+					<label>&nbsp;&nbsp;&nbsp;参与者：</label>
+					<textarea rows="3"></textarea>
+				</p>
+				<p></p>
+			</form>
+		</div>
+
+		<div id="search" style="display:none">
+			<form class="form-inline">
+				<p>
+					<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：</label>
+					<input type="text" class="sear datepicker">
+					<span>至</span>
+					<input type="text" class="sear datepicker">
+				</p>
+				<p>
+					<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：</label>
+					<select>
+						<option value="">未进行</option>
+						<option value="">进行中</option>
+						<option value="">已完成</option>
+						<option value="">已超时</option>
+					</select>
+				</p>
+				<p>
+					<label>事务类型：</label>
+					<select>
+						<option value="">工作事务</option>
+						<option value="">个人事务</option>
+					</select>
+				</p>
+				<p>
+					<label>事务内容：</label>
+					<input type="text">
+				</p>
+			</form>
+		</div>
+	</body>
+	<script src="js/index.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//fc初始化
+			fcInit();
+		});
+		
+		$(function(){
+			resize();
+			$(window).resize(function(){
+				setTimeout(function(){	resize();
+			}, 500);
+		});
+			
+		})
+		
+	</script>
+
+</html>
