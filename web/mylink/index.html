@@ -152,12 +152,12 @@
 							<div class="flex-center " style="">导航栏</div>
 						</div>
 						<div class="flex-row " style="flex:1;margin:10px 0 5px 0 ;">
-							<button style="margin-right: 20px;width:100px" class="btn">官网主页</button>
-							<button style="width:100px" class="btn">进入控制台</button>
+							<button  onclick="link('web/home.html')" style="margin-right: 20px;width:100px" class="btn">官网主页</button>
+							<button  onclick="link('admin')" style="width:100px" class="btn">进入控制台</button>
 						</div>
 						<div class="flex-row " style="flex:1;margin: 5px 0 10px 0 ;">
-							<button style="margin-right: 20px;width:100px" class="btn">帮助中心</button>
-							<button  style="width:100px" class="btn">关于我们</button>
+							<button  onclick="link('web/timeline.html')" style="margin-right: 20px;width:100px" class="btn">时间轴</button>
+							<button  onclick="link('web/about.html')"  style="width:100px" class="btn">关于我们</button>
 						</div>
 					</div>
 
@@ -332,6 +332,10 @@
 	</body>
 	<script src="js/index.js"></script>
 	<script type="text/javascript">
+		function link(url){
+			    	window.location.href='http://47.106.121.197/'+url;
+			    }
+		
 		$(document).ready(function() {
 			//fc初始化
 			fcInit();
