@@ -15,6 +15,7 @@
         <result column="rangetype" property="rangetype" />
         <result column="starttime" property="starttime" />
         <result column="endtime" property="endtime" />
+        <result column="is_remind" property="isRemind" />
         <result column="remindtime" property="remindtime" />
         <result column="remindtype" property="remindtype" />
         <result column="importantstatus" property="importantstatus" />
@@ -26,7 +27,7 @@
         <result column="is_progress" property="isProgress" />
         <result column="progress_count" property="progressCount" />
         <result column="progress_unit" property="progressUnit" />
-        <result column="wait_status" property="waitStatus" />
+        <result column="status" property="status" />
         <result column="nowprogress" property="nowprogress" />
         <result column="createtime" property="createtime" />
         <result column="updatetime" property="updatetime" />
@@ -35,7 +36,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, userid, title, remark, address, thedate, range, rangelength,rangetype, starttime, endtime, remindtime, remindtype, importantstatus, is_wholeday AS isWholeday, is_repeat AS isRepeat, repeat_count AS repeatCount, repeat_type AS repeatType, repeat_space AS repeatSpace, is_progress AS isProgress, progress_count AS progressCount,progress_unit AS progressUnit,wait_status AS waitStatus, nowprogress, createtime, updatetime, version
+        id, userid, title, remark, address, thedate, range, rangelength,rangetype, starttime, endtime,is_remind AS isRemind, remindtime, remindtype, importantstatus, is_wholeday AS isWholeday, is_repeat AS isRepeat, repeat_count AS repeatCount, repeat_type AS repeatType, repeat_space AS repeatSpace, is_progress AS isProgress, progress_count AS progressCount,progress_unit AS progressUnit,status, nowprogress, createtime, updatetime, version
     </sql>
 
 </mapper>

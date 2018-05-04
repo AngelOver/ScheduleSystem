@@ -77,10 +77,16 @@ public class Plan extends Model<Plan> {
      * 结束时间(存储)
      */
     private Date endtime;
+    
+    /**
+     * 是否提醒
+     */
+    @TableField("is_remind")
+    private Integer isRemind;
     /**
      * 提醒时间
      */
-    private Date remindtime;
+    private String remindtime;
     /**
      * 提醒类型(0：准时  1：准时 2 自定义）
      */
@@ -142,8 +148,7 @@ public class Plan extends Model<Plan> {
     /**
      * 完成情况(0 未完成 1 完成)
      */
-    @TableField("wait_status")
-    private Integer waitStatus;
+    private Integer status;
     /**
      * 当前进度(当前重复次数)
      */
@@ -242,15 +247,24 @@ public class Plan extends Model<Plan> {
         this.endtime = endtime;
     }
 
-    public Date getRemindtime() {
+    public String getRemindtime() {
         return remindtime;
     }
 
-    public void setRemindtime(Date remindtime) {
+    public void setRemindtime(String remindtime) {
         this.remindtime = remindtime;
     }
+    
 
-    public Integer getRemindtype() {
+    public Integer getIsRemind() {
+		return isRemind;
+	}
+
+	public void setIsRemind(Integer isRemind) {
+		this.isRemind = isRemind;
+	}
+
+	public Integer getRemindtype() {
         return remindtype;
     }
 
@@ -306,12 +320,12 @@ public class Plan extends Model<Plan> {
         this.isProgress = isProgress;
     }
 
-    public Integer getWaitStatus() {
-        return waitStatus;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setWaitStatus(Integer waitStatus) {
-        this.waitStatus = waitStatus;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getNowprogress() {
@@ -413,7 +427,7 @@ public class Plan extends Model<Plan> {
         ", isRepeat=" + isRepeat +
         ", repeatcount=" + repeatCount +
         ", isProgress=" + isProgress +
-        ", waitStatus=" + waitStatus +
+        ", status=" + status +
         ", nowprogress=" + nowprogress +
         ", createtime=" + createtime +
         ", updatetime=" + updatetime +

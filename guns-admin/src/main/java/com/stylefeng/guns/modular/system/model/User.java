@@ -78,6 +78,11 @@ public class User extends Model<User> {
      * 创建时间
      */
 	private Date createtime;
+	
+	/**
+     * 链接code
+     */
+	private String linkcode;
     /**
      * 保留字段
      */
@@ -198,6 +203,14 @@ public class User extends Model<User> {
 
 	public Integer getVersion() {
 		return version;
+	}
+
+	public String getLinkcode() {
+		return linkcode;
+	}
+
+	public void setLinkcode(String linkcode) {
+		this.linkcode = linkcode;
 	}
 
 	public void setVersion(Integer version) {

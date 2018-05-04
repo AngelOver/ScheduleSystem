@@ -9,6 +9,10 @@ var MgrUser = {
     deptid:29
 };
 
+
+var host = window.location.host;
+var url = "http://"+host+"/api/link/";
+
 /**
  * 初始化表格的列
  */
@@ -23,6 +27,10 @@ MgrUser.initColumn = function () {
 /*        {title: '部门', field: 'deptName', align: 'center', valign: 'middle', sortable: true},*/
         {title: '邮箱', field: 'email', align: 'center', valign: 'middle', sortable: true},
         {title: '电话', field: 'phone', align: 'center', valign: 'middle', sortable: true},
+        {title: '专属链接', field: 'linkcode', align: 'center', valign: 'middle', sortable: true,formatter:function (value,row,index) {
+        	return "<a href='"+url+value+"'  target='view_window'>"+url+value+"</a>";
+      		
+      }},
         {title: '创建时间', field: 'createtime', align: 'center', valign: 'middle', sortable: true},
         {title: '状态', field: 'statusName', align: 'center', valign: 'middle', sortable: true}];
     return columns;

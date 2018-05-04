@@ -22,8 +22,8 @@ function fcInit() {
 			week: '周',
 			day: '日',
 			listMonth: "列表",
-			prev: '前进',
-			next: '后退'
+			prev: '后退',
+			next: '前进'
 		},
 		customButtons: {
 			button1: {

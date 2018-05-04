@@ -25,8 +25,15 @@ Plan.initColumn = function () {
 /*            {title: '时间段', field: 'rangetype', visible: true, align: 'center', valign: 'middle'},*/
 /*            {title: '开始时间', field: 'starttime', visible: true, align: 'center', valign: 'middle'},
             {title: '结束时间', field: 'endtime', visible: true, align: 'center', valign: 'middle'},*/
-            {title: '提醒时间', field: 'remindtime', visible: true, align: 'center', valign: 'middle'},
-            {title: '提醒类型', field: 'remindtype', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+            {title: '提醒时间', field: 'remindtime', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+        		if(value ==""){
+       			 return "不提醒";
+       		}else {
+       			 return value;
+       		}
+       		
+       }},
+/*            {title: '提醒类型', field: 'remindtype', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
         		if(value ==0){
         			 return "<span class='badge badge-info'>不提醒</span>";
         		}else if (value ==1){
@@ -41,7 +48,7 @@ Plan.initColumn = function () {
         			 return "<span class='badge badge-success'>提前2小时</span>";
         		}
         		
-        }},
+        }},*/
 
             	
             	
@@ -63,11 +70,17 @@ Plan.initColumn = function () {
 /*            {title: '是否重复', field: 'isRepeat', visible: true, align: 'center', valign: 'middle'},
             {title: '重复次数', field: 'repeatcount', visible: true, align: 'center', valign: 'middle'},*/
 /*            {title: '是否展示进度', field: 'isProgress', visible: true, align: 'center', valign: 'middle'},*/
-            {title: '完成情况', field: 'waitStatus', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+            {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
             	if (value ==0){
-          			 return "<span class='badge badge-success'>未完成</span>";
+          			 return "<span class='badge badge-success'>未开始</span>";
+          		}else if (value ==1){
+          			 return "<span class='badge badge-success'>进行中</span>";
           		}else if (value ==2){
-          			 return "<span class='badge badge-success'>完成</span>";
+          			 return "<span class='badge badge-success'>已完成</span>";
+          		}else if (value ==3){
+          			 return "<span class='badge badge-success'>已过期</span>";
+          		}else if (value ==4){
+          			 return "<span class='badge badge-success'>未完成</span>";
           		}
           		
           }},

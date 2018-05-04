@@ -68,19 +68,17 @@ PlanInfoDlg.collectData = function() {
     .set('remindtime')
     .set('remindtype')
     .set('importantstatus')
-/*    .set('isWholeday')*/
-/*    .set('isRepeat')*/
-    
-    .set('isWholeday',getCheckboxValue('isWholeday'))
+    .set('isRepeat')
+    .set('isRemind')
+    .set('isWholeday')
     .set('repeatCount')
       .set('repeatSpace')
         .set('repeatType')
     .set('progressCount')
     .set('progressUnit')
-/*    .set('isProgress')*/
     
-       .set('isProgress',getCheckboxValue('isProgress'))
-    .set('waitStatus')
+       .set('isProgress')
+    .set('status')
     .set('nowprogress')
     .set('createtime')
     .set('updatetime')
@@ -137,6 +135,9 @@ layui.use(['form','laydate'],function(){
 
 
 $(function() {
-
-
+    $("#isRepeat").val($("#isRepeatVal").val());
+    $("#isRemind").val($("#isRemindVal").val());
+    $("#status").val($("#statusVal").val());
+    $("#isWholeday").val($("#isWholedayVal").val());
+    $("#importantstatus").val($("#importantstatusVal").val());
 });

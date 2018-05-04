@@ -18,4 +18,10 @@ import java.util.Map;
  */
 public interface IIndexService  {
 
+	/**
+	 * 首页统计
+	 * @return
+	 */
+	Map<String, Object> getStatistics();
+
 }

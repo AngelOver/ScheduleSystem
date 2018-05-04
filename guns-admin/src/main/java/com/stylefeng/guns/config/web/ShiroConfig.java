@@ -162,7 +162,9 @@ public class ShiroConfig {
         hashMap.put("/login", "anon");
         hashMap.put("/regist", "anon");//新增注册
         hashMap.put("/resetPwd", "anon");//忘记密码
-        hashMap.put("/api/*", "anon");//接口层 
+        hashMap.put("/api/**", "anon");//接口层 
+        hashMap.put("/web/*", "anon");//网页前端 
+        hashMap.put("/link/*", "anon");//用户链接
         hashMap.put("/global/sessionError", "anon");
         hashMap.put("/kaptcha", "anon");
         hashMap.put("/**", "user");

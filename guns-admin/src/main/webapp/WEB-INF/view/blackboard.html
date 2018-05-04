@@ -72,7 +72,7 @@
 							</div>
 							<div class="four-text">
 								<h3>共有多少人在用</h3>
-								<h4> 461 </h4>
+								<h4> 0 </h4>
 								
 							</div>
 							
@@ -85,7 +85,7 @@
 							</div>
 							<div class="four-text">
 								<h3>共有多少计划被创建</h3>
-								<h4>1626</h4>
+								<h4>0</h4>
 
 							</div>
 							
@@ -98,7 +98,7 @@
 							</div>
 							<div class="four-text">
 								<h3>您规划的计划</h3>
-								<h4>17</h4>
+								<h4>0</h4>
 								
 							</div>
 							
@@ -111,7 +111,7 @@
 							</div>
 							<div class="four-text">
 								<h3>您的便签</h3>
-								<h4>1</h4>
+								<h4>0</h4>
 								
 							</div>
 							
@@ -120,7 +120,32 @@
 					<div class="clearfix"></div>
 				</div>
 	
+	<script type="text/javascript">
 	
+	$(function(){
+		
+		getDate();
+		
+	})
+	function getDate(){
+		$.ajax({
+		    type: "post",
+		    contentType: "application/json",
+		    url: "${ctxPath}/index/getStatistics",//请求后台方法
+		    data: null,
+		    success: function (date) {
+		   $(".four-grids h4")[0].innerHTML = date.allUserCount; 	 
+		   $(".four-grids h4")[1].innerHTML = date.allPlanCount;
+		   $(".four-grids h4")[2].innerHTML = date.planCount;
+		   $(".four-grids h4")[3].innerHTML = date.noteCount;
+		     },
+		    error: function (response) {
+		        var r = jQuery.parseJSON(response.responseText);
+		        alert("Message: " + r.Message);
+		    }
+		}) 
+	}
+	</script>
 	
 		<div class="col-sm-12">
 			@for(notice in noticeList){

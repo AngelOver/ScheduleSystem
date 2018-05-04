@@ -90,209 +90,78 @@
  
  </style>
 <div class="ibox float-e-margins">
-	<div class="col-sm-12  ">
-		<div class="ibox float-e-margins">
-			<div class="ibox-title">
-				<h5>写计划</h5>
-			</div>
-			<div class="ibox-content layui-form	">
-				<div class="row row-lg">
-					<div class="col-sm-12">
-						<div class="ibox float-e-margins">
-							<div class="ibox-content" style="border: none !important;">
-								<div class="form-horizontal" id="planInfoForm">
-
-
-            <input type="hidden" id="id" value="">
-
-            <div class="row">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">添加标题</label>
-					<div class="col-sm-9">
-						<input class="form-control" id="title" name="title" type="text"  
-							style="border-top: none; border-left: none; border-right: none;">
-					</div>
-				</div>
-				<div class="hr-line-dashed"></div>
-            	<div class="form-group">
-					<label class="col-sm-2 control-label">计划日期</label>
-					<div class="col-sm-4">
-						<input class="form-control" id="thedate" name="thedate" type="text"   >
-						<!--  onclick="laydate.render({ elem: '#thedate'})" -->
-							<!-- <input class="form-control" id="thedate" name="title" type="text"  onclick="laydate({istime: true, format: 'hh:mm:ss'})"> -->
-					</div>
-					
-					<div class="col-sm-2 col-sm-offset-2">
-						<input type="checkbox" id="isWholeday" name="isWholeday" title="全天">
-					</div>
-					</div>
-					<div class="hr-line-dashed"></div>
-					 <div class="form-group">
-					<label class="col-sm-2 control-label">时间段</label>
-					<div class="col-sm-4">
-						<input class="form-control" id=range name="starttime" type="text"   >
-					</div>
-					<label class="col-sm-2 control-label">时间长度</label>
-					<div class="col-sm-2">
-						      <select class="form-control" id="rangetype" name="rangetype">
-					                <option  value="1">自定义</option>
-					                 <option  value="2">10分钟</option>
-					                  <option  value="3">30分钟</option>
-					                    <option value="4">1小时</option>
-					                      <option   value="5">2小时</option>
-					        </select>
-					</div> 
-					
-				<!-- 	<div class="col-sm-3">
-						<input type="checkbox" id="isTop" name="isTop" title="全天">
-						</div>  -->
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-					    <label class="col-sm-2 control-label">重要级别</label>
-					    <div class="col-sm-4">
-					        <select class="form-control" id="importantstatus" name="importantstatus">
-					                <option  value="1">A  紧急，重要</option>
-					                  <option  value="2">B  紧急，不重要</option>
-					                    <option value="3">C  不紧急，重要</option>
-					                      <option   value="4">D  不紧急，不重要</option>
-					        </select>
-					    </div>
-					</div>
-				
-				<div class="hr-line-dashed"></div>
-				    <div class="form-group">
-						<label class="col-sm-2 control-label">重复</label> 
-						<div class="col-sm-2">
-							 <select class="form-control" id="repeatType" name="repeatType">
-							  <option  value="0">无重复</option>
-					                <option  value="1">每天</option>
-					                  <option  value="2">每隔1天</option>
-					                    <option value="3">每隔2天</option>
-					                      <option   value="4">每隔3天</option>
-					                      <option   value="5">每周这天</option>
-					                      <option   value="6">每月这天</option>
-					                      <option   value="7">每年这天</option>
-					                      <option   value="8">每农历这天</option>
-					        </select>
-						</div>
-					
-						<div class="col-sm-2 flex_start">
-							<label class="flex_a control-label">天数</label>
-							<div class="flex_c" >&nbsp;</div>
-							<input class="flex_b form-control" id="repeatSpace" name="repeatSpace" type="text"  value="0" >
-						</div>
-						
-						
-					
-						<label class="col-sm-2 control-label">重复次数</label>
-						<div class="col-sm-3 flex_start">
-						<input class="form-control flex_a" id="repeatCount" style="width:50px" name="repeatCount" type="text"  value="0" >&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="checkbox" class="flex_b" id="isProgress" name="isProgress" title="生成进度">
-						</div>
-						<!-- <div class="col-sm-1">
-							<input class="form-control" id="repeatCount" name="repeatCount" type="text"  value="0" >
-						</div>
-						<div class="col-sm-1">
-							<input type="checkbox" id="isProgress" name="isProgress" title="生成进度">
-						</div> -->
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">总数量</label> 
-						<div 	class="col-sm-4">
-							<input class="form-control" id="progressCount" name="progressCount" type="text"  value="0" >
-						</div>
-						<label class="col-sm-2 control-label">单位</label>
-						<div class="col-sm-3">
-							<input class="form-control" id="progressUnit" name="progressUnit" type="text"  value="0" >
-						</div>
-					</div>
-					<div class="hr-line-dashed"></div>
-								 <div class="form-group">
-					<label class="col-sm-2 control-label">提醒时间</label>
-					<div class="col-sm-4">
-						<input class="form-control" id="remindtime" name="remindtime" type="text"   >
-					</div>
-					<label class="col-sm-2 control-label">提醒类型</label>
-					<div class="col-sm-3">
-						      <select class="form-control" id="remindtype" name="remindtype">
-					              <option  value="0">不提醒</option>
-					               <option  value="1">自定义</option>
-					                 <option  value="2">提前10分钟</option>
-					                  <option  value="3">提前30分钟</option>
-					                    <option value="4">提前1小时</option>
-					                      <option   value="5">提前2小时</option>
-					        </select>
-					</div> 
-					
-				<!-- 	<div class="col-sm-3">
-						<input type="checkbox" id="isTop" name="isTop" title="全天">
-						</div>  -->
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">添加地址</label>
-						<div class="col-sm-9">
-							<input class="form-control" id="address" name="address" type="text"  
-								style="border-top: none; border-left: none; border-right: none;">
-						</div>
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">添加备注</label>
-						<div class="col-sm-9">
-							<input class="form-control" id="remark" name="remark" type="text"  
-								style="border-top: none; border-left: none; border-right: none;">
-						</div>
-					</div>
-				
-				
-            
-            
-<!--                   <div class="col-sm-6  b-r">
-                            <#input id="id" name="添加标题" underline="true"/>
-                            <#input id="userid" name="用户id" underline="true"/>
-                            <#input id="title" name="标题" underline="true"/>
-                            <#input id="remark" name="备注" underline="true"/>
-                            <#input id="address" name="地址" underline="true"/>
+	<div class="ibox-content">
+	<div class="form-horizontal" id="planInfoForm">
+  <div class="row">
+                            <div class="col-sm-6 b-r">
+                            <#input id="title" name="添加标题" underline="true"/>
                             <#input id="thedate" name="计划时间" underline="true"/>
                             <#input id="range" name="时间范围" underline="true"/>
-                            <#input id="rangelength" name="时间长度" underline="true"/>
-                            <#input id="rangetype" name="时间段" underline="true"/>
-                            <#input id="starttime" name="开始时间" underline="true"/>
-                            <#input id="endtime" name="结束时间" underline="true"/>
-                            <#input id="remindtime" name="提醒时间"/>
+                              <#select id="isRepeat" name="是否重复" underline="true">
+									<option  value="0">否</option>
+							         <option  value="1">是</option>
+							</#select>
+                            
+                            <#input id="repeatSpace" name="间隔天数" underline="true"/>
+                         	 <#select id="isRemind" name="是否提醒" underline="true">
+									<option  value="0">否</option>
+							         <option  value="1">是</option>
+							</#select>
+                       	 	 <#input id="address" name="添加地址" underline="true"/>
+                              <#select id="status" name="状态" underline="true">
+									<option  value="0">未开始</option>
+							         <option  value="1">进行中</option>
+							           <option  value="3">已完成</option>
+							             <option  value="4">已过期</option>
+							               <option  value="4">未完成</option>
+							</#select>
                 </div>
 
-                <div class="col-sm-6">
-                            <#input id="remindtype" name="提醒类型" underline="true"/>
-                            <#input id="importantstatus" name="重要程度" underline="true"/>
-                            <#input id="isWholeday" name="是否全天" underline="true"/>
-                            <#input id="isRepeat" name="是否重复" underline="true"/>
-                            <#input id="repeatcount" name="重复次数" underline="true"/>
-                            <#input id="isProgress" name="是否展示进度" underline="true"/>
-                            <#input id="waitStatus" name="完成情况" underline="true"/>
-                            <#input id="nowprogress" name="当前进度" underline="true"/>
-                            <#input id="createtime" name="创建时间" underline="true"/>
-                            <#input id="updatetime" name="更新时间" underline="true"/>
-                            <#input id="version" name="保留字段" underline="true"/>
-                </div> -->
-            </div>
-
+         			       <div class="col-sm-6">
+                   			 <div class="form-group" style="height:34px">
+							    <label class="col-sm-3 control-label"></label>
+							    <div class="col-sm-9">
+							    </div>
+							</div>
+							<div class="hr-line-dashed"></div>
+                            
+                             <#select id="isWholeday" name="是否全天" underline="true">
+									<option  value="0">否</option>
+							         <option  value="1">是</option>
+							</#select>
+					                      
+							 <#select id="importantstatus" name="重要程度" underline="true">
+										<option  value="1">A  紧急，重要</option>
+							             <option  value="2">B  紧急，不重要</option>
+							            <option value="3">C  不紧急，重要</option>
+							           <option   value="4">D  不紧急，不重要</option>
+							</#select>
+					                      
+                             <div class="form-group" style="height:34px">
+							    <label class="col-sm-3 control-label"></label>
+							    <div class="col-sm-9">
+							    </div>
+							</div>
+							<div class="hr-line-dashed"></div>
+                             <#input id="repeatCount" name="重复次数" underline="true"/>
+                                <#input id="remindtime" name="提醒时间" underline="true" />
+   								<#input id="remark" name="添加备注" underline="true" />
+                              
+                </div>
+				
+	            </div>
 									<div class="row btn-group-m-t">
 										<div class="col-sm-10"><#button btnCss="info" name="提交"
 											id="ensure" icon="fa-check"
-											clickFun="PlanInfoDlg.addSubmit()"/></div>
+											clickFun="PlanInfoDlg.addSubmit()"/>
+											
+												<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PlanInfoDlg.close()"/>
+											</div>
+											
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	
 <!-- <script src="${ctxPath}/static/js/plugins/layer/laydate5/laydate.js"></script> -->
@@ -300,13 +169,6 @@
 <script src="${ctxPath}/static/modular/schedule/plan/plan_info.js"></script>
 
 <script type="text/javascript">
- layui.use(['form','laydate'],function(){
-	 var laydate = layui.laydate;
-	laydate.render({ elem: '#thedate',format: 'yyyy年MM月dd日',theme: 'molv'});
-	laydate.render({ elem: '#range',format: 'HH:mm',theme: 'molv',type: 'time' ,range: true});
-	laydate.render({ elem: '#remindtime',type: 'datetime',theme: 'molv'});
-	
-}); 
 </script>
 </div>
 <script src="${ctxPath}/static/js/content.js?v=1.0.0"></script>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit"/><!-- 让360浏览器默认选择webkit内核 -->
+
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/animate.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/jquery-treegrid/css/jquery.treegrid.css" rel="stylesheet"/>
+    <!-- <link href="${ctxPath}/static/css/plugins/ztree/demo.css" rel="stylesheet"> -->
+
+    <!-- 全局js -->
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/jquery-treegrid/js/jquery.treegrid.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/jquery-treegrid/js/jquery.treegrid.bootstrap3.js"></script>
+    <script src="${ctxPath}/static/js/plugins/jquery-treegrid/extension/jquery.treegrid.extension.js"></script>
+    <script src="${ctxPath}/static/js/plugins/layer/layer.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+ <!-- 	 <script src="${ctxPath}/static/js/plugins/layer/laydate/laydate.js"></script>  -->
+  <!--   <script src="${ctxPath}/static/js/plugins/layer/laydate5/laydate.js"></script>  -->
+    <script src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script src="${ctxPath}/static/js/common/Feng.js"></script>
+
+
+    <script type="text/javascript">
+        Feng.addCtx("${ctxPath}");
+        Feng.sessionTimeoutRegistry();
+    </script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+ <link href="${ctxPath}/static/js/plugins/layui/css/layui.css"
+	rel="stylesheet" /> 
+<!-- 	<link href="${ctxPath}/static/js/plugins/layui/css/layui.css"
+	rel="stylesheet" />
+	
+		<link href="${ctxPath}/static/js/plugins/layer/laydate5/theme/default/laydate.css"
+	rel="stylesheet" />
+ -->
+ <style>
+ .flex_center{
+  	 display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ 
+  .flex_start{
+  	 display: flex;
+    justify-content:space-around;
+    align-items: flex-start;
+ }
+ 
+ .flex_div{
+  display: flex;
+ }
+ .flex_a{
+  flex:4;
+ }
+ .flex_b{
+  flex:3;
+ }
+ }
+ .flex_c{
+  flex:2;
+ }
+ 
+ </style>
+<div class="ibox float-e-margins">
+	<div class="col-sm-12  ">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>写计划</h5>
+			</div>
+			<div class="ibox-content layui-form	">
+				<div class="row row-lg">
+					<div class="col-sm-12">
+						<div class="ibox float-e-margins">
+							<div class="ibox-content" style="border: none !important;">
+								<div class="form-horizontal" id="planInfoForm">
+
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">添加标题</label>
+					<div class="col-sm-9">
+						<input class="form-control" id="title" name="title" type="text"  
+							style="border-top: none; border-left: none; border-right: none;">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+            	<div class="form-group">
+					<label class="col-sm-2 control-label">计划日期</label>
+					<div class="col-sm-4">
+						<input class="form-control" id="thedate" name="thedate" type="text"   >
+						<!--  onclick="laydate.render({ elem: '#thedate'})" -->
+							<!-- <input class="form-control" id="thedate" name="title" type="text"  onclick="laydate({istime: true, format: 'hh:mm:ss'})"> -->
+					</div>
+					
+					<div class="col-sm-2 col-sm-offset-2">
+						<input type="checkbox" id="isWholeday" name="isWholeday" title="全天">
+					</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					 <div class="form-group">
+					<label class="col-sm-2 control-label">时间段</label>
+					<div class="col-sm-4">
+						<input class="form-control" id=range name="starttime" type="text"   >
+					</div>
+					<label class="col-sm-2 control-label">时间长度</label>
+					<div class="col-sm-2">
+						      <select class="form-control" id="rangetype" name="rangetype">
+					                <option  value="1">自定义</option>
+					                 <option  value="2">10分钟</option>
+					                  <option  value="3">30分钟</option>
+					                    <option value="4">1小时</option>
+					                      <option   value="5">2小时</option>
+					        </select>
+					</div> 
+					
+				<!-- 	<div class="col-sm-3">
+						<input type="checkbox" id="isTop" name="isTop" title="全天">
+						</div>  -->
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+					    <label class="col-sm-2 control-label">重要级别</label>
+					    <div class="col-sm-4">
+					        <select class="form-control" id="importantstatus" name="importantstatus">
+					                <option  value="1">A  紧急，重要</option>
+					                  <option  value="2">B  紧急，不重要</option>
+					                    <option value="3">C  不紧急，重要</option>
+					                      <option   value="4">D  不紧急，不重要</option>
+					        </select>
+					    </div>
+					</div>
+				
+				<div class="hr-line-dashed"></div>
+				    <div class="form-group">
+						<label class="col-sm-2 control-label">重复</label> 
+						<div class="col-sm-2">
+							 <select class="form-control" id="repeatType" name="repeatType">
+							  <option  value="0">无重复</option>
+					                <option  value="1">每天</option>
+					                  <option  value="2">每隔1天</option>
+					                    <option value="3">每隔2天</option>
+					                      <option   value="4">每隔3天</option>
+					                      <option   value="5">每周这天</option>
+					                      <option   value="6">每月这天</option>
+					                      <option   value="7">每年这天</option>
+					                      <option   value="8">每农历这天</option>
+					        </select>
+						</div>
+					
+						<div class="col-sm-2 flex_start">
+							<label class="flex_a control-label">天数</label>
+							<div class="flex_c" >&nbsp;</div>
+							<input class="flex_b form-control" id="repeatSpace" name="repeatSpace" type="text"  value="0" >
+						</div>
+						
+						
+					
+						<label class="col-sm-2 control-label">重复次数</label>
+						<div class="col-sm-3 flex_start">
+						<input class="form-control flex_a" id="repeatCount" style="width:50px" name="repeatCount" type="text"  value="0" >&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="checkbox" class="flex_b" id="isProgress" name="isProgress" title="生成进度">
+						</div>
+						<!-- <div class="col-sm-1">
+							<input class="form-control" id="repeatCount" name="repeatCount" type="text"  value="0" >
+						</div>
+						<div class="col-sm-1">
+							<input type="checkbox" id="isProgress" name="isProgress" title="生成进度">
+						</div> -->
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">总数量</label> 
+						<div 	class="col-sm-4">
+							<input class="form-control" id="progressCount" name="progressCount" type="text"  value="0" >
+						</div>
+						<label class="col-sm-2 control-label">单位</label>
+						<div class="col-sm-3">
+							<input class="form-control" id="progressUnit" name="progressUnit" type="text"  value="0" >
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+								 <div class="form-group">
+					<label class="col-sm-2 control-label">提醒时间</label>
+					<div class="col-sm-4">
+						<input class="form-control" id="remindtime" name="remindtime" type="text"   >
+					</div>
+					<label class="col-sm-2 control-label">提醒类型</label>
+					<div class="col-sm-3">
+						      <select class="form-control" id="remindtype" name="remindtype">
+					              <option  value="0">不提醒</option>
+					               <option  value="1">自定义</option>
+					                 <option  value="2">提前10分钟</option>
+					                  <option  value="3">提前30分钟</option>
+					                    <option value="4">提前1小时</option>
+					                      <option   value="5">提前2小时</option>
+					        </select>
+					</div> 
+					
+				<!-- 	<div class="col-sm-3">
+						<input type="checkbox" id="isTop" name="isTop" title="全天">
+						</div>  -->
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">添加地址</label>
+						<div class="col-sm-9">
+							<input class="form-control" id="address" name="address" type="text"  
+								style="border-top: none; border-left: none; border-right: none;">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">添加备注</label>
+						<div class="col-sm-9">
+							<input class="form-control" id="remark" name="remark" type="text"  
+								style="border-top: none; border-left: none; border-right: none;">
+						</div>
+					</div>
+				
+				
+            
+            
+<!--                   <div class="col-sm-6  b-r">
+                            <#input id="id" name="添加标题" underline="true"/>
+                            <#input id="userid" name="用户id" underline="true"/>
+                            <#input id="title" name="标题" underline="true"/>
+                            <#input id="remark" name="备注" underline="true"/>
+                            <#input id="address" name="地址" underline="true"/>
+                            <#input id="thedate" name="计划时间" underline="true"/>
+                            <#input id="range" name="时间范围" underline="true"/>
+                            <#input id="rangelength" name="时间长度" underline="true"/>
+                            <#input id="rangetype" name="时间段" underline="true"/>
+                            <#input id="starttime" name="开始时间" underline="true"/>
+                            <#input id="endtime" name="结束时间" underline="true"/>
+                            <#input id="remindtime" name="提醒时间"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="remindtype" name="提醒类型" underline="true"/>
+                            <#input id="importantstatus" name="重要程度" underline="true"/>
+                            <#input id="isWholeday" name="是否全天" underline="true"/>
+                            <#input id="isRepeat" name="是否重复" underline="true"/>
+                            <#input id="repeatcount" name="重复次数" underline="true"/>
+                            <#input id="isProgress" name="是否展示进度" underline="true"/>
+                            <#input id="waitStatus" name="完成情况" underline="true"/>
+                            <#input id="nowprogress" name="当前进度" underline="true"/>
+                            <#input id="createtime" name="创建时间" underline="true"/>
+                            <#input id="updatetime" name="更新时间" underline="true"/>
+                            <#input id="version" name="保留字段" underline="true"/>
+                </div> -->
+            </div>
+
+									<div class="row btn-group-m-t">
+										<div class="col-sm-10"><#button btnCss="info" name="提交"
+											id="ensure" icon="fa-check"
+											clickFun="PlanInfoDlg.addSubmit()"/></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+<!-- <script src="${ctxPath}/static/js/plugins/layer/laydate5/laydate.js"></script> -->
+ <script type="text/javascript"src="${ctxPath}/static/js/plugins/layui/layui.js"></script> 
+<script src="${ctxPath}/static/modular/schedule/plan/plan_info.js"></script>
+
+<script type="text/javascript">
+ layui.use(['form','laydate'],function(){
+	 var laydate = layui.laydate;
+	laydate.render({ elem: '#thedate',format: 'yyyy年MM月dd日',theme: 'molv'});
+	laydate.render({ elem: '#range',format: 'HH:mm',theme: 'molv',type: 'time' ,range: true});
+	laydate.render({ elem: '#remindtime',type: 'datetime',theme: 'molv'});
+	
+}); 
+</script>
+</div>
+<script src="${ctxPath}/static/js/content.js?v=1.0.0"></script>
+</body>
+</html>

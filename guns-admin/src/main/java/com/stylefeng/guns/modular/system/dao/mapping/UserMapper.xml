@@ -18,6 +18,7 @@
 		<result column="deptid" property="deptid" />
 		<result column="status" property="status" />
 		<result column="createtime" property="createtime" />
+		<result column="linkcode" property="linkcode" />
 		<result column="version" property="version" />
 	</resultMap>
 
@@ -25,7 +26,7 @@
 		id, account, name, birthday, sex, email, avatar,
 		phone, roleid,
 		deptid, status,
-		createtime, version
+		createtime,linkcode, version
 	</sql>
 
 	<sql id="Base_Column_List_With_Pwd">
