@@ -29,7 +29,18 @@ public class UserDto{
 	private Date createtime;
 	private Integer version;
 	private String avatar;
+	
+	private String linkcode;
 
+
+	
+	public String getLinkcode() {
+		return linkcode;
+	}
+
+	public void setLinkcode(String linkcode) {
+		this.linkcode = linkcode;
+	}
 
 	public Integer getId() {
 		return id;

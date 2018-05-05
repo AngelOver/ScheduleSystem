@@ -123,6 +123,9 @@ console.log(linkcode);
 			#dialog-form p{
 			margin-bottom:10px;
 			}
+			#noteform p{
+			margin-bottom:10px;
+			}
 			.label{
 			
 			}
@@ -156,7 +159,7 @@ console.log(linkcode);
 						
 						<div class="flex-row nav_div" style="">
 							<div class="flex-center nav_title" style="">便签墙</div>
-							<div class="flex-center nav_add" style="">添加</div>
+							<div class="flex-center nav_add" onclick="addNote()" style="">添加</div>
 						</div>
 						<ul id="noteUl" style="width: 80%;margin-left: 10%;margin-top: 20px;">
 							<!-- <li style="padding: 5px;">1.今天气不错 -- 5-21</li>
@@ -232,8 +235,10 @@ console.log(linkcode);
 					
 					<label>重要程度：</label>
 					<select id="importantstatus" class="select">
-						<option>工作事务</option>
-						<option>个人事务</option>
+									<option  value="1">A  紧急，重要</option>
+							             <option  value="2">B  紧急，不重要</option>
+							            <option value="3">C  不紧急，重要</option>
+							           <option   value="4">D  不紧急，不重要</option>
 					</select>
 				</p>
 				<p class="checkbox check">
@@ -256,6 +261,35 @@ console.log(linkcode);
 					<input type="text" class="time"	 id="address">
 					<label>添加备注：</label>
 					<input type="text" class="time"	 id="remark">
+				</p>
+			<!-- 	<p>
+					<label>添加备注：</label>
+					<textarea rows="3"></textarea>
+				</p> -->
+					
+				
+			
+				<p></p>
+			</form>
+		</div>
+		
+		
+		<div id="noteform" style="display:none">
+			<form class="form-inline">
+				<p >
+					<label style="width:70px">便签：</label>
+					<textarea rows="3" id="textNote"></textarea>
+				</p> 
+			
+				<p>
+					<label>添加标题：</label>
+					<input type="text" class="form-control" id="titletNote">
+				</p>
+			
+				<p class="checkbox check">
+					<label class="checkbox-inline"><input type="checkbox" id="isTopNote">展示</label>
+					<label class="checkbox-inline"><input type="checkbox" id="isShowNote">置顶</label>
+					<label class="checkbox-inline"><input type="checkbox" id="isWaitNote">待办</label>
 				</p>
 			<!-- 	<p>
 					<label>添加备注：</label>

@@ -1,5 +1,6 @@
 package com.stylefeng.guns.modular.api.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.page.PageInfoBT;
+import com.stylefeng.guns.core.util.ToolUtil;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,9 +95,30 @@ public class ApiPlanController extends BaseController {
     @ResponseBody
     public Object add(Plan plan) {
     	plan.create();
-        planService.insert(plan);
-        return SUCCESS_TIP;
-    }
+    	
+   	 Integer isWholeday = plan.getIsWholeday();
+   	  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+   	 String range = plan.getRange();
+   	 String thedate = plan.getThedate().replace("年", "-").replace("月", "-").replace("日", "");
+   	 String start =  thedate +" 00:00:00";
+   	 String end =  thedate +" 23:59:59";
+   	 if(isWholeday == 0){ //是否全天
+   		if(ToolUtil.isNotEmpty(range)){
+   			String[] split = range.split(" - ");
+   			start = thedate + " "+split[0]+":00";
+   			end = thedate + " "+split[1]+":00";
+   		}
+   	 }
+   	try {
+   		 plan.setStarttime(simpleDateFormat.parse(start));
+			 plan.setEndtime(simpleDateFormat.parse(end));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       planService.insert(plan);
+       return SUCCESS_TIP;
+   }
 
     /**
      * 删除计划管理

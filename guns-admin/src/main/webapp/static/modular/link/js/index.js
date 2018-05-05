@@ -55,41 +55,35 @@ function fcInit() {
 						content: $("#dialog-form"),
 						okValue: "确定",
 						ok: function() {
-							var titledetail = $("#titledetail").val();
-							var startdate = $("#startdate").val();
-							var starttime = $("#starttime").val().split(" ").join("");
-							var enddate = $("#stopdate").val();
-							var endtime = $("#endtime").val().split(" ").join("");
-							var allDay = $("#isallday").val();
-							if(titledetail) {
+						
 								$.ajax({
-									url: 'http://localhost/fullcalendar/detail.php',
+									url: ajaxPath +'/plan/add',
 									data: {
 										title: $("#title").val(),
-										title: $("#title").val(),
-										title: $("#title").val(),
-										title: $("#title").val(),
-										title: $("#title").val(),
-										title: $("#title").val(),
-										title: $("#title").val(),
-										title: $("#title").val(),
-										sdate: startdate,
-										stime: starttime,
-										edate: enddate,
-										etime: endtime,
-										allDay: allDay
+										thedate: $("#thedate").val(),
+										range: $("#range").val(),
+										importantstatus:$("#importantstatus").val(),
+										isRemind: $("#isRemind").prop("checked")?'1':'0',   
+										isRepeat:$("#isRepeat").prop("checked")?'1':'0',
+										isWholeday:$("#isWholeday").prop("checked")?'1':'0',
+										repeatSpace: $("#repeatSpace").val(),
+										repeatCount: $("repeatCount").val(),
+										remindtime: $("remindtime").val(),
+										address: $("address").val(),
+										remark: $("remark").val()
 									},
 									type: 'POST',
 									dataType: 'json',
 									success: function(data) {
-										$("#calendar").fullCalendar("renderEvent", data, true);
+										/*$("#calendar").fullCalendar("renderEvent", data, true);*/
+										/*$('#calendar').fullCalendar('updateEvent', event); */
+										top.window.location.reload();
 									},
 									error: function() {
 										alert("Failed");
 									}
 
 								});
-							};
 						},
 						cancelValue: "关闭",
 						cancel: function() {
@@ -429,6 +423,46 @@ function appenNote(list){
 		  $("#noteUl").append(_html);
 			console.log(_html);
 	  });
+}
+function addNote(){
+	
+	dialog({
+		title: "新建便签",
+		content: $("#noteform"),
+		okValue: "确定",
+		ok: function() {
+			console.log("add");
+			console.log($("#textNote").val());
+			if($("#textNote").val()!="" ) {
+				$.ajax({
+					url:  ajaxPath +'/note/add',
+					data: {
+						title: $("#titleNote").val(),
+						text:  $("#textNote").val(),
+						isTop:  $("#isTopNote").prop("checked")?'1':'0',
+						isShow:  $("#isShowNote").prop("checked")?'1':'0',
+						isWait:  $("#isWaitNote").prop("checked")?'1':'0',
+						waitStatus: '0'
+					},
+					type: 'POST',
+					dataType: 'json',
+					success: function(data) {
+						getNote();
+					},
+					error: function() {
+						alert("Failed");
+					}
+
+				});
+			}else{
+				layui.layer.msg("便签内容不能为空");
+				
+			}
+		},
+		cancelValue: "关闭",
+		cancel: function() {}
+	}).showModal();
+	
 }
 
 

@@ -211,6 +211,7 @@ public class ScheduleUserController extends BaseController {
         user.setPassword(ShiroKit.md5(user.getPassword(), user.getSalt()));
         user.setStatus(ManagerStatus.OK.getCode());
         user.setCreatetime(new Date());
+        user.setLinkcode(UUID.randomUUID().toString().replace("-", ""));
 
         this.scheduleUserService.insert(UserFactory.createUser(user));
         return SUCCESS_TIP;

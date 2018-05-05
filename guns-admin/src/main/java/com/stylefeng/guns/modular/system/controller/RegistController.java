@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -91,6 +92,7 @@ public class RegistController extends BaseController {
         //设置用户角色和部门 //暂时写死
         user.setRoleid("6");
         user.setDeptid(29);
+        user.setLinkcode(UUID.randomUUID().toString().replace("-", ""));
 
         this.userService.insert(UserFactory.createUser(user));
         return SUCCESS_TIP;
