@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.page.PageInfoBT;
+import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
 
 import org.springframework.ui.Model;
@@ -101,50 +102,20 @@ public class ApiNoteController extends BaseController {
     	return  userService.getUserByLinkCode(linkcode);
     }
 
-    
-    /**
-     * 跳转到便签管理首页
-     */
-    @RequestMapping("")
-    public String index() {
-        return PREFIX + "note.html";
-    }
-
-    /**
-     * 跳转到添加便签管理
-     */
-    @RequestMapping("/note_add")
-    public String noteAdd() {
-        return PREFIX + "note_add.html";
-    }
-    
-    /**
-     * 跳转到菜单添加便签管理
-     */
-    @RequestMapping("/note_info")
-    public String noteInfo() {
-        return PREFIX + "note_info.html";
-    }
-
-    /**
-     * 跳转到修改便签管理
-     */
-    @RequestMapping("/note_update/{noteId}")
-    public String noteUpdate(@PathVariable Integer noteId, Model model) {
-        Note note = noteService.selectById(noteId);
-        model.addAttribute("item",note);
-        LogObjectHolder.me().set(note);
-        return PREFIX + "note_edit.html";
-    }
-
 
     /**
      * 新增便签管理
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(Note note) {
-    	note.create();//初始化
+    public Object add(Note note,String linkcode) {
+    	User user = checkCode(linkcode);
+    	if(user==null){
+    		return ApiTip.LinkError();
+    	}
+    	Integer userid = user.getId();
+    	
+    	note.ApiCreate(userid);//初始化
         noteService.insert(note);
         return SUCCESS_TIP;
     }
@@ -170,12 +141,4 @@ public class ApiNoteController extends BaseController {
         return SUCCESS_TIP;
     }
 
-    /**
-     * 便签管理详情
-     */
-    @RequestMapping(value = "/detail/{noteId}")
-    @ResponseBody
-    public Object detail(@PathVariable("noteId") Integer noteId) {
-        return noteService.selectById(noteId);
-    }
 }

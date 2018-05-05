@@ -110,7 +110,7 @@ public class PlanController extends BaseController {
 	  	 Integer id = ShiroKit.getUser().getId();
 	  	EntityWrapper<Plan> entityWrapper =new EntityWrapper<Plan>();
 	  	if(deptId==29){
-  	   		entityWrapper.eq("user", id);
+  	   		entityWrapper.eq("userid", id);
   	   	 }
 		/*if(ToolUtil.isNotEmpty(condition)){
 	   		entityWrapper.like("text", condition);

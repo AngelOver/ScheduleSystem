@@ -93,8 +93,16 @@ public class ApiPlanController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(Plan plan) {
-    	plan.create();
+    public Object add(Plan plan,String linkcode) {
+    	
+    	User user = checkCode(linkcode);
+    	if(user==null){
+    		return ApiTip.LinkError();
+    	}
+    	Integer userid = user.getId();
+    	
+    	
+    	plan.ApiCreate(userid);
     	
    	 Integer isWholeday = plan.getIsWholeday();
    	  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

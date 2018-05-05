@@ -59,6 +59,7 @@ function fcInit() {
 								$.ajax({
 									url: ajaxPath +'/plan/add',
 									data: {
+										linkcode:linkcode,
 										title: $("#title").val(),
 										thedate: $("#thedate").val(),
 										range: $("#range").val(),
@@ -437,6 +438,7 @@ function addNote(){
 				$.ajax({
 					url:  ajaxPath +'/note/add',
 					data: {
+						linkcode:linkcode,
 						title: $("#titleNote").val(),
 						text:  $("#textNote").val(),
 						isTop:  $("#isTopNote").prop("checked")?'1':'0',

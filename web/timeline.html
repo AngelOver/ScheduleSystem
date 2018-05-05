@@ -19,7 +19,7 @@
 				<div class=" red col-sm-6 col-sm-offset-3 flex_y_center menu " style="">
 					
 					<div class="flex-center" style="">
-						<a href="./home.html" class="">首页</a>
+						<a id="atest" href="./home.html" class="">首页</a>
 					</div>
 					<div class=" flex-center ">
 						<a href="./timeline.html">时间轴</a>
@@ -616,17 +616,15 @@
 			function openLayer(){
 				console.log(new Date());
 //在这里面输入任何合法的js语句
-				layui.layer.open({
-				  type: 2 //此处以iframe举例
+			/*	layui.layer.open({
+				  type: 4 //此处以iframe举例
 				  ,title: '当你选择该窗体时，即会在最顶端'
 				  ,area: ['390px', '330px']
 				  ,shade: 0
-				  ,offset: [ //为了演示，随机坐标
-				    Math.random()*($(window).height()-300)
-				    ,Math.random()*($(window).width()-390)
-				  ]
+				  ,offset: 'rb'
 				  ,maxmin: true
-				  ,content: 'settop.html'
+				  ,content: ['内容', '#atest']
+				   ,tipsMore: true
 				  ,btn: ['继续弹出', '全部关闭'] //只是为了演示
 				  ,yes: function(){
 				    $(that).click(); //此处只是为了演示，实际使用可以剔除
@@ -639,7 +637,23 @@
 				  ,success: function(layero){
 				    layer.setTop(layero); //重点2
 				  }
-				});
+				});*/
+				
+				
+				//边缘弹出
+layui.layer.open({
+  type: 1
+   ,area: ['390px', '330px']
+  ,offset: 'rb' //具体配置参考：offset参数项
+  ,content: '<div style="padding: 20px 80px;">内容</div>'
+  ,btn: '关闭全部'
+  ,btnAlign: 'c' //按钮居中
+  ,tipsMore: true
+  ,shade: 0 //不显示遮罩
+  ,yes: function(){
+    layer.closeAll();
+  }
+  });
 				
 			}
 			var a = 0;

@@ -402,6 +402,10 @@ public class Plan extends Model<Plan> {
     	this.createtime =  new Date();
     	this.userid=ShiroKit.getUser().getId();
 	}
+    public void ApiCreate(int userid) {
+    	this.createtime =  new Date();
+    	this.userid=userid;
+	}
     
     public void update() {
     	this.updatetime =  new Date();

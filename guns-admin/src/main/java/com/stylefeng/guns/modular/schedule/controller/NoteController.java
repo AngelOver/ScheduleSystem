@@ -121,7 +121,7 @@ public class NoteController extends BaseController {
    	 
    		EntityWrapper<Note> entityWrapper =new EntityWrapper<Note>();
    		if(deptId==29){
-   	   		entityWrapper.eq("user", id);
+   	   		entityWrapper.eq("userid", id);
    	   	 }
     	if(ToolUtil.isNotEmpty(condition)){
     		entityWrapper.like("text", condition);

@@ -217,6 +217,14 @@ public class Note extends Model<Note> {
         ", version=" + version +
         "}";
     }
+    public void ApiCreate(int userid) {
+    	this.createtime =  new Date();
+    	this.userid=userid;
+        if (ToolUtil.isEmpty(this.title)) {
+        	this.title="无标题";
+        	this.type=0;//便签
+        }
+	}
     public void create() {
     	this.createtime =  new Date();
     	this.userid=ShiroKit.getUser().getId();
