@@ -23,5 +23,31 @@
     <sql id="Base_Column_List">
         id, pid, type, userid, title, text, is_show AS isShow, is_top AS isTop, is_wait AS isWait, wait_status AS waitStatus, createtime, updatetime, version
     </sql>
+	
+	    	
+<!-- 	 * 查询指定时间范围便签 -->
+	<select id="selectListByMap" resultType="map" parameterType="map">
+			SELECT * FROM note   where 1=1 
+		
+		
+		<if test="userid != null and userid !=''">
+			and userid   = #{userid} 
+		</if>
+		<if test="is_top != null and is_top !=''">
+			and is_top   = #{is_top} 
+		</if>
+			<if test="is_show != null and is_show !=''">
+			and is_show   = #{is_show} 
+		</if>
+			<if test="wait_status != null and wait_status !=''">
+			and is_show   = #{is_show} 
+		</if>
+			<if test="is_wait != null and is_wait !=''">
+			and is_wait   = #{is_wait} 
+		</if>
+		order by is_top DESC ,createtime DESC LIMIT 0,10
+		
+	
+	</select>
 
 </mapper>

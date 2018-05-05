@@ -5,6 +5,7 @@ import com.stylefeng.guns.core.datascope.DataScope;
 import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IUserService;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,5 +45,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User getByAccount(String account) {
         return this.baseMapper.getByAccount(account);
+    }
+    
+	/**
+	 * 通过linkcode获取用户
+	 * @param linkcode
+	 * @return
+	 */
+    public User getUserByLinkCode(String linkcode){
+        return this.baseMapper.getUserByLinkCode(linkcode);
     }
 }

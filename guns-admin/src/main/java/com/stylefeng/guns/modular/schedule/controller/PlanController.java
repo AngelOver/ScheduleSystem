@@ -1,5 +1,6 @@
 package com.stylefeng.guns.modular.schedule.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,10 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.page.PageInfoBT;
+import com.stylefeng.guns.core.shiro.ShiroKit;
+import com.stylefeng.guns.core.util.ToolUtil;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +33,9 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.stylefeng.guns.modular.system.model.Note;
 import com.stylefeng.guns.modular.system.model.Plan;
+import com.stylefeng.guns.modular.system.warpper.NoteWrapper;
 import com.stylefeng.guns.modular.schedule.service.IPlanService;
 
 /**
@@ -98,10 +105,23 @@ public class PlanController extends BaseController {
     @ResponseBody
     public Object list(String condition) {
    		Page<Plan> page = new PageFactory<Plan>().defaultPage();
-   		page = this.planService.selectPage(page);
+   		
+	   	 Integer deptId = ShiroKit.getUser().getDeptId();
+	  	 Integer id = ShiroKit.getUser().getId();
+	  	EntityWrapper<Plan> entityWrapper =new EntityWrapper<Plan>();
+	  	if(deptId==29){
+  	   		entityWrapper.eq("user", id);
+  	   	 }
+		/*if(ToolUtil.isNotEmpty(condition)){
+	   		entityWrapper.like("text", condition);
+	   	}*/
+   		page = this.planService.selectPage(page,entityWrapper);
    		PageInfoBT<Plan> pageInfoBT= this.packForBT(page);
         return pageInfoBT;
     }
+    
+    
+    
 
     /**
      * 新增计划管理
@@ -110,6 +130,27 @@ public class PlanController extends BaseController {
     @ResponseBody
     public Object add(Plan plan) {
     	plan.create();
+    	
+    	 Integer isWholeday = plan.getIsWholeday();
+    	  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	 String range = plan.getRange();
+    	 String thedate = plan.getThedate().replace("年", "-").replace("月", "-").replace("日", "");
+    	 String start =  thedate +" 00:00:00";
+    	 String end =  thedate +" 23:59:59";
+    	 if(isWholeday == 0){ //是否全天
+    		if(ToolUtil.isNotEmpty(range)){
+    			String[] split = range.split(" - ");
+    			start = thedate + " "+split[0]+":00";
+    			end = thedate + " "+split[1]+":00";
+    		}
+    	 }
+    	try {
+    		 plan.setStarttime(simpleDateFormat.parse(start));
+			 plan.setEndtime(simpleDateFormat.parse(end));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         planService.insert(plan);
         return SUCCESS_TIP;
     }
@@ -131,6 +172,33 @@ public class PlanController extends BaseController {
     @ResponseBody
     public Object update(Plan plan) {
     	plan.update();
+    	
+    	Integer isWholeday = plan.getIsWholeday();
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	String range = plan.getRange();
+	  	 String thedate = plan.getThedate().replace("年", "-").replace("月", "-").replace("日", "");
+	  	 String start =  thedate +" 00:00:00";
+	  	 String end =  thedate +" 23:59:59";
+	  	 if(isWholeday == 0){ //是否全天
+	  		if(ToolUtil.isNotEmpty(range)){
+	  			String[] split = range.split(" - ");
+	  			start = thedate + " "+split[0]+":00";
+	  			end = thedate + " "+split[1]+":00";
+	  		}
+	  	 }else{
+	  		 //是全天清空数据
+	  		plan.setRange("");
+	  	 }
+	  	try {
+	  		 plan.setStarttime(simpleDateFormat.parse(start));
+				 plan.setEndtime(simpleDateFormat.parse(end));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	
+    	
+    	
         planService.updateById(plan);
         return SUCCESS_TIP;
     }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.page.PageInfoBT;
+import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
 
 import org.springframework.ui.Model;
@@ -38,6 +39,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.stylefeng.guns.modular.system.model.Note;
 import com.stylefeng.guns.modular.system.model.OperationLog;
+import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.warpper.LogWarpper;
 import com.stylefeng.guns.modular.system.warpper.NoteWrapper;
 import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
@@ -113,7 +115,14 @@ public class NoteController extends BaseController {
     @ResponseBody
     public Object list(String condition) {
    		Page<Note> page = new PageFactory<Note>().defaultPage();
+   		
+   	 Integer deptId = ShiroKit.getUser().getDeptId();
+   	 Integer id = ShiroKit.getUser().getId();
+   	 
    		EntityWrapper<Note> entityWrapper =new EntityWrapper<Note>();
+   		if(deptId==29){
+   	   		entityWrapper.eq("user", id);
+   	   	 }
     	if(ToolUtil.isNotEmpty(condition)){
     		entityWrapper.like("text", condition);
     	}

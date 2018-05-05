@@ -25,7 +25,22 @@
 		<script src="${ctxPath}/static/modular/link/wickedpicker/dist/wickedpicker.min.js"></script>
 		<script src="${ctxPath}/static/modular/link/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 		<script src="${ctxPath}/static/modular/link/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<script type="text/javascript">
+var origin =  top.window.location.origin;
+var path =  "${ctxPath}";
+var URL = origin
+if(path != "" ){
+	URL =  URL +"/";
+}
+URL =  URL +path+"/";
+ajaxPath = URL+"api"
+console.log(URL);
 
+link = top.window.location.href;
+arr = link.split("/");
+linkcode = arr[arr.length-1];
+console.log(linkcode);
+</script>
 		<link rel="stylesheet" href="${ctxPath}/static/modular/link/js/plugins/layui/css/layui.css">
 		<script src="${ctxPath}/static/modular/link/js/plugins/layui/layui.all.js"></script>
 		<style>
@@ -105,6 +120,12 @@
 			.nav_add {
 				width: 20%;
 			}
+			#dialog-form p{
+			margin-bottom:10px;
+			}
+			.label{
+			
+			}
 		</style>
 	</head>
 	<!--<body style="display: flex;justify-content: center;">-->
@@ -137,11 +158,12 @@
 							<div class="flex-center nav_title" style="">便签墙</div>
 							<div class="flex-center nav_add" style="">添加</div>
 						</div>
-						<ul style="width: 80%;margin-left: 10%;margin-top: 20px;">
-							<li style="padding: 5px;">1.今天气不错 -- 5-21</li>
+						<ul id="noteUl" style="width: 80%;margin-left: 10%;margin-top: 20px;">
+							<!-- <li style="padding: 5px;">1.今天气不错 -- 5-21</li>
 							<li style="padding: 5px;">2.明天去爬山 -- 5-20</li>
-							<li style="padding: 5px;">3.记得吃饭-- 5-17</li>
+							<li style="padding: 5px;">3.记得吃饭-- 5-17</li> -->
 						</ul>
+						
 						</div>
 					</div>
 					<div class="blue layui-col-12 flex-column" style="height:120px;padding:10px;margin-top: 20px;background: white;border: gray  solid 1px;">
@@ -191,110 +213,57 @@
 		<div id="dialog-form" style="display:none">
 			<form class="form-inline">
 				<p>
-					<label>事务标题：</label>
-					<input type="text" class="form-control">
-				</p>
-				<p>
-					<label>事务内容：</label>
-					<textarea class="textarea" rows="4" placeholder="内容" id="titledetail"></textarea>
+					<label>添加标题：</label>
+					<input type="text" class="form-control" id="title">
 					<span>（必填）</span>
 				</p>
 				<p>
-					<label>事务类型：</label>
-					<select class="select">
+					<label>计划时间：</label>
+					<input type="text" class="time"	 id="thedate">
+					<label class="checkbox-inline"><input type="checkbox" id="isWholeday">全天</label>
+				</p>
+				
+				<p>
+					<label>时间范围：</label>
+					<input type="text" class="time"	 id="range">
+				
+				</p>
+				<p>
+					
+					<label>重要程度：</label>
+					<select id="importantstatus" class="select">
 						<option>工作事务</option>
 						<option>个人事务</option>
 					</select>
 				</p>
-				<p>
-					<label>开始时间：</label>
-					<input type="text" class="time datepicker" id="startdate">
-					<input type="text" class="time timepicki" id="starttime">
-				</p>
-				<p style="display:none" id="enddate">
-					<label>结束时间：</label>
-					<input type="text" class="time datepicker" id="stopdate">
-					<input type="text" class="time timepicki" id="endtime">
-				</p>
 				<p class="checkbox check">
-					<label class="checkbox-inline"><input type="checkbox" id="isallday">全天</label>
-					<label class="checkbox-inline"><input type="checkbox" id="end">结束时间</label>
-					<label class="checkbox-inline"><input type="checkbox" id="repeat">重复</label>
-				</p>
-				<p id="repeattype" style="display: none">
-					<label>重复类型：</label>
-					<select class="select" id="repeatselect">
-						<option value="1">按天重复</option>
-						<option value="2">按周重复</option>
-						<option value="3">按月重复</option>
-						<option value="4">按年重复</option>
-						<option value="5">按工作日重复</option>
-					</select>
-				</p>
-				<p id="repeattime" style="display: none">
-					<label>重复时间：</label>
-					<select class="time" id="repeatmonth" style="display:none">
-						<option value="">1月</option>
-						<option value="">2月</option>
-						<option value="">3月</option>
-						<option value="">4月</option>
-						<option value="">5月</option>
-						<option value="">6月</option>
-						<option value="">7月</option>
-						<option value="">8月</option>
-						<option value="">9月</option>
-						<option value="">10月</option>
-						<option value="">11月</option>
-						<option value="">12月</option>
-					</select>
-					<select class="time" id="repeatday" style="display:none">
-						<option value="">1日</option>
-						<option value="">2日</option>
-						<option value="">3日</option>
-						<option value="">4日</option>
-						<option value="">5日</option>
-						<option value="">6日</option>
-						<option value="">7日</option>
-						<option value="">8日</option>
-						<option value="">9日</option>
-						<option value="">10日</option>
-						<option value="">11日</option>
-						<option value="">12日</option>
-						<option value="">13日</option>
-						<option value="">14日</option>
-						<option value="">15日</option>
-						<option value="">16日</option>
-						<option value="">17日</option>
-						<option value="">18日</option>
-						<option value="">19日</option>
-						<option value="">20日</option>
-						<option value="">21日</option>
-						<option value="">22日</option>
-						<option value="">23日</option>
-						<option value="">24日</option>
-						<option value="">25日</option>
-						<option value="">26日</option>
-						<option value="">27日</option>
-						<option value="">28日</option>
-						<option value="">29日</option>
-						<option value="">30日</option>
-						<option value="">31日</option>
-					</select>
-					<select class="time" id="repeatweek" style="display:none">
-						<option value="">星期一</option>
-						<option value="">星期二</option>
-						<option value="">星期三</option>
-						<option value="">星期四</option>
-						<option value="">星期五</option>
-						<option value="">星期六</option>
-						<option value="">星期日</option>
-					</select>
-					<input type="text" class="time timepicki" id="repeatclock">
+					<label class="checkbox-inline"><input type="checkbox" id="isRemind">提醒</label>
+					<label class="checkbox-inline"><input type="checkbox" id="isRepeat">重复</label>
 				</p>
 				<p>
-					<label>&nbsp;&nbsp;&nbsp;参与者：</label>
-					<textarea rows="3"></textarea>
+					<label>间隔天数：</label>
+					<input type="text" class="form-control" id="repeatSpace">
+					<label>重复次数：</label>
+					<input type="text" class="form-control" id="repeatCount">
 				</p>
+				
+				<p>
+					<label>提醒时间：</label>
+					<input type="text" class="time"	 id="remindtime">
+				</p>
+				<p>
+					<label>添加地址：</label>
+					<input type="text" class="time"	 id="address">
+					<label>添加备注：</label>
+					<input type="text" class="time"	 id="remark">
+				</p>
+			<!-- 	<p>
+					<label>添加备注：</label>
+					<textarea rows="3"></textarea>
+				</p> -->
+					
+				
+			
 				<p></p>
 			</form>
 		</div>
@@ -344,12 +313,20 @@
 		});
 		
 		$(function(){
+			
+			layui.laydate.render({ elem: '#thedate',format: 'yyyy年MM月dd日',theme: 'molv'});
+			layui.laydate.render({ elem: '#range',format: 'HH:mm',theme: 'molv',type: 'time' ,range: true});
+			layui.laydate.render({ elem: '#remindtime',format: 'yyyy-MM-dd HH:mm:ss',theme: 'molv' ,type: 'datetime'});
+			
+			
 			//界面自适应
 			resize();
 			$(window).resize(function(){
 				setTimeout(function(){	resize();
 			}, 500);
 		});
+			
+			getNote();
 			
 		})
 		

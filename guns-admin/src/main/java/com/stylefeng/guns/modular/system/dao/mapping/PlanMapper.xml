@@ -38,5 +38,26 @@
     <sql id="Base_Column_List">
         id, userid, title, remark, address, thedate, range, rangelength,rangetype, starttime, endtime,is_remind AS isRemind, remindtime, remindtype, importantstatus, is_wholeday AS isWholeday, is_repeat AS isRepeat, repeat_count AS repeatCount, repeat_type AS repeatType, repeat_space AS repeatSpace, is_progress AS isProgress, progress_count AS progressCount,progress_unit AS progressUnit,status, nowprogress, createtime, updatetime, version
     </sql>
+    
+    	
+<!-- 	 * 查询指定时间范围便签 -->
+	<select id="selectListByMap" resultType="map" parameterType="map">
+			SELECT * FROM plan   where 1=1 
+		<if test="start != null and start !=''">
+			and starttime   &gt;= #{start} 
+		</if>
+		
+		<if test="end != null and end !=''">
+			and endtime    &lt;= #{end} 
+		</if>
+		
+		<if test="userid != null and userid !=''">
+			and userid   = #{userid} 
+		</if>
+		
+	
+	</select>
+    
+    
 
 </mapper>

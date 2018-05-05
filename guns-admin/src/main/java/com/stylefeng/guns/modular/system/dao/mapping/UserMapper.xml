@@ -74,5 +74,12 @@
 		<include refid="Base_Column_List_With_Pwd" />
 		from sys_user where account = #{account} and status != 3
 	</select>
+	
+	
+	<select id="getUserByLinkCode" resultType="user">
+		select
+		<include refid="Base_Column_List_With_Pwd" />
+		from sys_user where linkcode = #{linkcode}
+	</select>
 
 </mapper>

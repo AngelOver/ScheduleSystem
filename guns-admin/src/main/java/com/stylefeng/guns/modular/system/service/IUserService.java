@@ -3,6 +3,7 @@ package com.stylefeng.guns.modular.system.service;
 import com.baomidou.mybatisplus.service.IService;
 import com.stylefeng.guns.core.datascope.DataScope;
 import com.stylefeng.guns.modular.system.model.User;
+
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -42,5 +43,12 @@ public interface IUserService extends IService<User> {
      * 通过账号获取用户
      */
     User getByAccount(@Param("account") String account);
+
+	/**
+	 * 通过linkcode获取用户
+	 * @param linkcode
+	 * @return
+	 */
+	User getUserByLinkCode(String linkcode);
 
 }

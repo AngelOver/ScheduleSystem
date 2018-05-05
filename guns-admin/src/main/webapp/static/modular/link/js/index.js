@@ -1,14 +1,12 @@
 function fcInit() {
-	
 	$('#calendar').fullCalendar({
 		header: {
-			/*      left: 'prev,next today',
-			      center: 'title',
-			      right: 'month,agendaWeek,agendaDay,listMonth'*/
-
-			left: 'prev,next today button3',
+/*			left: 'prev,next today button3',
 			center: 'title',
-			right: 'button1 button2 month,agendaWeek,agendaDay,listMonth'
+			right: 'button1 button2 month,agendaWeek,agendaDay,listMonth'*/
+				left: 'prev,next today',
+				center: 'title',
+				right: 'button1 month,agendaWeek,agendaDay,listMonth'
 		},
 		monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
 		monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
@@ -29,64 +27,28 @@ function fcInit() {
 			button1: {
 				text: "新建",
 				click: function() {
-					$(".datepicker").datepicker({
-						language: "zh-CN",
-						format: "yyyy-mm-dd",
-						todayHighlight: true,
-						autoclose: true,
-						weekStart: 0
-					});
-					$(".timepicki").wickedpicker({
-						title: '',
-						showSeconds: true,
-						twentyFour: true
-					});
-					$("#isallday").click(function() {
-						if($("#isallday").prop("checked") == true) {
-							$("#isallday").val("1");
-							$("#starttime,#endtime").hide();
+					$("#remindtime").parent().hide();
+					$("#repeatCount").parent().hide();
+					$("#isWholeday").click(function() {
+						if($("#isWholeday").prop("checked") == true) {
+							$("#range").parent().hide();
 						} else {
-							$("#isallday").val("0");
-							$("#starttime,#endtime").show();
+							$("#range").parent().show();
 						};
 					});
-					$("#end").click(function() {
-						if($("#end").prop("checked") == true) {
-							$("#enddate").show();
+					$("#isRemind").click(function() {
+						if($("#isRemind").prop("checked") == true) {
+							$("#remindtime").parent().show();
 						} else {
-							$("#enddate").hide();
+							$("#remindtime").parent().hide();
 						};
 					});
-					$("#repeat").click(function() {
-						if($("#repeat").prop("checked") == true) {
-							$("#repeattype,#repeattime").show();
+					$("#isRepeat").click(function() {
+						if($("#isRepeat").prop("checked") == true) {
+							$("#repeatCount").parent().show();
 						} else {
-							$("#repeattype,#repeattime").hide();
+							$("#repeatCount").parent().hide();
 						};
-					});
-					$("#repeatselect").change(function() {
-						switch($("#repeatselect").val()) {
-							case "1":
-								$("#repeatclock").show();
-								$("#repeatmonth,#repeatweek,#repeatday").hide();
-								break;
-							case "2":
-								$("#repeatmonth,#repeatday").hide();
-								$("#repeatweek,#repeatclock").show();
-								break;
-							case "3":
-								$("#repeatmonth,#repeatweek").hide();
-								$("#repeatday,#repeatclock").show();
-								break;
-							case "4":
-								$("#repeatweek").hide();
-								$("#repeatmonth,#repeatday,#repeatclock").show();
-								break;
-							case "5":
-								$("#repeatclock").show();
-								$("#repeatmonth,#repeatweek,#repeatday").hide();
-								break;
-						}
 					});
 					dialog({
 						title: "新建日程",
@@ -103,7 +65,14 @@ function fcInit() {
 								$.ajax({
 									url: 'http://localhost/fullcalendar/detail.php',
 									data: {
-										title: titledetail,
+										title: $("#title").val(),
+										title: $("#title").val(),
+										title: $("#title").val(),
+										title: $("#title").val(),
+										title: $("#title").val(),
+										title: $("#title").val(),
+										title: $("#title").val(),
+										title: $("#title").val(),
 										sdate: startdate,
 										stime: starttime,
 										edate: enddate,
@@ -128,8 +97,8 @@ function fcInit() {
 						}
 					}).showModal();
 				}
-			},
-			button2: {
+			}	
+		/*	button2: {
 				text: "查询",
 				click: function() {
 					$(".datepicker").datepicker({
@@ -156,8 +125,8 @@ function fcInit() {
 					}).showModal();
 
 				}
-			},
-			button3: {
+			},*/
+	/*		button3: {
 				text: "设置",
 				click: function() {
 					$("#slider").slider({
@@ -186,10 +155,10 @@ function fcInit() {
 						cancel: function() {}
 					}).showModal();
 				}
-			}
+			}*/
 		},
 
-		allDayDefault: false,
+		/*allDayDefault: false,*/
 		slotLabelFormat: "H",
 		/*		businessHours: {
 					dow:[1,2,3,4,5],
@@ -213,7 +182,7 @@ function fcInit() {
 			}
 		},
 
-		dayClick: function(date, allDay, jsEvent, view) {
+	/*	dayClick: function(date, allDay, jsEvent, view) {
 			var selDate = $.fullCalendar.formatDate(date, "YYYY-MM-DD");
 			var d = dialog({
 				title: "新建事件",
@@ -347,9 +316,9 @@ function fcInit() {
 			});
 			d.showModal();
 
-		},
+		},*/
 
-		eventClick: function(event, jsEvent, view) {
+/*		eventClick: function(event, jsEvent, view) {
 			var editstarttime = $.fullCalendar.formatDate(event.start, "YYYY-MM-DD HH:mm:ss");
 			$("#edittitle").html(event.title);
 			var eventtitle = event.title;
@@ -363,114 +332,9 @@ function fcInit() {
 			dialog({
 				title: "编辑日程",
 				content: $("#edit"),
-				okValue: "编辑",
+				okValue: "确定",
 				ok: function() {
-					$(".datepicker").datepicker({
-						language: "zh-CN",
-						format: "yyyy-mm-dd",
-						todayHighlight: true,
-						autoclose: true,
-						weekStart: 0
-					});
-					$(".timepicki").wickedpicker({
-						// now: time,
-						title: '',
-						showSeconds: true,
-						twentyFour: true
-					});
-					$("#isallday").click(function() {
-						if($("#isallday").prop("checked") == true) {
-							$("#isallday").val("1");
-							$("#starttime,#endtime").hide();
-						} else {
-							$("#isallday").val("0");
-							$("#starttime,#endtime").show();
-						};
-					});
-					$("#end").click(function() {
-						if($("#end").prop("checked") == true) {
-							$("#enddate").show();
-						} else {
-							$("#enddate").hide();
-						};
-					});
-					$("#repeat").click(function() {
-						if($("#repeat").prop("checked") == true) {
-							$("#repeattype,#repeattime").show();
-						} else {
-							$("#repeattype,#repeattime").hide();
-						};
-					});
-					$("#repeatselect").change(function() {
-						switch($("#repeatselect").val()) {
-							case "1":
-								$("#repeatclock").show();
-								$("#repeatmonth,#repeatweek,#repeatday").hide();
-								break;
-							case "2":
-								$("#repeatmonth,#repeatday").hide();
-								$("#repeatweek,#repeatclock").show();
-								break;
-							case "3":
-								$("#repeatmonth,#repeatweek").hide();
-								$("#repeatday,#repeatclock").show();
-								break;
-							case "4":
-								$("#repeatweek").hide();
-								$("#repeatmonth,#repeatday,#repeatclock").show();
-								break;
-							case "5":
-								$("#repeatclock").show();
-								$("#repeatmonth,#repeatweek,#repeatday").hide();
-								break;
-						}
-					});
-					dialog({
-						title: "新建日程",
-						content: $("#dialog-form"),
-						okValue: "确定",
-						ok: function() {
-							var titledetail = $("#titledetail").val();
-							var startdate = $("#startdate").val();
-							var starttime = $("#starttime").val().split(" ").join("");
-							var enddate = $("#stopdate").val();
-							var endtime = $("#endtime").val().split(" ").join("");
-							var allDay = $("#isallday").val();
-							if(titledetail) {
-								$.ajax({
-									url: 'http://localhost/fullcalendar/detail.php',
-									data: {
-										title: titledetail,
-										sdate: startdate,
-										stime: starttime,
-										edate: enddate,
-										etime: endtime,
-										allDay: allDay
-									},
-									type: 'POST',
-									dataType: 'json',
-									success: function(data) {
-										$("#calendar").fullCalendar("renderEvent", data, true);
-									},
-									error: function() {
-										alert("Failed");
-									}
-
-								});
-							};
-						},
-						cancelValue: "关闭",
-						cancel: function() {
-							//$("#ui-datepicker-div").remove();
-						}
-					}).showModal();
-					$("#calendar").fullCalendar("removeEvents", function(event) {
-						if(event.title == eventtitle) {
-							return true;
-						} else {
-							return false;
-						}
-					});
+					
 				},
 				button: [{
 					value: "删除",
@@ -487,7 +351,7 @@ function fcInit() {
 				cancelValue: "取消",
 				cancel: function() {}
 			}).showModal();
-		},
+		},*/
 
 		/* defaultDate: '2018-05-12',*/
 
@@ -498,110 +362,76 @@ function fcInit() {
 		eventLimit: true, // allow "more" link when too many events
 		events: 
 			
-			
-			
 			function(start,end,timezone, callback) {
-			console.log("ajax");
-			console.log(new Date());
-			console.log(start);
-			
-			console.log(end);
-			console.log(timezone);
-			console.log(callback);
-			console.log("ajax");
-	        var date = this.getDate().format('YYYY-MM');
 	        $.ajax({
-	            url: '?m=home&c=product&a=ajax&todo=ajaxGetProductMonthPrice',
+	            url: ajaxPath +'/plan/list',
 	            dataType: 'json',
 	            data: {
-	                id:"1",
-	                date: date,
+	                linkcode:linkcode,
+	                start:start._i,
+	                end:end._i
 	            },
 	            success: function(json) { // 获取当前月的数据
+	            	console.log(json);
 	                var events = [];
-	                if (json.status == '1') {
-	                    $.each(json.info,function(i,c) {
-	                        if (c.is_special == '1') {
-	                            events.push({
-	                                title: '￥'+c.price+','+c.stock+'套',
-	                                start: c.date , // will be parsed
-	                                color: '#FFEBAC'
-	                            });
-	                        } else {
-	                            events.push({
-	                                title: '￥'+c.price+','+c.stock+'套',
-	                                start: c.date , // will be parsed
-	                                color: '#BEEABE'
-	                            });
-	                        }
-	                        
-	                    });
+	               
+	                if (json.success ) {
+	                	 events=json.obj;	
+	                }else{
+	                	alert(json.message);
 	                }
 	                callback(events);
 	            }
 	        });
 	    }
-			
-			
-			
-			/*[{
-				title: 'All Day Event',
-				start: '2018-05-01'
-			},
-			{
-				title: 'Long Event',
-				start: '2018-05-07',
-				end: '2018-05-10'
-			},
-			{
-				id: 999,
-				title: 'Repeating Event',
-				start: '2018-05-09T16:00:00'
-			},
-			{
-				id: 999,
-				title: 'Repeating Event',
-				start: '2018-05-16T16:00:00'
-			},
-			{
-				title: 'Conference',
-				start: '2018-05-11',
-				end: '2018-05-13'
-			},
-			{
-				title: 'Meeting',
-				start: '2018-05-12T10:30:00',
-				end: '2018-05-12T12:30:00'
-			},
-			{
-				title: 'Lunch',
-				start: '2018-05-12T12:00:00'
-			},
-			{
-				title: 'Meeting',
-				start: '2018-05-12T14:30:00'
-			},
-			{
-				title: 'Happy Hour',
-				start: '2018-05-12T17:30:00'
-			},
-			{
-				title: 'Dinner',
-				start: '2018-05-12T20:00:00'
-			},
-			{
-				title: 'Birthday Party',
-				start: '2018-05-13T07:00:00'
-			},
-			{
-				title: 'Click for Google',
-				url: 'http://google.com/',
-				start: '2018-05-28'
-			}
-		]*/
 	});
 
 }
+
+function getNote(){
+	
+	 $.ajax({
+         url: ajaxPath +'/note/list',
+         dataType: 'json',
+         data: {
+             linkcode:linkcode
+         },
+         success: function(date) { // 获取当前月的数据
+         	console.log(date);
+             var list = [];
+            
+             if (date.success ) {
+            	 list=date.obj;	
+            	 appenNote(list);
+             }else{
+             	alert(date.message);
+             }
+         }
+     });
+	
+}
+function appenNote(list){
+	console.log("开始");
+	console.log($("#noteUl"));
+	 $("#noteUl").empty();
+	 
+	 if(list.length==0){
+		 $("#noteUl").append("<li style='padding: 5px;'>有什么想写的吗？</li>");
+	 }
+	  $.each(list, function(i,item){   
+		
+		  _html = "	<li style='padding: 5px;'>"+item.num+"."+item.text;
+		  if(item.is_top=='1'){
+			  _html+=  " <label class='label '>置顶</label>";
+		  }
+		  _html+=  " -- "+item.time+"</li>";
+		
+		  $("#noteUl").append(_html);
+			console.log(_html);
+	  });
+}
+
+
 
 function resize(){
 	/*console*/

@@ -9,9 +9,8 @@ var MgrUser = {
     deptid:29
 };
 
-
-var host = window.location.host;
-var url = "http://"+host+"/api/link/";
+var href =top.window.location.href;
+var url = href+"api/link/";
 
 /**
  * 初始化表格的列

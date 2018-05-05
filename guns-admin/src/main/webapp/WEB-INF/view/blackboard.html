@@ -1,6 +1,17 @@
 @layout("/common/_container.html"){
 <div class="container-fluid" style="padding: 0 !important;">
+<script type="text/javascript">
+var origin =  top.window.location.origin;
+var path =  "${ctxPath}";
+var URL = origin
+if(path != "" ){
+	URL =  URL +"/";
+}
+URL =  URL +path+"/";
+var linkcodeURL = URL+"api/link/${linkcode}"
+console.log(linkcodeURL);
 
+</script>
 <style>
 
 .four-agileits {
@@ -119,11 +130,47 @@
 					</div>
 					<div class="clearfix"></div>
 				</div>
+				
+				<div class="col-sm-12">
+				<div class="alert alert-success alert-dismissable">
+					<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+					<p><strong>最重要提醒：</strong>&nbsp;<br>专属链接是识别您身份的唯一途径，为了您的数据安全，请一定不要公开您的专属链接给他人！切记、切记、切记！&nbsp;&nbsp;<br></p>
+				</div>
+				<div class="alert alert-success alert-dismissable">
+					<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+					<p>重置专属链接：&nbsp;<br>如果您的链接已经泄露，<span  style="">点击</span><a onclick="updateLinkCode()">这里</a>&nbsp;重新生成新的专属链接（旧链接将立即失效！请三思！但数据是不会丢的~）&nbsp;&nbsp;<br></p><p><br></p>
+				</div>
+				
+				
+				<div class="alert alert-success alert-dismissable">
+					<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+					<h3><strong style="color: inherit;">您的专属链接：</strong><a id="linkcode"  href="" target="_blank"></a><span style="color: inherit;">(请收藏此链接，无需再登录到这里)</span></h3><p><br></p>
+				</div>
+		</div>
 	
 	<script type="text/javascript">
+	function  updateLinkCode(){
+		$.ajax({
+		    type: "post",
+		    contentType: "application/json",
+		    url: "${ctxPath}/index/updateLinkCode",//请求后台方法
+		    data: null,
+		    success: function (date) {
+			layer.alert("重置成功");
+			
+			setTimeout("window.location.reload();",2000)
+			
+		     },
+		    error: function (response) {
+		        var r = jQuery.parseJSON(response.responseText);
+		        alert("Message: " + r.Message);
+		    }
+		})
+	}
 	
 	$(function(){
-		
+		$("#linkcode").append(linkcodeURL);
+		$("#linkcode").attr("href",linkcodeURL);
 		getDate();
 		
 	})

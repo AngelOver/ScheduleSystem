@@ -1,5 +1,8 @@
 package com.stylefeng.guns.modular.schedule.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.stylefeng.guns.modular.system.model.Note;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -12,5 +15,12 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2018-04-24
  */
 public interface INoteService extends IService<Note> {
+
+	/**
+	 * 查询指定日期的笔记
+	 * @param param
+	 * @return
+	 */
+	List<Map<String ,Object>> selectListByMap(Map<String, Object> param);
 
 }

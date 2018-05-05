@@ -8,9 +8,12 @@ import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
+import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.modular.system.model.OperationLog;
+import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IIndexService;
 import com.stylefeng.guns.modular.system.service.ILoginLogService;
+import com.stylefeng.guns.modular.system.service.IUserService;
 import com.stylefeng.guns.modular.system.warpper.LogWarpper;
 import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
 
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 公用方法的控制器
@@ -38,6 +42,8 @@ public class IndexController extends BaseController {
     @Autowired
     private IIndexService indexService; 
     
+    @Autowired
+    private IUserService userService;
     
     /**
      * 获取通知列表
@@ -56,7 +62,20 @@ public class IndexController extends BaseController {
     	 return JSONObject.toJSON(map);
     }
     
- 
+    
+    
+    /**
+     * 重置链接
+     */
+    @RequestMapping(value = "/updateLinkCode")
+    @ResponseBody
+    public Object updateLinkCode(){
+    	 User user = this.userService.selectById(ShiroKit.getUser().getId());
+    	 user.setLinkcode(UUID.randomUUID().toString().replace("-", ""));
+    	 userService.updateById(user);
+    	 return JSONObject.toJSON( ApiTip.ok(user.getLinkcode()));
+    }
+    
 
 
 }

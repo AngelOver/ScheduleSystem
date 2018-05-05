@@ -1,5 +1,8 @@
 package com.stylefeng.guns.modular.schedule.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import com.stylefeng.guns.modular.schedule.service.IPlanService;
 import com.stylefeng.guns.modular.system.dao.PlanMapper;
 import com.stylefeng.guns.modular.system.model.Plan;
@@ -17,5 +20,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PlanServiceImpl extends ServiceImpl<PlanMapper, Plan> implements IPlanService {
+	
+	
+	
+	/**
+	 * 查询指定日期的日程
+	 * @param param
+	 * @return
+	 */
+	public List<Map<String ,Object>> selectListByMap(Map<String, Object> param){
+		  return this.baseMapper.selectListByMap(param);
+	}
 
 }

@@ -20,7 +20,14 @@ Plan.initColumn = function () {
             {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'},
             {title: '地址', field: 'address', visible: true, align: 'center', valign: 'middle'},
             {title: '计划时间', field: 'thedate', visible: true, align: 'center', valign: 'middle'},
-            {title: '时间范围', field: 'range', visible: true, align: 'center', valign: 'middle'},
+            {title: '时间范围', field: 'range', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+        		if(value ==""){
+          			 return "全天";
+          		}else {
+          			 return value;
+          		}
+          		
+          }},
             {title: '时间长度', field: 'rangelength', visible: true, align: 'center', valign: 'middle'},
 /*            {title: '时间段', field: 'rangetype', visible: true, align: 'center', valign: 'middle'},*/
 /*            {title: '开始时间', field: 'starttime', visible: true, align: 'center', valign: 'middle'},

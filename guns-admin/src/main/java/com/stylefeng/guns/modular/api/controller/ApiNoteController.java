@@ -38,6 +38,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.stylefeng.guns.modular.system.model.Note;
 import com.stylefeng.guns.modular.system.model.OperationLog;
+import com.stylefeng.guns.modular.system.model.User;
+import com.stylefeng.guns.modular.system.service.IUserService;
+import com.stylefeng.guns.modular.system.warpper.ApiNoteWrapper;
+import com.stylefeng.guns.modular.system.warpper.ApiPlanWarpper;
 import com.stylefeng.guns.modular.system.warpper.LogWarpper;
 import com.stylefeng.guns.modular.system.warpper.NoteWrapper;
 import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
@@ -58,8 +62,11 @@ public class ApiNoteController extends BaseController {
 
     @Autowired
     private INoteService noteService;
-
     
+    @Autowired
+    private IUserService userService;
+
+    /*
 	@InitBinder
 	protected void init(HttpServletRequest request,
 			ServletRequestDataBinder binder) {
@@ -68,8 +75,32 @@ public class ApiNoteController extends BaseController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(
 				dateFormat, false));
 	}
-	
-	
+	    /**
+     * 获取计划管理列表
+     */
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public Object list(String start,String end,String linkcode) {
+    	
+    	User user = checkCode(linkcode);
+    	if(user==null){
+    		return ApiTip.LinkError();
+    	}
+    	Integer userid = user.getId();
+    	Map<String ,Object> param = new HashMap<String, Object>();
+    	param.put("is_show", 1);
+    	param.put("userid", userid);
+    	List<Map<String, Object>> list = noteService.selectListByMap(param);
+    	for (int i = 0; i < list.size(); i++) {
+			list.get(i).put("num", i+1);
+		}
+    	Object warp = new ApiNoteWrapper(list).warp();
+        return JSONObject.toJSON(ApiTip.ok(warp));
+    }
+    public User checkCode(String linkcode){
+    	return  userService.getUserByLinkCode(linkcode);
+    }
+
     
     /**
      * 跳转到便签管理首页
@@ -106,21 +137,6 @@ public class ApiNoteController extends BaseController {
         return PREFIX + "note_edit.html";
     }
 
-    /**
-     * 获取便签管理列表
-     */
-    @RequestMapping(value = "/list")
-    @ResponseBody
-    public Object list(String condition) {
-   		Page<Note> page = new PageFactory<Note>().defaultPage();
-   		EntityWrapper<Note> entityWrapper =new EntityWrapper<Note>();
-    	if(ToolUtil.isNotEmpty(condition)){
-    		entityWrapper.like("text", condition);
-    	}
-   		page = this.noteService.selectPage(page,entityWrapper);
-   		Object list = new NoteWrapper(PageFactory.getObj(page)).warp();
-        return PageFactory.btPage(page,list);
-    }
 
     /**
      * 新增便签管理

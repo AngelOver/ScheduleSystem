@@ -2,7 +2,9 @@ package com.stylefeng.guns.modular.api.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,6 +33,10 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.stylefeng.guns.modular.system.model.Plan;
+import com.stylefeng.guns.modular.system.model.User;
+import com.stylefeng.guns.modular.system.service.IUserService;
+import com.stylefeng.guns.modular.system.warpper.ApiPlanWarpper;
+import com.stylefeng.guns.modular.system.warpper.UserWarpper;
 import com.stylefeng.guns.modular.schedule.service.IPlanService;
 
 /**
@@ -47,20 +53,37 @@ public class ApiPlanController extends BaseController {
 
     @Autowired
     private IPlanService planService;
+    @Autowired
+    private IUserService userService;
 
-
+    
 
     /**
      * 获取计划管理列表
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String condition) {
-   		Page<Plan> page = new PageFactory<Plan>().defaultPage();
-   		List<Plan> selectList = this.planService.selectList(null);
-   		page = this.planService.selectPage(page);
-   		PageInfoBT<Plan> pageInfoBT= this.packForBT(page);
-        return JSONObject.toJSON(pageInfoBT);
+    public Object list(String start,String end,String linkcode) {
+    	
+    	User user = checkCode(linkcode);
+    	if(user==null){
+    		return ApiTip.LinkError();
+    	}
+    	Integer userid = user.getId();
+    	Map<String ,Object> param = new HashMap<String, Object>();
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	String starttime = simpleDateFormat.format(new Date(new Long(start)))+" 00:00:00";
+    	String endtime = simpleDateFormat.format(new Date(new Long(end)))+" 00:00:00";
+    	param.put("start", starttime);
+    	param.put("end", endtime);
+    	param.put("userid", userid);
+    	List<Map<String, Object>> list = planService.selectListByMap(param);
+    	Object warp = new ApiPlanWarpper(list).warp();
+        return JSONObject.toJSON(ApiTip.ok(warp));
+    }
+    
+    public User checkCode(String linkcode){
+    	return  userService.getUserByLinkCode(linkcode);
     }
 
     /**
