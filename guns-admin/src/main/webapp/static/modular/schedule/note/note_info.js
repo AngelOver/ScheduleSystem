@@ -77,9 +77,16 @@ NoteInfoDlg.collectData = function() {
  * 提交添加
  */
 NoteInfoDlg.addSubmit = function() {
-
+	
+	
     this.clearData();
     this.collectData();
+    var text = NoteInfoDlg.noteInfoData.text;
+	console.log(text);
+	if(text=="<p><br></p>"||text==null) {
+			layer.msg("便签内容不能为空");
+			return false;
+	}
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/note/add", function(data){
@@ -98,9 +105,15 @@ NoteInfoDlg.addSubmit = function() {
  */
 NoteInfoDlg.editSubmit = function() {
 
+	
+	
     this.clearData();
     this.collectData();
-
+    var text = NoteInfoDlg.noteInfoData.text;
+	if(text=="<p><br></p>"||text==null) {
+			layer.msg("便签内容不能为空");
+			return false;
+	}
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/note/update", function(data){
         Feng.success("修改成功!");

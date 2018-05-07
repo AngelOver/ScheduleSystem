@@ -127,6 +127,7 @@ Note.delete = function () {
 Note.search = function () {
     var queryData = {};
     queryData['condition'] = $("#condition").val();
+    queryData['onlyOwn'] = $("#onlyOwn").is(":checked")?'1':'0';
     Note.table.refresh({query: queryData});
 };
 

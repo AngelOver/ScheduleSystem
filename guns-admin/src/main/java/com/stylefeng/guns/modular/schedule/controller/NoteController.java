@@ -113,7 +113,7 @@ public class NoteController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String condition) {
+    public Object list(String condition,String onlyOwn) {
    		Page<Note> page = new PageFactory<Note>().defaultPage();
    		
    	 Integer deptId = ShiroKit.getUser().getDeptId();
@@ -124,8 +124,12 @@ public class NoteController extends BaseController {
    	   		entityWrapper.eq("userid", id);
    	   	 }
     	if(ToolUtil.isNotEmpty(condition)){
-    		entityWrapper.like("text", condition);
+    		entityWrapper.like("CONCAT(title,text)", condition);
     	}
+    	if(ToolUtil.isNotEmpty(onlyOwn)&&onlyOwn.equals("1")){
+	  		entityWrapper.eq("userid", id);
+	  	}
+    	entityWrapper.orderBy("createtime", false);
    		page = this.noteService.selectPage(page,entityWrapper);
    		Object list = new NoteWrapper(PageFactory.getObj(page)).warp();
         return PageFactory.btPage(page,list);

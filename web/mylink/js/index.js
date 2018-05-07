@@ -498,17 +498,20 @@ function fcInit() {
 		eventLimit: true, // allow "more" link when too many events
 		events: [{
 				title: 'All Day Event',
-				start: '2018-05-01'
+				start: '2018-05-01',
+				color:'yellow'
 			},
 			{
 				title: 'Long Event',
 				start: '2018-05-07',
-				end: '2018-05-10'
+				end: '2018-05-10',
+				color:'red'
 			},
 			{
 				id: 999,
 				title: 'Repeating Event',
-				start: '2018-05-09T16:00:00'
+				start: '2018-05-09T01:00:00',
+					color:'Khaki'
 			},
 			{
 				id: 999,
@@ -543,12 +546,14 @@ function fcInit() {
 			},
 			{
 				title: 'Birthday Party',
-				start: '2018-05-13T07:00:00'
+				start: '2018-05-13T07:00:00',
+				color:'MediumSlateBlue'
 			},
 			{
 				title: 'Click for Google',
 				url: 'http://google.com/',
-				start: '2018-05-28'
+				start: '2018-05-28',
+				color:'SlateGray'
 			}
 		]
 	});

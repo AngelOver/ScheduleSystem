@@ -2,6 +2,7 @@ package com.stylefeng.guns.modular.schedule.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.stylefeng.guns.modular.system.model.Note;
 import com.stylefeng.guns.modular.system.model.Plan;
 import com.stylefeng.guns.modular.system.warpper.NoteWrapper;
+import com.stylefeng.guns.modular.system.warpper.PlanWrapper;
 import com.stylefeng.guns.modular.schedule.service.IPlanService;
 
 /**
@@ -103,7 +105,9 @@ public class PlanController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String condition) {
+    public Object list(String condition,String onlyOwn) {
+    	
+    	
    		Page<Plan> page = new PageFactory<Plan>().defaultPage();
    		
 	   	 Integer deptId = ShiroKit.getUser().getDeptId();
@@ -112,12 +116,19 @@ public class PlanController extends BaseController {
 	  	if(deptId==29){
   	   		entityWrapper.eq("userid", id);
   	   	 }
-		/*if(ToolUtil.isNotEmpty(condition)){
-	   		entityWrapper.like("text", condition);
-	   	}*/
+		if(ToolUtil.isNotEmpty(condition)){
+	   		entityWrapper.like("CONCAT(title,remark,address)", condition);
+	   	}
+	  	
+	  	if(ToolUtil.isNotEmpty(onlyOwn)&&onlyOwn.equals("1")){
+	  		entityWrapper.eq("userid", id);
+	  	}
+	  	entityWrapper.orderBy("createtime", false);
    		page = this.planService.selectPage(page,entityWrapper);
-   		PageInfoBT<Plan> pageInfoBT= this.packForBT(page);
-        return pageInfoBT;
+   		
+   		Object list = new PlanWrapper(PageFactory.getObj(page)).warp();
+        return PageFactory.btPage(page,list);
+   		
     }
     
     
@@ -130,29 +141,112 @@ public class PlanController extends BaseController {
     @ResponseBody
     public Object add(Plan plan) {
     	plan.create();
-    	
-    	 Integer isWholeday = plan.getIsWholeday();
-    	  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    	 String range = plan.getRange();
-    	 String thedate = plan.getThedate().replace("年", "-").replace("月", "-").replace("日", "");
-    	 String start =  thedate +" 00:00:00";
-    	 String end =  thedate +" 23:59:59";
-    	 if(isWholeday == 0){ //是否全天
-    		if(ToolUtil.isNotEmpty(range)){
-    			String[] split = range.split(" - ");
-    			start = thedate + " "+split[0]+":00";
-    			end = thedate + " "+split[1]+":00";
-    		}
-    	 }
+    	if(plan.getIsWholeday()==0){
+    		plan.setRangelength(getTimeLength(plan.getRange()));
+    	}
+  	  Integer isRepeat = plan.getIsRepeat();
+  	  Integer isRemind = plan.getIsRemind();
+	  Integer repeatSpace = plan.getRepeatSpace();
+	  Integer repeatCount = plan.getRepeatCount();
+		  if(ToolUtil.isEmpty(repeatSpace)){
+			  repeatSpace = 0;
+		  }
+		  if(ToolUtil.isEmpty(repeatCount)){
+			  repeatCount = 1;
+		  }
+		  
+		  for (int i = 0; i <repeatCount; i++) {
+			  
+			  
+			  Integer isWholeday = plan.getIsWholeday();
+	    	  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    	 String range = plan.getRange();
+	    	 String thedate = plan.getThedate().replace("年", "-").replace("月", "-").replace("日", "");
+	    	 String start =  thedate +" 00:00:00";
+	    	 String end =  thedate +" 23:59:59";
+	    	 if(isWholeday == 0){ //是否全天
+	    		if(ToolUtil.isNotEmpty(range)){
+	    			String[] split = range.split(" - ");
+	    			start = thedate + " "+split[0]+":00";
+	    			end = thedate + " "+split[1]+":00";
+	    		}
+	    	 }
+	    	 
+	    	try {
+	       		 plan.setStarttime(simpleDateFormat.parse(start));
+	   			 plan.setEndtime(simpleDateFormat.parse(end));
+	   		} catch (ParseException e) {
+	   			// TODO Auto-generated catch block
+	   			e.printStackTrace();
+	   		}
+	    
+	    	  plan.setNowprogress(i+1);
+			  
+			  
+			  
+			  planService.insert(plan);
+			  plan.setThedate(getNextTheDay(plan.getThedate(),repeatSpace+1));
+			  if(isRemind==1){
+				  plan.setRemindtime(getNextRemindTime(plan.getRemindtime(),repeatSpace+1));
+			  }
+			  plan.setId(null);
+			
+		}
+		  
+    
+        
+        return SUCCESS_TIP;
+    }
+    
+    public String getTimeLength(String thedate){
+    	String result ="";
+    	String[] split = thedate.split(" - ");
+    	String  start = split[0];
+    	String end = split[1];
+    	int hour= Integer.parseInt(end.split(":")[0])-Integer.parseInt(start.split(":")[0]);
+    	int min = Integer.parseInt(end.split(":")[1])-Integer.parseInt(start.split(":")[1]);
+    	int sun = hour*60+min;
+    	if(sun/60!=0){
+    		result+=sun/60+"小时";
+    	}
+    	if(sun%60!=0){
+    		result+=sun%60+"分钟";
+    	}
+    	return  result;
+    }
+    
+    
+    public String getNextTheDay(String thedate,int n){
+    	String result ="";
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+    	Date date = new Date();
     	try {
-    		 plan.setStarttime(simpleDateFormat.parse(start));
-			 plan.setEndtime(simpleDateFormat.parse(end));
+    		date = simpleDateFormat.parse(thedate);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        planService.insert(plan);
-        return SUCCESS_TIP;
+    	Calendar  c = Calendar.getInstance();  
+    	c.setTime(date);
+    	c.add(Calendar.DAY_OF_MONTH, n);
+    	 result = simpleDateFormat.format(c.getTime());
+    	return  result;
+    }
+    public String getNextRemindTime(String remindtime,int n){
+    	String result ="";
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	Date date = new Date();
+    	try {
+    		date = simpleDateFormat.parse(remindtime);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	Calendar  c = Calendar.getInstance();  
+    	c.setTime(date);
+    	 c.add(Calendar.DAY_OF_MONTH, n);
+    	 result = simpleDateFormat.format(c.getTime());
+    	return  result;
     }
 
     /**
@@ -172,7 +266,9 @@ public class PlanController extends BaseController {
     @ResponseBody
     public Object update(Plan plan) {
     	plan.update();
-    	
+    	if(plan.getIsWholeday()==0){
+    		plan.setRangelength(getTimeLength(plan.getRange()));
+    	}
     	Integer isWholeday = plan.getIsWholeday();
     	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	String range = plan.getRange();

@@ -41,6 +41,9 @@
 <!-- 	 * 统计总计划数量 参数userid -->
 	<select id="getPlanCount" resultType="java.lang.Integer" parameterType="map">
 		SELECT COUNT(1) "num" FROM plan where 1=1 
+		<if test="userid != null and userid !=''">
+			and userid = #{userid}
+		</if>
 	</select>
 	
 <!-- 	 * 统计用户便签数 参数 userid -->

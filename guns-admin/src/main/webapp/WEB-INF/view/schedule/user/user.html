@@ -47,6 +47,10 @@
 									@if(shiro.hasPermission("/scheduleUser/reset")){
 									<#button name="重置密码" icon="fa-refresh" clickFun="MgrUser.resetPwd()" space="true"/>
 									@}
+									
+									@if(shiro.hasPermission("/scheduleUser/resetlink")){
+									<#button name="重置专属链接" icon="fa-refresh" clickFun="MgrUser.resetlink()" space="true"/>
+									@}
 									@if(shiro.hasPermission("/scheduleUser/freeze")){
 									<#button name="冻结" icon="fa-warning" clickFun="MgrUser.freezeAccount()" space="true"/>
 									@}

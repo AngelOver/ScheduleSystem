@@ -225,6 +225,7 @@
 				</div>
 			</div>
 		</div>
+		<audio controls preload="auto"  style="display:none">  <source src="mp3/2468.wav" type="audio/ogg" ></audio>
 			<script>
 				function link(url){
 			    		window.location.href='http://47.106.121.197/'+url;
@@ -238,6 +239,11 @@
 			*{
 				    font-size: 18px;
    					font-family: "微软雅黑";
+				
+			}
+			
+			.reminddiv p{
+				margin-top: 6px;
 				
 			}
 			.menu{
@@ -615,84 +621,52 @@
 			
 			function openLayer(){
 				console.log(new Date());
-//在这里面输入任何合法的js语句
-			/*	layui.layer.open({
-				  type: 4 //此处以iframe举例
-				  ,title: '当你选择该窗体时，即会在最顶端'
-				  ,area: ['390px', '330px']
-				  ,shade: 0
-				  ,offset: 'rb'
-				  ,maxmin: true
-				  ,content: ['内容', '#atest']
-				   ,tipsMore: true
-				  ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-				  ,yes: function(){
-				    $(that).click(); //此处只是为了演示，实际使用可以剔除
-				  }
-				  ,btn2: function(){
-				    layer.closeAll();
-				  }
-				  
-				  ,zIndex: layer.zIndex //重点1
-				  ,success: function(layero){
-				    layer.setTop(layero); //重点2
-				  }
-				});*/
-				
-				
 				//边缘弹出
-layui.layer.open({
-  type: 1
-   ,area: ['390px', '330px']
-  ,offset: 'rb' //具体配置参考：offset参数项
-  ,content: '<div style="padding: 20px 80px;">内容</div>'
-  ,btn: '关闭全部'
-  ,btnAlign: 'c' //按钮居中
-  ,tipsMore: true
-  ,shade: 0 //不显示遮罩
-  ,yes: function(){
-    layer.closeAll();
-  }
-  });
-				
+				var _html="";
+				var title ="";
+				var thedate ="";	
+				var range ="";	
+				var address ="";	
+				var remark ="";	
+			
+				_html += '<div style="padding: 20px 80px;" class="reminddiv"> <audio controls preload="auto" autoplay="autoplay" style="display:none">  <source src="mp3/2468.wav" type="audio/ogg" ></audio>';
+				_html +='<p>标题：'+title+'</p>';
+				_html +='<p>日期：'+thedate+' </p>';
+				_html +='<p>时间：'+range+'</p>';
+				if(address!=""){
+				_html +='<p>地址：'+address+'</p>';
+				}
+				if(remark!=""){
+				_html +='<p>备注：'+remark+'</p>';
+				}
+				_html +='</div>';
+
+			var index = layui.layer.open({
+			  type: 1
+			    ,title: '您有一条新提醒'
+			   ,area: ['420px', '320px']
+			  ,offset: 'rb' //具体配置参考：offset参数项
+			  ,content: _html
+			  ,btn: '知道了'
+			  ,btnAlign: 'c' //按钮居中	
+			  ,tipsMore: true
+			  ,shade: 0 //不显示遮罩
+			  ,yes: function(){
+			    layer.close(index);
+			  }
+			  });
 			}
-			var a = 0;
-			console.log("开始");
-			setTimeout(function(){
-				console.log(a);
-				a=a+1;
-				openLayer();
-			},1000);
 			
 			setTimeout(function(){
-				console.log(a);
-				a=a+1;
-				openLayer();
-			},3000);
+				//openLayer();
+			},5000);
 			
-			
-			setTimeout(function(){
-				console.log(a);
-				a=a+1;	
-				openLayer();
-			},2000);
-			setTimeout(function(){
-				console.log(a);
-				a=a+1;	
-				openLayer();
-			},5000);setTimeout(function(){
-				console.log(a);
-				a=a+1;	
-				openLayer();
-			},10000);
-			console.log("完成");
-			
-			
+			var timestamp = Date.parse(new Date());
+			console.log(timestamp);
 			
 			
 			
 			$(function(){
-				openLayer();
 			})
 			
 		</script>

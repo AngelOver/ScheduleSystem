@@ -1,0 +1,155 @@
+<!DOCTYPE html>  
+<html>  
+<meta charset="UTF-8" />  
+<div>  
+    <div>  
+        <video id="video" src="2.mp4" width="600">当前浏览器不支持video元素</video>  
+    </div>  
+    <div id="progressTime" style="display:none">  
+        <div style="float:left">  
+        <progress id="progress" max="100" style="width:450px">  
+        </progress>  
+        </div>  
+        <div id="showTime" style="float:left;margin-left:15px"></div>  
+        <div style="clear:both"></div>  
+    </div>  
+    </div>  
+    <div>  
+        <input type="button" id ="btnPlay" onclick="playOrPause()" value="播放"/>   
+        <input type="button" id="btnSpeedUp" onclick="speedUp()" value="快放" />   
+        <input type="button" id="btnSpeedUpDown" onclick="speedDown()" value="慢放" />   
+        <input type="button" id="btnVolumeUp" onclick="volumeUp()" value="提高音量" />   
+        <input type="button"  id="btnVolumeDown" onclick="volumeDown()" value="降低音量" />   
+    </div>  
+</div>  
+<script>  
+var speed=1; //播放速度  
+var volume=1; //播放音量  
+var video=document.getElementById("video");  
+var playBtn=document.getElementById("btnPlay");  
+var btnSpeedUp=document.getElementById("btnSpeedUp");  
+var btnSpeedUpDown=document.getElementById("btnSpeedUpDown");  
+var btnVolumeUp=document.getElementById("btnVolumeUp");  
+var btnVolumeDown=document.getElementById("btnVolumeDown");  
+var showTime=document.getElementById("showTime");  
+  
+video.addEventListener('timeupdate',updateProgress,false); //为播放器添加时间改变监听事件  
+var progress=document.getElementById("progress");  
+progress.onclick=progressOnClick; //为progress控件添加点击事件  
+  
+//播放或暂停  
+function playOrPause()  
+{  
+    var progressTime=document.getElementById("progressTime");  
+    progressTime.style.display=""; //显示播放进度条和时间  
+    if(video.paused) //如果当前播放状态为暂停，点击后开始播放  
+    {  
+        playBtn.value="暂停";  
+        video.play();  
+        video.playbackRate=speed;  
+        video.volume=volume;  
+        //启用控制工具条其他按钮  
+        btnSpeedUp.disabled="";  
+        btnSpeedUpDown.disabled="";  
+        btnVolumeUp.disabled="";  
+        btnVolumeDown.disabled="";  
+    }  
+    else //如果当前播放状态为播放，点击后暂停播放  
+    {  
+        playBtn.value="播放";  
+        video.pause();  
+        //禁用控制条其他按钮  
+        btnSpeedUp.disabled="disabled";  
+        btnSpeedUpDown.disabled="disabled";  
+        btnVolumeUp.disabled="disabled";  
+        btnVolumeDown.disabled="disabled";  
+    }     
+}  
+//提高播放速度  
+function speedUp()  
+{  
+    video.playbackRate+=1;  
+    speed=video.playbackRate;  
+}  
+//降低播放速度  
+function speedDown()  
+{  
+    video.playbackRate-=1;  
+    if(video.playbackRate<0)  
+    {  
+        video.playbackRate=0;     
+    }  
+    speed=video.playbackRate;  
+}  
+//增大音量  
+function volumeUp()  
+{  
+    if(video.volume<1)  
+    {  
+        video.volume+=0.1;  
+        if(video.volume>0)  
+        {  
+            video.muted=false;  
+        }  
+    }  
+    volume=video.volume;  
+}  
+//降低音量  
+function volumeDown()  
+{  
+    if(video.volume>0)  
+    {  
+        video.volume-=0.1;  
+        if(video.volume==0)  
+        {  
+            video.muted=true;  
+        }  
+    }  
+    volume=video.volume;  
+}  
+//播放进度条点击事件，点击后从点击位置开始播放  
+function progressOnClick(event)  
+{  
+    var progress=document.getElementById("progress");  
+    if(event.offsetX) //获取鼠标当前点击位置与当前位置相比存在偏移量  
+    {  
+        video.currentTime=video.duration*(event.offsetX/progress.clientWidth); //设定播放器新的播放位置  
+    }  
+    else  
+    {  
+        video.currentTime=video.duration*(event.clientX/progress.clientWidth);  
+    }  
+}  
+//更新进度条状态  
+function updateProgress()  
+{  
+    var currentPercent=Math.round(Math.floor(video.currentTime)/Math.floor(video.duration)*100,0);//计算当前播放时长与视频总时长之比  
+    var progress=document.getElementById("progress");  
+    progress.value=currentPercent;  
+    showTime.innerHTML=calculateTime(Math.floor(video.currentTime))+"/"+calculateTime(Math.floor(video.duration));//显示播放时间  
+}  
+//将当前传入的时间转换为hh:MM:ss的格式  
+function calculateTime(time)  
+{  
+    var h;  
+    var m;  
+    var s;  
+    h=String(parseInt(time/3600,10));  
+    if(h.length==1)  
+    {  
+        h='0'+h;  
+    }  
+    m=String(parseInt((time%3600)/60,10));  
+    if(m.length==1)  
+    {  
+        m='0'+m;  
+    }  
+    s=String(parseInt(time%60),10)  
+    if(s.length==1)  
+    {  
+        s='0'+s;  
+    }  
+    return h+":"+m+":"+s;  
+}  
+</script>  
+</html>  

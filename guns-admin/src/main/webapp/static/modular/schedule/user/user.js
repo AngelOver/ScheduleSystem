@@ -180,6 +180,33 @@ MgrUser.resetPwd = function () {
     }
 };
 
+
+/**
+ * 重置链接
+ */
+MgrUser.resetlink = function () {
+    if (this.check()) {
+        var userId = this.seItem.id+"";
+        console.log("ok");
+        console.log(userId);
+    	$.ajax({
+		    type: "post",
+			dataType: 'json',
+		    url: Feng.ctxPath +"/scheduleUser/updateLinkCode",//请求后台方法
+		    data: {id :userId},
+		    success: function (date) {
+			layer.msg("重置成功");
+			MgrUser.table.refresh();
+		     },
+		    error: function (response) {
+		        var r = jQuery.parseJSON(response.responseText);
+		        alert("Message: " + r.Message);
+		    }
+		})
+    }
+};
+
+
 MgrUser.resetSearch = function () {
     $("#name").val("");
     $("#beginTime").val("");

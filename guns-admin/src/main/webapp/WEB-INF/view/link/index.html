@@ -13,33 +13,23 @@
 		<link href="${ctxPath}/static/modular/link/fullcalendar/lib/cupertino/jquery-ui.min.css" rel="stylesheet">
 		<link href="${ctxPath}/static/modular/link/artDialog/css/ui-dialog.css" rel="stylesheet">
 		<link href="${ctxPath}/static/modular/link/wickedpicker/dist/wickedpicker.min.css" rel="stylesheet">
-		<script src="${ctxPath}/static/modular/link/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
-		<script src="${ctxPath}/static/modular/link/fullcalendar/lib/jquery.min.js"></script>
-		<script src="${ctxPath}/static/modular/link/fullcalendar/lib/jquery-ui.min.js"></script>
-		<script src="${ctxPath}/static/modular/link/fullcalendar/lib/moment.min.js"></script>
-		<script src="${ctxPath}/static/modular/link/fullcalendar/fullcalendar.js"></script>
-		<script src="${ctxPath}/static/modular/link/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
-		<script src="${ctxPath}/static/modular/link/artDialog/dist/dialog-min.js"></script>
-		<script src="${ctxPath}/static/modular/link/bootstrap/js/bootstrap.min.js"></script>
-	<!--	<script src="js/bootstrap.js"></script>-->
-		<script src="${ctxPath}/static/modular/link/wickedpicker/dist/wickedpicker.min.js"></script>
-		<script src="${ctxPath}/static/modular/link/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-		<script src="${ctxPath}/static/modular/link/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-<script type="text/javascript">
-var origin =  top.window.location.origin;
-var path =  "${ctxPath}";
-var URL = origin
-URL =  URL +path+"/";
-ajaxPath = URL+"api"
-console.log(URL);
-
-link = top.window.location.href;
-arr = link.split("/");
-linkcode = arr[arr.length-1];
-console.log(linkcode);
-</script>
 		<link rel="stylesheet" href="${ctxPath}/static/modular/link/js/plugins/layui/css/layui.css">
-		<script src="${ctxPath}/static/modular/link/js/plugins/layui/layui.all.js"></script>
+		<script type="text/javascript">
+				var origin =  top.window.location.origin;
+				var path =  "${ctxPath}";
+				var URL = origin
+				URL =  URL +path+"/";
+				ajaxPath = URL+"api"
+				console.log(URL);
+				
+				link = top.window.location.href;
+				arr = link.split("/");
+				linkcode = arr[arr.length-1];
+				
+				var mp3Url = '${ctxPath}/static/modular/link/mp3/2468.wav';
+		</script>
+
+	
 		<style>
 			body {
 				margin: 0;
@@ -59,6 +49,10 @@ console.log(linkcode);
 			
 			.blue {
 				/*border: blue solid 1px;*/
+			}
+			.reminddiv p{
+				margin-top: 6px;
+				
 			}
 			
 			.flex {
@@ -174,15 +168,15 @@ console.log(linkcode);
 							<div class="flex-center " style="">导航栏</div>
 						</div>
 						<div class="flex-row " style="flex:1;margin:10px 0 5px 0 ;">
-							<button  onclick="link('api/web/home')" style="margin-right: 20px;width:100px" class="btn">官网主页</button>
-							<button  onclick="link('')" style="width:100px" class="btn">进入控制台</button>
+							<button  onclick="linkFun('api/web/home')" style="margin-right: 20px;width:100px" class="btn">官网主页</button>
+							<button  onclick="linkFun('')" style="width:100px" class="btn">进入控制台</button>
 						</div>
 						<div class="flex-row " style="flex:1;margin: 5px 0 10px 0 ;">
-							<button  onclick="link('api/web/timeline')" style="margin-right: 20px;width:100px" class="btn">时间轴</button>
-							<button  onclick="link('api/web/about')"  style="width:100px" class="btn">关于我们</button>
+							<button  onclick="linkFun('api/web/timeline')" style="margin-right: 20px;width:100px" class="btn">时间轴</button>
+							<button  onclick="linkFun('api/web/about')"  style="width:100px" class="btn">关于我们</button>
 						</div>
 					</div>
-
+<a id="linkFun"  href="" target="_blank" style="display:none"></a>
 					</div>
 				</div>
 				<!--  <div id="" class="red " style="display: flex;flex-direction:column;width: 200px;height: 300px;">
@@ -232,10 +226,10 @@ console.log(linkcode);
 					
 					<label>重要程度：</label>
 					<select id="importantstatus" class="select">
-									<option  value="1">A  紧急，重要</option>
+									<option  value="1" >A  紧急，重要</option>
 							             <option  value="2">B  紧急，不重要</option>
 							            <option value="3">C  不紧急，重要</option>
-							           <option   value="4">D  不紧急，不重要</option>
+							           <option   value="4" selected = selected">D  不紧急，不重要</option>
 					</select>
 				</p>
 				<p class="checkbox check">
@@ -284,8 +278,8 @@ console.log(linkcode);
 				</p>
 			
 				<p class="checkbox check">
-					<label class="checkbox-inline"><input type="checkbox" id="isTopNote">展示</label>
-					<label class="checkbox-inline"><input type="checkbox" id="isShowNote">置顶</label>
+					<label class="checkbox-inline"><input type="checkbox" id="isShowNote" checked>展示</label>
+					<label class="checkbox-inline"><input type="checkbox" id="isTopNote">置顶</label>
 					<label class="checkbox-inline"><input type="checkbox" id="isWaitNote">待办</label>
 				</p>
 			<!-- 	<p>
@@ -329,10 +323,32 @@ console.log(linkcode);
 				</p>
 			</form>
 		</div>
+		<audio controls preload="auto"   style="display:none">  <source src="${ctxPath}/static/modular/link/mp3/2468.wav" type="audio/ogg" ></audio>
 	</body>
-	
+	<script src="${ctxPath}/static/modular/link/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
+		<script src="${ctxPath}/static/modular/link/fullcalendar/lib/jquery.min.js"></script>
+		<script src="${ctxPath}/static/modular/link/fullcalendar/lib/jquery-ui.min.js"></script>
+		<script src="${ctxPath}/static/modular/link/fullcalendar/lib/moment.min.js"></script>
+		<script src="${ctxPath}/static/modular/link/fullcalendar/fullcalendar.js"></script>
+		<script src="${ctxPath}/static/modular/link/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="${ctxPath}/static/modular/link/artDialog/dist/dialog-min.js"></script>
+		<script src="${ctxPath}/static/modular/link/bootstrap/js/bootstrap.min.js"></script>
+	<!--	<script src="js/bootstrap.js"></script>-->
+		<script src="${ctxPath}/static/modular/link/wickedpicker/dist/wickedpicker.min.js"></script>
+		<script src="${ctxPath}/static/modular/link/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+		<script src="${ctxPath}/static/modular/link/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+		<script src="${ctxPath}/static/modular/link/js/plugins/layui/layui.all.js"></script>
 	<script src="${ctxPath}/static/modular/link/js/index.js"></script>
 	<script type="text/javascript">
+	function linkFun(url){
+		linkURL = URL+url;
+		console.log(URL);
+		console.log(linkURL);
+		$("#linkFun").empty().append(linkURL);
+		$("#linkFun").attr("href",linkURL);
+		$("#linkFun")[0].click();
+		console.log($("#linkFun"));
+	}
 	
 		function link(url){
 			    	window.location.href='${ctxPath}/'+url;
@@ -341,6 +357,9 @@ console.log(linkcode);
 		$(document).ready(function() {
 			//fc初始化
 			fcInit();
+			//加载提醒
+			getRemind();
+			
 		});
 		
 		$(function(){

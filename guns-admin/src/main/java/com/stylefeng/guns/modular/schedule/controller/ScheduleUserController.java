@@ -41,6 +41,7 @@ import com.stylefeng.guns.core.util.ToolUtil;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
@@ -178,15 +179,28 @@ public class ScheduleUserController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
-        if (ShiroKit.isAdmin()) {
+        /*if (ShiroKit.isAdmin()) {*/
             List<Map<String, Object>> users = scheduleUserService.selectUsers(null, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
-        } else {
+        /*}*/ /*else {
             DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
             List<Map<String, Object>> users = scheduleUserService.selectUsers(dataScope, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
-        }
+        }*/
     }
+    
+    /**
+     * 重置链接
+     */
+    @RequestMapping(value = "/updateLinkCode")
+    @ResponseBody
+    public Object updateLinkCode(int id){
+    	 User user = this.scheduleUserService.selectById(id);
+    	 user.setLinkcode(UUID.randomUUID().toString().replace("-", ""));
+    	 scheduleUserService.updateById(user);
+    	 return JSONObject.toJSON( ApiTip.ok(user.getLinkcode()));
+    }
+    
 
     /**
      * 添加管理员
@@ -301,7 +315,6 @@ public class ScheduleUserController extends BaseController {
      */
     @RequestMapping("/freeze")
     @BussinessLog(value = "冻结用户", key = "userId", dict = UserDict.class)
-    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip freeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -311,7 +324,6 @@ public class ScheduleUserController extends BaseController {
         if (userId.equals(Const.ADMIN_ID)) {
             throw new GunsException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
-        assertAuth(userId);
         this.scheduleUserService.setStatus(userId, ManagerStatus.FREEZED.getCode());
         return SUCCESS_TIP;
     }
@@ -321,13 +333,11 @@ public class ScheduleUserController extends BaseController {
      */
     @RequestMapping("/unfreeze")
     @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
-    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip unfreeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        assertAuth(userId);
         this.scheduleUserService.setStatus(userId, ManagerStatus.OK.getCode());
         return SUCCESS_TIP;
     }

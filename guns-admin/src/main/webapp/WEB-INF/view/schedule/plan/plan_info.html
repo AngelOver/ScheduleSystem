@@ -110,7 +110,7 @@
                             <#input id="thedate" name="计划时间" underline="true"/>
                             <#input id="range" name="时间范围" underline="true"/>
                               <#select id="isRepeat" name="是否重复" underline="true">
-									<option  value="0">否</option>
+									<option  value="0" >否</option>
 							         <option  value="1">是</option>
 							</#select>
                             
@@ -138,7 +138,7 @@
 							<div class="hr-line-dashed"></div>
                             
                              <#select id="isWholeday" name="是否全天" underline="true">
-									<option  value="0">否</option>
+									<option  value="0"  >否</option>
 							         <option  value="1">是</option>
 							</#select>
 					                      
@@ -190,6 +190,17 @@
 <script src="${ctxPath}/static/modular/schedule/plan/plan_info.js"></script>
 
 <script type="text/javascript">
+$(function(){
+	$("#isWholeday").val("0");	
+	
+	$("#isRepeat").val("0");	
+	
+	$("#isRemind").val("0");	
+	
+	$("#importantstatus").val("4");	
+	
+	
+});
 
 </script>
 </div>

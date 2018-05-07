@@ -61,13 +61,13 @@ Plan.initColumn = function () {
             	
             {title: '重要程度', field: 'importantstatus', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
         	if (value ==1){
-       			 return "<span class='badge badge-success'>A  紧急，重要</span>";
+       			 return "<span class='badge badge-success' style='background-color:red '>A  紧急，重要</span>";
        		}else if (value ==2){
-       			 return "<span class='badge badge-success'>B  紧急，不重要</span>";
+       			 return "<span class='badge badge-success' style='background-color:MediumSlateBlue  '>B  紧急，不重要</span>";
        		}else if (value ==3){
-       			 return "<span class='badge badge-success'>C  不紧急，重要</span>";
+       			 return "<span class='badge badge-success' style='background-color:SlateGray   '>C  不紧急，重要</span>";
        		}else if (value ==4){
-       			 return "<span class='badge badge-success'>D  不紧急，不重要</span>";
+       			 return "<span class='badge badge-success' style='background-color:Khaki   '>D  不紧急，不重要</span>";
        		}
        		
        }},
@@ -77,7 +77,7 @@ Plan.initColumn = function () {
 /*            {title: '是否重复', field: 'isRepeat', visible: true, align: 'center', valign: 'middle'},
             {title: '重复次数', field: 'repeatcount', visible: true, align: 'center', valign: 'middle'},*/
 /*            {title: '是否展示进度', field: 'isProgress', visible: true, align: 'center', valign: 'middle'},*/
-            {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+    /*        {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
             	if (value ==0){
           			 return "<span class='badge badge-success'>未开始</span>";
           		}else if (value ==1){
@@ -90,8 +90,9 @@ Plan.initColumn = function () {
           			 return "<span class='badge badge-success'>未完成</span>";
           		}
           		
-          }},
+          }},*/
 /*            {title: '当前进度', field: 'nowprogress', visible: true, align: 'center', valign: 'middle'},*/
+          {title: '创建人', field: 'username', visible: true, align: 'center', valign: 'middle'},
             {title: '创建时间', field: 'createtime', visible: true, align: 'center', valign: 'middle'},
             {title: '更新时间', field: 'updatetime', visible: true, align: 'center', valign: 'middle'},
    /*         {title: '保留字段', field: 'version', visible: true, align: 'center', valign: 'middle'}*/
@@ -166,6 +167,8 @@ Plan.delete = function () {
 Plan.search = function () {
     var queryData = {};
     queryData['condition'] = $("#condition").val();
+    queryData['onlyOwn'] = $("#onlyOwn").is(":checked")?'1':'0';
+    
     Plan.table.refresh({query: queryData});
 };
 

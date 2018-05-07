@@ -9,6 +9,9 @@ URL =  URL +path+"/";
 var linkcodeURL = URL+"api/link/${linkcode}"
 console.log(linkcodeURL);
 
+ajaxPath = URL+"api";
+var mp3Url = '${ctxPath}/static/modular/link/mp3/2468.wav';
+
 </script>
 <style>
 
@@ -145,8 +148,79 @@ console.log(linkcodeURL);
 					<h3><strong style="color: inherit;">您的专属链接：</strong><a id="linkcode"  href="" target="_blank"></a><span style="color: inherit;">(请收藏此链接，无需再登录到这里)</span></h3><p><br></p>
 				</div>
 		</div>
+		<audio controls preload="auto"   style="display:none">  <source src="${ctxPath}/static/modular/link/mp3/2468.wav" type="audio/ogg" ></audio>
 	
 	<script type="text/javascript">
+
+	
+
+	function addRemind(list){
+		var timestamp = Date.parse(new Date());
+		  $.each(list, function(i,item){   
+			  var _html="";
+				var title =item.title;
+				var thedate =item.thedate;	
+				var range =item.rangetime;	
+				var address =item.address;	
+				var remark =item.remark;	
+				var time = item.time;	
+				if(time!=null&&time>timestamp){
+					console.log("新增提醒")
+				_html += '<div style="padding: 20px 80px;" class="reminddiv"> <audio controls preload="auto" autoplay="autoplay" style="display:none">  <source src="'+mp3Url+'" type="audio/ogg" ></audio>';
+				_html +='<p>标题：'+title+'</p>';
+				_html +='<p>日期：'+thedate+' </p>';
+				_html +='<p>时间：'+range+'</p>';
+			
+				if(address!=""){
+				_html +='<p>地址：'+address+'</p>';
+				}
+				if(remark!=""){
+				_html +='<p>备注：'+remark+'</p>';
+				}
+				_html +='</div>';
+				console.log(_html);
+				console.log(time-timestamp);
+				
+				setTimeout(function(){
+					openRemind(_html);
+				},time-timestamp);
+				}
+		  });
+	}
+
+	function openRemind(_html){
+		var index = top.layer.open({
+			  type: 1
+			    ,title: '您有一条新提醒'
+			   ,area: ['420px', '320px']
+			  ,offset: 'rb' //具体配置参考：offset参数项
+			  ,content: _html
+			  ,btn: '知道了'
+			  ,btnAlign: 'c' //按钮居中	
+			  ,tipsMore: true
+			  ,shade: 0 //不显示遮罩
+			  ,yes: function(){
+			    top.layer.close(index);
+			  }
+			  });
+	}
+	function getRemind(){
+		$.ajax({
+			url:  ajaxPath +'/plan/admin_remindlist',
+			data: {
+			},
+			type: 'POST',
+			dataType: 'json',
+			success: function(data) {
+				addRemind(data.obj);
+			},
+			error: function() {
+				alert("Failed");
+			}
+		});
+	}
+
+	
 	function  updateLinkCode(){
 		$.ajax({
 		    type: "post",
@@ -170,6 +244,7 @@ console.log(linkcodeURL);
 		$("#linkcode").append(linkcodeURL);
 		$("#linkcode").attr("href",linkcodeURL);
 		getDate();
+		getRemind();
 		
 	})
 	function getDate(){

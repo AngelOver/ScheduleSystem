@@ -294,7 +294,6 @@ public class ScheduleAdminController extends BaseController {
      */
     @RequestMapping("/freeze")
     @BussinessLog(value = "冻结用户", key = "userId", dict = UserDict.class)
-    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip freeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -304,7 +303,6 @@ public class ScheduleAdminController extends BaseController {
         if (userId.equals(Const.ADMIN_ID)) {
             throw new GunsException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
-        assertAuth(userId);
         this.scheduleAdminService.setStatus(userId, ManagerStatus.FREEZED.getCode());
         return SUCCESS_TIP;
     }
@@ -314,13 +312,11 @@ public class ScheduleAdminController extends BaseController {
      */
     @RequestMapping("/unfreeze")
     @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
-    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip unfreeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        assertAuth(userId);
         this.scheduleAdminService.setStatus(userId, ManagerStatus.OK.getCode());
         return SUCCESS_TIP;
     }

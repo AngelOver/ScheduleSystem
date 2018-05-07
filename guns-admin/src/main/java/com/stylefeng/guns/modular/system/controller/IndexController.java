@@ -76,6 +76,19 @@ public class IndexController extends BaseController {
     	 return JSONObject.toJSON( ApiTip.ok(user.getLinkcode()));
     }
     
-
+    
+    
+    /**
+     * 重置链接
+     */
+    @RequestMapping(value = "/admin_updateLinkCode")
+    @ResponseBody
+    public Object updateLinkCode(int id){
+    	 User user = this.userService.selectById(id);
+    	 user.setLinkcode(UUID.randomUUID().toString().replace("-", ""));
+    	 userService.updateById(user);
+    	 return JSONObject.toJSON( ApiTip.ok(user.getLinkcode()));
+    }
+    
 
 }

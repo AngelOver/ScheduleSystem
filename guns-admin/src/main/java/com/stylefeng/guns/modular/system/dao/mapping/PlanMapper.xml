@@ -51,8 +51,19 @@
 			and endtime    &lt;= #{end} 
 		</if>
 		
+		<if test="remind_start != null and remind_start !=''">
+			and remindtime   &gt;= #{remind_start} 
+		</if>
+		
+		<if test="remind_end != null and remind_end !=''">
+			and remindtime    &lt;= #{remind_end} 
+		</if>
+		
 		<if test="userid != null and userid !=''">
 			and userid   = #{userid} 
+		</if>
+		<if test="is_remind != null and is_remind !=''">
+			and is_remind   = #{is_remind} 
 		</if>
 		
 	

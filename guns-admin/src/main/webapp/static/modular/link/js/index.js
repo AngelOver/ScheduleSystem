@@ -55,6 +55,50 @@ function fcInit() {
 						content: $("#dialog-form"),
 						okValue: "确定",
 						ok: function() {
+							
+							if($("#title").val()=="") {
+									layui.layer.msg("标题不能为空");
+									return false;
+							}
+							if($("#thedate").val()=="") {
+								layui.layer.msg("计划时间不能为空");
+								return false;
+						}
+							
+							if(!$("#isWholeday").prop("checked")) {
+								if($("#range").val()=="") {
+									layui.layer.msg("时间范围不能为空");
+									return false;
+								}else{
+									var start = $("#range").val().split(" - ")[0];
+									var end = $("#range").val().split(" - ")[1];
+									console.log(start+end);
+									if(end<start){
+										layer.msg("结束时间不能小于开始时间");
+										return false;
+									}
+									
+								}
+							}
+							if($("#isRemind").prop("checked")) {
+								if($("#remindtime").val()=="") {
+									layui.layer.msg("提醒时间不能为空");
+									return false;
+								}
+							}
+							
+							if($("#isRepeat").prop("checked")) {
+								if($("#repeatSpace").val()=="") {
+									layui.layer.msg("间隔天数不能为空");
+									return false;
+								}
+								if($("#repeatCount").val()=="") {
+									layui.layer.msg("重复次数不能为空");
+									return false;
+								}
+							}
+							
+							
 						
 								$.ajax({
 									url: ajaxPath +'/plan/add',
@@ -68,16 +112,17 @@ function fcInit() {
 										isRepeat:$("#isRepeat").prop("checked")?'1':'0',
 										isWholeday:$("#isWholeday").prop("checked")?'1':'0',
 										repeatSpace: $("#repeatSpace").val(),
-										repeatCount: $("repeatCount").val(),
-										remindtime: $("remindtime").val(),
-										address: $("address").val(),
-										remark: $("remark").val()
+										repeatCount: $("#repeatCount").val(),
+										remindtime: $("#remindtime").val(),
+										address: $("#address").val(),
+										remark: $("#remark").val()
 									},
 									type: 'POST',
 									dataType: 'json',
 									success: function(data) {
 										/*$("#calendar").fullCalendar("renderEvent", data, true);*/
 										/*$('#calendar').fullCalendar('updateEvent', event); */
+									/*	alert("ok");*/
 										top.window.location.reload();
 									},
 									error: function() {
@@ -373,7 +418,7 @@ function fcInit() {
 	                if (json.success ) {
 	                	 events=json.obj;	
 	                }else{
-	                	alert(json.message);
+	                	layui.layer.alert(json.message);
 	                }
 	                callback(events);
 	            }
@@ -399,7 +444,7 @@ function getNote(){
             	 list=date.obj;	
             	 appenNote(list);
              }else{
-             	alert(date.message);
+             	/*alert(date.message);*/
              }
          }
      });
@@ -434,7 +479,14 @@ function addNote(){
 		ok: function() {
 			console.log("add");
 			console.log($("#textNote").val());
-			if($("#textNote").val()!="" ) {
+
+			if($("#textNote").val()=="" ){
+				layui.layer.msg("便签内容不能为空");
+				return false;
+			}
+			
+			
+			
 				$.ajax({
 					url:  ajaxPath +'/note/add',
 					data: {
@@ -456,16 +508,84 @@ function addNote(){
 					}
 
 				});
-			}else{
-				layui.layer.msg("便签内容不能为空");
-				
-			}
 		},
 		cancelValue: "关闭",
 		cancel: function() {}
 	}).showModal();
 	
 }
+
+
+function addRemind(list){
+	var timestamp = Date.parse(new Date());
+	  $.each(list, function(i,item){   
+		  var _html="";
+			var title =item.title;
+			var thedate =item.thedate;	
+			var range =item.rangetime;	
+			var address =item.address;	
+			var remark =item.remark;	
+			var time = item.time;	
+			if(time!=null&&time>timestamp){
+				console.log("新增提醒")
+			_html += '<div style="padding: 20px 80px;" class="reminddiv"> <audio controls preload="auto" autoplay="autoplay" style="display:none">  <source src="'+mp3Url+'" type="audio/ogg" ></audio>';
+			_html +='<p>标题：'+title+'</p>';
+			_html +='<p>日期：'+thedate+' </p>';
+			_html +='<p>时间：'+range+'</p>';
+		
+			if(address!=""){
+			_html +='<p>地址：'+address+'</p>';
+			}
+			if(remark!=""){
+			_html +='<p>备注：'+remark+'</p>';
+			}
+			_html +='</div>';
+			console.log(_html);
+			console.log(time-timestamp);
+			
+			setTimeout(function(){
+				openRemind(_html);
+			},time-timestamp);
+			}
+	  });
+}
+
+function openRemind(_html){
+	var index = layui.layer.open({
+		  type: 1
+		    ,title: '您有一条新提醒'
+		   ,area: ['420px', '320px']
+		  ,offset: 'rb' //具体配置参考：offset参数项
+		  ,content: _html
+		  ,btn: '知道了'
+		  ,btnAlign: 'c' //按钮居中	
+		  ,tipsMore: true
+		  ,shade: 0 //不显示遮罩
+		  ,yes: function(){
+		    layer.close(index);
+		  }
+		  });
+}
+function getRemind(){
+	$.ajax({
+		url:  ajaxPath +'/plan/remindlist',
+		data: {
+			linkcode:linkcode
+		},
+		type: 'POST',
+		dataType: 'json',
+		success: function(data) {
+			addRemind(data.obj);
+		},
+		error: function() {
+			alert("Failed");
+		}
+	});
+}
+
+
+
+
 
 
 

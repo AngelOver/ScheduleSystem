@@ -238,10 +238,10 @@ public class Note extends Model<Note> {
     	this.updatetime =  new Date();
 	}
     //正则替换
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
 		String str = "3<h>2564<h>3<html>ww</html>www";
-		/*str = str.replace("<[^>]*>", "");*/
+		str = str.replace("<[^>]*>", "");
 		str = str.replaceAll("<[^>]*>", "");
 		System.out.println(str);
-	}
+	}*/
 }
