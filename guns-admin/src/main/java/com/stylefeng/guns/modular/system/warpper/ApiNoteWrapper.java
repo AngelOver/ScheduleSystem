@@ -21,7 +21,7 @@ public class ApiNoteWrapper extends BaseControllerWarpper {
     @Override
     public void warpTheMap(Map<String, Object> map) {
     	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd");
-        String  text = (String) map.get("text");
+        String  text =  map.get("text")+"";
         //去除html标签，提取摘要
         text=text.replaceAll("<[^>]*>", "");
         if(text.length()>16){

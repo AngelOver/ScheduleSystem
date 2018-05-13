@@ -20,7 +20,7 @@ public class NoteWrapper extends BaseControllerWarpper {
     @Override
     public void warpTheMap(Map<String, Object> map) {
     	Integer id = (Integer) map.get("userid");
-        String  text = (String) map.get("text");
+        String  text =  map.get("text")+"";
         //去除html标签，提取摘要
         text = text.replaceAll("<[^>]*>", "");
         if(text.length()>16){
