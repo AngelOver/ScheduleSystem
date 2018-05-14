@@ -118,11 +118,9 @@ UserInfoDlg.validatePwd = function () {
  */
 UserInfoDlg.validate = function () {	
 	 var flag1 = $('#userInfoForm').data("bootstrapValidator").isValid();		
-		console.log(flag1);
     $('#userInfoForm').data("bootstrapValidator").resetForm();
     $('#userInfoForm').bootstrapValidator('validate');
     var flag = $('#userInfoForm').data("bootstrapValidator").isValid();		
-	console.log(flag);
     return $("#userInfoForm").data('bootstrapValidator').isValid();
 };
 
@@ -130,14 +128,11 @@ UserInfoDlg.validate = function () {
  * 提交添加用户
  */
 UserInfoDlg.registSubmit = function () {
-   
     this.clearData();
     this.collectData();
-
     if (!this.validate()) {
         return;
     }
-
     if (!this.validatePwd()) {
         Feng.error("两次密码输入不一致");
         return;
@@ -146,11 +141,7 @@ UserInfoDlg.registSubmit = function () {
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/regist", function (data) {
         Feng.success("注册成功!正在为你自动登录。。。’");
-        //window.parent.MgrUser.table.refresh();
-       // UserInfoDlg.close();
         //自动登录
-        
-        
         layer.msg('注册成功', {
      	   icon: 1,
       	  time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒

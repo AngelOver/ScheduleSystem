@@ -414,7 +414,6 @@ function fcInit() {
 	            success: function(json) { // 获取当前月的数据
 	            	console.log(json);
 	                var events = [];
-	               
 	                if (json.success ) {
 	                	 events=json.obj;	
 	                }else{

@@ -140,8 +140,8 @@ public class PlanController extends BaseController {
     @RequestMapping(value = "/add")
     @ResponseBody
     public Object add(Plan plan) {
-    	plan.create();
-    	if(plan.getIsWholeday()==0){
+    	plan.create();//信息补全
+    	if(plan.getIsWholeday()==0){//计算时间长度
     		plan.setRangelength(getTimeLength(plan.getRange()));
     	}
   	  Integer isRepeat = plan.getIsRepeat();

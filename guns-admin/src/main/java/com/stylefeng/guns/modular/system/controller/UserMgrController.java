@@ -292,7 +292,7 @@ public class UserMgrController extends BaseController {
         if (userId.equals(Const.ADMIN_ID)) {
             throw new GunsException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
-        assertAuth(userId);
+        assertAuth(userId);//权限检测
         this.userService.setStatus(userId, ManagerStatus.FREEZED.getCode());
         return SUCCESS_TIP;
     }

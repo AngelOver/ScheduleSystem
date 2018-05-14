@@ -59,18 +59,18 @@ Plan.initColumn = function () {
 
             	
             	
-            {title: '重要程度', field: 'importantstatus', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
-        	if (value ==1){
-       			 return "<span class='badge badge-success' style='background-color:red '>A  紧急，重要</span>";
-       		}else if (value ==2){
-       			 return "<span class='badge badge-success' style='background-color:MediumSlateBlue  '>B  紧急，不重要</span>";
-       		}else if (value ==3){
-       			 return "<span class='badge badge-success' style='background-color:SlateGray   '>C  不紧急，重要</span>";
-       		}else if (value ==4){
-       			 return "<span class='badge badge-success' style='background-color:Khaki   '>D  不紧急，不重要</span>";
-       		}
-       		
-       }},
+{title: '重要程度', field: 'importantstatus', visible: true, align: 'center', valign: 'middle',formatter:function (value,row,index) {
+if (value ==1){
+	 return "<span class='badge badge-success' style='background-color:red '>A  紧急，重要</span>";
+}else if (value ==2){
+	 return "<span class='badge badge-success' style='background-color:MediumSlateBlue  '>B  紧急，不重要</span>";
+}else if (value ==3){
+	 return "<span class='badge badge-success' style='background-color:SlateGray   '>C  不紧急，重要</span>";
+}else if (value ==4){
+	 return "<span class='badge badge-success' style='background-color:Khaki   '>D  不紧急，不重要</span>";
+   		}
+   		
+   }},
             
             
 /*            {title: '是否全天', field: 'isWholeday', visible: true, align: 'center', valign: 'middle'},*/
