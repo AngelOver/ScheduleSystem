@@ -12,3 +12,7 @@ admin项目,目录下 guns-admin\src\main\java\com\stylefeng\guns\GunsApplicatio
 2打war包：
 选中perant项目 run as ->maven bluing,命令填
 clean package -Dmaven.test.skip=true
+
+访问地址
+后台：localhost
+网站前台：localhost/api/web/home
