@@ -1,6 +1,8 @@
 # ScheduleSystem
 毕业设计-基于mybatis的时间日程管理系统
 
+环境配置：jdk1.8.151 tomcat8.5 maven 3.5
+
 
 系统初始化
 1 导入maven项目，选定perant项目，导入。

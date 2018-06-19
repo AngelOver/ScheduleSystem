@@ -1,6 +1,10 @@
 # ScheduleSystem
 毕业设计-基于mybatis的时间日程管理系统
 
+在线预览地址:
+后台：http://guns.a3r.top/admin   账号密码：admin 1 
+网站前台：http://guns.a3r.top/admin/api/web/home
+
 环境配置：jdk1.8.151 tomcat8.5 maven 3.5
 
 
